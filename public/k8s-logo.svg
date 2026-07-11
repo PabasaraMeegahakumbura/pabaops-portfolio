@@ -1,0 +1,20 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
+<polygon points='64,2 116,33 116,95 64,126 12,95 12,33' fill='#326CE5'/>
+<circle cx='64' cy='64' r='16' fill='white'/>
+<g stroke='white' stroke-width='5.5' stroke-linecap='round'>
+<line x1='64' y1='17' x2='64' y2='40'/>
+<line x1='64' y1='88' x2='64' y2='111'/>
+<line x1='17' y1='64' x2='40' y2='64'/>
+<line x1='88' y1='64' x2='111' y2='64'/>
+<line x1='30.5' y1='30.5' x2='46.5' y2='46.5'/>
+<line x1='81.5' y1='81.5' x2='97.5' y2='97.5'/>
+<line x1='97.5' y1='30.5' x2='81.5' y2='46.5'/>
+<line x1='46.5' y1='81.5' x2='30.5' y2='97.5'/>
+</g>
+<g fill='white'>
+<circle cx='64' cy='17' r='5'/><circle cx='64' cy='111' r='5'/>
+<circle cx='17' cy='64' r='5'/><circle cx='111' cy='64' r='5'/>
+<circle cx='30.5' cy='30.5' r='5'/><circle cx='97.5' cy='97.5' r='5'/>
+<circle cx='97.5' cy='30.5' r='5'/><circle cx='30.5' cy='97.5' r='5'/>
+</g>
+</svg>
