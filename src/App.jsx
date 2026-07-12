@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const BRAND_IMAGE = `${import.meta.env.BASE_URL}pabaops-logo.png`;
 const HERO_IMAGE = `${import.meta.env.BASE_URL}pabaops-hero.png`;
@@ -8,11 +8,15 @@ const GITHUB_PROFILE = "https://github.com/PabasaraMeegahakumbura";
 const LINKEDIN_PROFILE = "https://www.linkedin.com/in/pabasara-meegahakumbura/";
 
 export default function App() {
+  const [route, setRoute] = useState(() => window.location.hash || "#/");
+
   const impactStats = [
     { label: "Primary Focus", value: "DevOps + SRE + Platform" },
     { label: "Core Stack", value: "Kubernetes + Terraform Automation" },
     { label: "Cloud & Edge", value: "AWS / GCP / Azure / Cloudflare" },
-    { label: "Languages & OS", value: "Python + Linux + DB Ops" },
+    { label: "Linux Administration", value: "Ubuntu / RHEL / CentOS / AlmaLinux" },
+    { label: "Languages", value: "Python + Bash + Java/C# Basics" },
+    { label: "Support Operations", value: "L0–L2 + Incident Troubleshooting" },
   ];
 
   const quickChips = [
@@ -22,8 +26,14 @@ export default function App() {
     "Kubernetes",
     "Docker",
     "Terraform",
-    "Linux",
+    "Linux Administration",
+    "Ubuntu",
+    "RHEL/CentOS",
+    "AlmaLinux",
     "Python",
+    "Bash",
+    "Java (Basic)",
+    "C# (Basic)",
     "CI/CD",
     "Prometheus",
     "Grafana",
@@ -32,6 +42,7 @@ export default function App() {
     "WAF",
     "MongoDB",
     "Jira",
+    "L0–L2 Support",
   ];
 
   const toolIcons = [
@@ -41,7 +52,8 @@ export default function App() {
     { icon: "⚙️", name: "CI/CD" },
     { icon: "📊", name: "Monitoring" },
     { icon: "🔐", name: "Security" },
-    { icon: "🐧", name: "Linux" },
+    { icon: "🐧", name: "Linux Admin" },
+    { icon: "🎧", name: "L0–L2 Support" },
     { icon: "🐍", name: "Python" },
   ];
 
@@ -55,11 +67,14 @@ export default function App() {
 
   const skillGroups = [
     { title: "Cloud", items: ["AWS", "GCP", "Azure", "Cloudflare"] },
-    { title: "Containers & Platform", items: ["Kubernetes", "Docker", "Linux", "WHM/cPanel"] },
-    { title: "CI/CD & Automation", items: ["GitLab CI", "Jenkins", "Terraform", "Python", "Bash"] },
+    { title: "Containers & Platform", items: ["Kubernetes", "Docker", "WHM/cPanel", "Platform Operations"] },
+    { title: "CI/CD & Automation", items: ["GitLab CI", "Jenkins", "Terraform", "Infrastructure Automation"] },
+    { title: "Languages & Scripting", items: ["Python", "Bash", "PowerShell", "Java (Basic)", "C# (Basic)"] },
+    { title: "Linux Administration", items: ["Ubuntu", "RHEL", "CentOS", "AlmaLinux", "systemd", "SSH", "firewalld"] },
     { title: "Observability", items: ["Prometheus", "Grafana", "Datadog", "ELK/EFK", "UptimeRobot"] },
     { title: "Security", items: ["WAF", "Vault", "Consul", "IAM/RBAC", "CrowdStrike Admin"] },
     { title: "Databases & Ops Tools", items: ["MongoDB", "MySQL", "Jira", "Zoho"] },
+    { title: "L0–L2 Support", items: ["Incident Triage", "Troubleshooting", "Escalation", "SLA Awareness", "Documentation", "User Support"] },
   ];
 
   const featuredProjects = [
@@ -195,6 +210,51 @@ export default function App() {
       icon: "🗄️",
       link: GITHUB_PROFILE,
     },
+    {
+      title: "Linux Administration & Server Operations",
+      subtitle: "Multi-distribution systems administration",
+      problem:
+        "Demonstrate practical Linux administration across cloud and hosted environments with a focus on stability, secure access, service availability, and structured troubleshooting.",
+      implemented: [
+        "User, group, permission, and SSH access administration",
+        "Package, process, service, and scheduled task management",
+        "Networking, firewall, DNS, log, and connectivity troubleshooting",
+        "Web and hosting operations across Linux and WHM/cPanel environments",
+      ],
+      outcome:
+        "Example outcome to replace later: improved server stability, safer access control, and faster diagnosis of Linux service and connectivity issues.",
+      replaceLater: [
+        "Add a Linux administration lab repository",
+        "Include terminal screenshots or a server architecture diagram",
+        "Replace with a real operational result or incident example",
+      ],
+      tools: ["Ubuntu", "RHEL", "CentOS", "AlmaLinux", "systemd", "Bash", "SSH"],
+      icon: "🐧",
+      link: GITHUB_PROFILE,
+    },
+    {
+      title: "L0–L2 Support & Incident Operations",
+      subtitle: "Service support, troubleshooting, and escalation",
+      problem:
+        "Present a structured support workflow from initial user intake through technical investigation, escalation, documentation, and operational follow-up.",
+      implemented: [
+        "L0 request intake, validation, classification, and routing",
+        "L1 user, application, access, network, and service troubleshooting",
+        "L2 log analysis, advanced investigation, and technical escalation",
+        "Incident communication, Jira/Zoho tracking, and knowledge documentation",
+      ],
+      outcome:
+        "Example outcome to replace later: improved incident ownership, clearer escalation paths, and more consistent communication throughout issue resolution.",
+      replaceLater: [
+        "Add a sanitized troubleshooting case study",
+        "Show an incident workflow or knowledge-base example",
+        "Replace with a real support metric or service improvement",
+      ],
+      tools: ["L0–L2", "Jira", "Zoho", "Monitoring", "Troubleshooting", "Documentation"],
+      icon: "🎧",
+      link: GITHUB_PROFILE,
+    },
+
   ];
 
   const experience = [
@@ -253,6 +313,336 @@ export default function App() {
     "Preparing toward stronger Kubernetes capability",
   ];
 
+
+
+  const capabilityAreas = [
+    {
+      slug: "linux",
+      icon: "🐧",
+      title: "Linux Administration",
+      eyebrow: "Server & Operating System Operations",
+      summary:
+        "Multi-distribution Linux administration covering access, services, packages, networking, firewalls, storage, logs, hosting, security, troubleshooting, and operational recovery.",
+      tags: [
+        "Ubuntu",
+        "RHEL",
+        "CentOS",
+        "AlmaLinux",
+        "Bash",
+        "systemd",
+        "SSH",
+        "firewalld",
+        "WHM/cPanel",
+      ],
+      focus: [
+        {
+          icon: "👤",
+          title: "Identity, Access & Permissions",
+          text: "Users, groups, sudo, ownership, permissions, SSH keys, secure remote access, and access troubleshooting.",
+        },
+        {
+          icon: "⚙️",
+          title: "Services, Processes & Packages",
+          text: "systemd, process inspection, startup behavior, package management, repositories, cron, and dependency issues.",
+        },
+        {
+          icon: "🌐",
+          title: "Networking, DNS & Firewall",
+          text: "Interfaces, routes, ports, DNS resolution, SSH connectivity, firewalld, listening services, and packet-level checks.",
+        },
+        {
+          icon: "💾",
+          title: "Storage, Filesystems & Backups",
+          text: "Disk usage, partitions, mounts, filesystems, backup locations, retention awareness, and capacity investigation.",
+        },
+        {
+          icon: "📋",
+          title: "Logs, Performance & Recovery",
+          text: "journalctl, application logs, CPU, memory, disk, service health, root-cause isolation, remediation, and validation.",
+        },
+        {
+          icon: "🌍",
+          title: "Web & Hosting Operations",
+          text: "WHM/cPanel, Apache or Nginx awareness, SSL, DNS, mail services, WordPress hosting, and Linux-based web operations.",
+        },
+      ],
+      evidence: [
+        "Linux administration lab repositories with commands and explanations",
+        "Sanitized troubleshooting and incident case studies",
+        "Bash automation scripts and reusable operational checks",
+        "Runbooks for SSH, services, firewall, storage, DNS, and hosting tasks",
+      ],
+    },
+    {
+      slug: "cloud-platform",
+      icon: "☁️",
+      title: "Cloud, Platform & Automation",
+      eyebrow: "Infrastructure, Containers & Delivery",
+      summary:
+        "Cloud and platform operations across AWS, GCP, Azure, Kubernetes, Docker, Terraform, CI/CD, hosting systems, and repeatable infrastructure workflows.",
+      tags: [
+        "AWS",
+        "GCP",
+        "Azure",
+        "Kubernetes",
+        "Docker",
+        "Terraform",
+        "GitLab CI",
+        "Jenkins",
+        "Cloudflare",
+        "WHM/cPanel",
+      ],
+      focus: [
+        {
+          icon: "☁️",
+          title: "Cloud Infrastructure",
+          text: "Compute, networking, IAM, storage, backups, snapshots, firewall controls, service accounts, and operational support.",
+        },
+        {
+          icon: "☸️",
+          title: "Kubernetes Platform Operations",
+          text: "Clusters, nodes, pods, deployments, services, configuration, troubleshooting, availability, and workload support.",
+        },
+        {
+          icon: "🐳",
+          title: "Containers & Runtime",
+          text: "Docker packaging, images, registries, runtime behavior, environment consistency, and container troubleshooting.",
+        },
+        {
+          icon: "🧩",
+          title: "Infrastructure as Code",
+          text: "Terraform structure, reusable configuration, variables, state awareness, controlled provisioning, and repeatability.",
+        },
+        {
+          icon: "🔁",
+          title: "CI/CD & Release Automation",
+          text: "Git-based workflows, build and deployment pipelines, validation, release consistency, and operational handover.",
+        },
+        {
+          icon: "🌐",
+          title: "Edge, DNS & Hosting",
+          text: "Cloudflare, DNS, WAF awareness, SSL, WHM/cPanel, WordPress operations, hosting migrations, and traffic troubleshooting.",
+        },
+      ],
+      evidence: [
+        "Terraform repositories with architecture diagrams and documented variables",
+        "Kubernetes deployment projects with manifests and troubleshooting notes",
+        "CI/CD pipelines showing build, test, image, and deployment stages",
+        "Cloud migration, backup, disaster-recovery, and hosting case studies",
+      ],
+    },
+    {
+      slug: "observability-security",
+      icon: "🛡️",
+      title: "Observability, Security & Reliability",
+      eyebrow: "Monitoring, Detection & Protection",
+      summary:
+        "Operational visibility and security-aware reliability through metrics, logs, alerts, uptime monitoring, WAF controls, IAM/RBAC, incident detection, and structured response.",
+      tags: [
+        "Prometheus",
+        "Grafana",
+        "Datadog",
+        "ELK/EFK",
+        "UptimeRobot",
+        "Cloud Monitoring",
+        "Cloudflare WAF",
+        "IAM/RBAC",
+        "Vault",
+        "CrowdStrike",
+      ],
+      focus: [
+        {
+          icon: "📊",
+          title: "Metrics & Dashboards",
+          text: "Service, host, and workload metrics with practical dashboards that support health checks, trends, and investigation.",
+        },
+        {
+          icon: "📚",
+          title: "Logs & Search",
+          text: "Centralized logging, filtering, correlation, application and system logs, and evidence-led troubleshooting.",
+        },
+        {
+          icon: "🔔",
+          title: "Alerting & Notification",
+          text: "Actionable alert rules, thresholds, notification routing, noise reduction, escalation awareness, and validation.",
+        },
+        {
+          icon: "⏱️",
+          title: "Availability & Uptime",
+          text: "Endpoint checks, SSL and service visibility, uptime monitoring, external validation, and response readiness.",
+        },
+        {
+          icon: "🔐",
+          title: "Security Controls",
+          text: "WAF, Cloudflare, firewall, IAM/RBAC, Vault, access review, endpoint security awareness, and least-privilege thinking.",
+        },
+        {
+          icon: "🚨",
+          title: "Incident Detection & Response",
+          text: "Signal review, containment awareness, evidence gathering, service recovery, validation, and post-incident documentation.",
+        },
+      ],
+      evidence: [
+        "Monitoring repositories with architecture, dashboards, and alert examples",
+        "Sanitized security-hardening and incident-response case studies",
+        "Uptime, SSL, server, Kubernetes, and application monitoring examples",
+        "Operational runbooks for alerts, containment, recovery, and validation",
+      ],
+    },
+    {
+      slug: "support",
+      icon: "🎧",
+      title: "L0–L2 Technical Support",
+      eyebrow: "Service Support & Incident Operations",
+      summary:
+        "Structured support from first contact through advanced technical investigation, escalation, communication, recovery validation, documentation, and knowledge transfer.",
+      tags: [
+        "L0–L2",
+        "Jira",
+        "Zoho",
+        "Microsoft 365",
+        "Google Workspace",
+        "DNS & Email",
+        "Remote Support",
+        "Incident Triage",
+        "SLA Awareness",
+        "Runbooks",
+      ],
+      focus: [
+        {
+          icon: "L0",
+          title: "Intake, Validation & Classification",
+          text: "Understand the request, confirm impact, collect evidence, classify priority, perform initial checks, and route correctly.",
+        },
+        {
+          icon: "L1",
+          title: "User & Service Troubleshooting",
+          text: "Resolve common access, endpoint, application, email, DNS, network, identity, and service issues professionally.",
+        },
+        {
+          icon: "L2",
+          title: "Advanced Technical Investigation",
+          text: "Analyze logs, infrastructure, configuration, monitoring signals, dependencies, and recurring technical failures.",
+        },
+        {
+          icon: "INC",
+          title: "Incident Ownership & Escalation",
+          text: "Maintain ownership, communicate progress, coordinate escalation, track impact, validate recovery, and follow through.",
+        },
+        {
+          icon: "COM",
+          title: "Customer & Stakeholder Communication",
+          text: "Use clear language, empathy, realistic expectations, meaningful updates, and confident technical communication.",
+        },
+        {
+          icon: "KB",
+          title: "Documentation & Knowledge",
+          text: "Create case notes, troubleshooting records, runbooks, reusable solutions, handovers, and knowledge-base content.",
+        },
+      ],
+      evidence: [
+        "Sanitized L0–L2 troubleshooting case studies",
+        "Incident workflow diagrams and escalation examples",
+        "Professional customer communication and update templates",
+        "Knowledge-base articles, technical runbooks, and support checklists",
+      ],
+    },
+  ];
+
+  const linuxDistributions = [
+    "Ubuntu",
+    "Red Hat Enterprise Linux (RHEL)",
+    "CentOS",
+    "AlmaLinux",
+  ];
+
+  const linuxCapabilities = [
+    {
+      icon: "👤",
+      title: "Users, Groups & Access",
+      text: "User and group administration, sudo access, file ownership, permissions, SSH keys, and secure remote access practices.",
+    },
+    {
+      icon: "⚙️",
+      title: "Services & Processes",
+      text: "systemd service control, process inspection, startup behavior, cron scheduling, package management, and dependency troubleshooting.",
+    },
+    {
+      icon: "🌐",
+      title: "Networking & Firewall",
+      text: "IP, route, DNS, port, SSH, firewalld, connectivity, and service-listening checks across cloud and hosted systems.",
+    },
+    {
+      icon: "📋",
+      title: "Logs & Troubleshooting",
+      text: "Journal and application log analysis, resource checks, incident isolation, root-cause investigation, and recovery validation.",
+    },
+    {
+      icon: "💾",
+      title: "Storage & Filesystems",
+      text: "Disk usage, partitions, mounts, filesystems, permissions, backup locations, and capacity-related operational checks.",
+    },
+    {
+      icon: "🌍",
+      title: "Web & Hosting Operations",
+      text: "Linux web hosting support with WHM/cPanel, Apache or Nginx awareness, SSL, DNS, mail services, and website operations.",
+    },
+  ];
+
+  const supportCapabilities = [
+    {
+      level: "L0",
+      title: "Intake & Classification",
+      text: "Capture the issue clearly, confirm impact, collect evidence, classify priority, perform basic validation, and route correctly.",
+    },
+    {
+      level: "L1",
+      title: "User & Service Troubleshooting",
+      text: "Resolve common access, endpoint, application, email, network, DNS, and service issues while keeping the user informed.",
+    },
+    {
+      level: "L2",
+      title: "Advanced Investigation",
+      text: "Review logs, services, infrastructure, monitoring signals, configuration, and dependencies before escalation or remediation.",
+    },
+    {
+      level: "INC",
+      title: "Incident Coordination",
+      text: "Track impact, maintain ownership, communicate progress, coordinate escalation, validate recovery, and support post-incident follow-up.",
+    },
+    {
+      level: "TOOLS",
+      title: "Operational Tooling",
+      text: "Use Jira, Zoho, monitoring platforms, remote support tools, command-line diagnostics, and documentation to manage support work.",
+    },
+    {
+      level: "KB",
+      title: "Documentation & Knowledge",
+      text: "Create clear troubleshooting notes, technical runbooks, reusable solutions, handover details, and knowledge-base content.",
+    },
+  ];
+
+
+  useEffect(() => {
+    const syncRoute = () => {
+      const nextRoute = window.location.hash || "#/";
+      setRoute(nextRoute);
+
+      window.setTimeout(() => {
+        if (nextRoute.startsWith("#/")) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+
+        const target = document.querySelector(nextRoute);
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 0);
+    };
+
+    window.addEventListener("hashchange", syncRoute);
+    return () => window.removeEventListener("hashchange", syncRoute);
+  }, []);
+
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal, .reveal-card");
     const observer = new IntersectionObserver(
@@ -275,7 +665,7 @@ export default function App() {
     const ring = document.querySelector(".cursor-ring");
     const dot = document.querySelector(".cursor-dot");
     const interactive = document.querySelectorAll(
-      "a, .tool-tile, .strip-card, .flip-card, .project-card, .hero-brand-art, .mini-btn, .brand-img"
+      "a, .tool-tile, .strip-card, .flip-card, .project-card, .hero-brand-art, .mini-btn, .brand-img, .capability-hub-card, .capability-focus-card"
     );
 
     const moveCursor = (e) => {
@@ -306,7 +696,11 @@ export default function App() {
         el.removeEventListener("mouseleave", deactivateCursor);
       });
     };
-  }, []);
+  }, [route]);
+
+  const isCapabilitiesRoute = route.startsWith("#/capabilities");
+  const capabilitySlug = isCapabilitiesRoute ? route.split("/")[2] : null;
+  const selectedCapability = capabilityAreas.find((area) => area.slug === capabilitySlug);
 
   return (
     <>
@@ -629,7 +1023,7 @@ export default function App() {
         .f4 { bottom: 26px; right: 22px; transform: rotate(-8deg); }
         .hero-strip {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 16px;
           margin-top: 14px;
         }
@@ -672,7 +1066,7 @@ export default function App() {
         .strip-card strong { font-size: 1.08rem; }
         .tool-row {
           display: grid;
-          grid-template-columns: repeat(8, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
           gap: 14px;
           margin-top: 18px;
         }
@@ -942,6 +1336,321 @@ export default function App() {
           font-weight: 800;
           margin-bottom: 14px;
         }
+
+        .linux-overview,
+        .support-overview {
+          margin-top: 28px;
+          padding: 30px;
+          display: grid;
+          grid-template-columns: 0.78fr 1.22fr;
+          gap: 24px;
+          align-items: start;
+        }
+        .linux-summary,
+        .support-summary {
+          padding: 4px;
+        }
+        .linux-summary h3,
+        .support-summary h3 {
+          margin: 0 0 14px;
+          font-size: 1.45rem;
+          line-height: 1.3;
+        }
+        .linux-summary p,
+        .support-summary p {
+          margin: 0;
+          color: #c7bfd8;
+          line-height: 1.85;
+        }
+        .distribution-label {
+          margin-top: 22px;
+          color: #d8b4fe;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          font-size: 0.75rem;
+          font-weight: 800;
+        }
+        .distribution-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 9px;
+          margin-top: 12px;
+        }
+        .distribution-chip {
+          padding: 9px 12px;
+          border-radius: 999px;
+          background: rgba(168,85,247,0.10);
+          border: 1px solid rgba(196,181,253,0.16);
+          color: #ede9fe;
+          font-size: 0.82rem;
+        }
+        .capability-grid,
+        .support-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 14px;
+        }
+        .capability-card,
+        .support-card {
+          min-width: 0;
+          padding: 18px;
+          border-radius: 20px;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.08);
+          transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease, background .28s ease;
+        }
+        .capability-card:hover,
+        .support-card:hover {
+          transform: translateY(-5px);
+          border-color: rgba(196,181,253,0.22);
+          box-shadow: 0 20px 55px rgba(124,58,237,0.13);
+          background: rgba(255,255,255,0.055);
+        }
+        .capability-icon,
+        .support-level {
+          width: 42px;
+          height: 42px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 14px;
+          margin-bottom: 12px;
+          background: rgba(168,85,247,0.14);
+          border: 1px solid rgba(196,181,253,0.16);
+          color: #f5f3ff;
+          font-weight: 900;
+        }
+        .support-level {
+          width: auto;
+          min-width: 42px;
+          padding: 0 11px;
+          color: #d8b4fe;
+          font-size: 0.72rem;
+          letter-spacing: 0.08em;
+        }
+        .capability-card h4,
+        .support-card h4 {
+          margin: 0 0 9px;
+          font-size: 1rem;
+          line-height: 1.35;
+        }
+        .capability-card p,
+        .support-card p {
+          margin: 0;
+          color: #c7bfd8;
+          font-size: 0.9rem;
+          line-height: 1.7;
+        }
+
+        .capabilities-cta {
+          margin-top: 24px;
+          padding: 22px 24px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+        }
+        .capabilities-cta h3 {
+          margin: 0 0 6px;
+          font-size: 1.12rem;
+        }
+        .capabilities-cta p {
+          margin: 0;
+          color: #c7bfd8;
+          line-height: 1.7;
+        }
+        .capability-page {
+          min-height: 72vh;
+          padding: 76px 0;
+        }
+        .capability-breadcrumbs {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 24px;
+          color: #c4b5fd;
+          font-size: 0.9rem;
+        }
+        .capability-breadcrumbs a:hover {
+          color: #ffffff;
+        }
+        .capability-page-head {
+          max-width: 880px;
+          margin-bottom: 28px;
+        }
+        .capability-page-head span {
+          display: inline-block;
+          color: #d8b4fe;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          font-size: 0.76rem;
+          font-weight: 800;
+          margin-bottom: 12px;
+        }
+        .capability-page-head h1 {
+          margin: 0 0 16px;
+          font-size: clamp(2.4rem, 5vw, 4.5rem);
+          line-height: 1.04;
+          letter-spacing: -0.045em;
+        }
+        .capability-page-head p {
+          margin: 0;
+          color: #c7bfd8;
+          font-size: 1.06rem;
+          line-height: 1.85;
+        }
+        .capability-hub-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 22px;
+        }
+        .capability-hub-card {
+          min-width: 0;
+          padding: 28px;
+          transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+        }
+        .capability-hub-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(196,181,253,0.22);
+          box-shadow: 0 24px 90px rgba(124,58,237,0.12);
+        }
+        .capability-hub-icon {
+          width: 56px;
+          height: 56px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 18px;
+          margin-bottom: 16px;
+          background: rgba(168,85,247,0.14);
+          border: 1px solid rgba(196,181,253,0.16);
+          font-size: 1.45rem;
+        }
+        .capability-hub-card small,
+        .capability-detail-hero small {
+          display: block;
+          color: #d8b4fe;
+          text-transform: uppercase;
+          letter-spacing: 0.13em;
+          font-weight: 800;
+          margin-bottom: 10px;
+        }
+        .capability-hub-card h2 {
+          margin: 0 0 12px;
+          font-size: 1.45rem;
+        }
+        .capability-hub-card p {
+          margin: 0;
+          color: #c7bfd8;
+          line-height: 1.8;
+        }
+        .capability-detail-hero {
+          padding: 32px;
+          display: grid;
+          grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+          gap: 26px;
+          align-items: start;
+        }
+        .capability-detail-title {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+        }
+        .capability-detail-title .capability-hub-icon {
+          flex-shrink: 0;
+          margin-bottom: 0;
+        }
+        .capability-detail-title h1 {
+          margin: 0 0 12px;
+          font-size: clamp(2rem, 4vw, 3.4rem);
+          line-height: 1.08;
+          letter-spacing: -0.035em;
+        }
+        .capability-detail-title p {
+          margin: 0;
+          color: #c7bfd8;
+          line-height: 1.85;
+        }
+        .capability-stack-box {
+          padding: 20px;
+          border-radius: 20px;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.08);
+        }
+        .capability-stack-box h3 {
+          margin: 0 0 12px;
+          font-size: 1rem;
+        }
+        .capability-focus-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+          margin-top: 24px;
+        }
+        .capability-focus-card {
+          min-width: 0;
+          padding: 22px;
+          transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+        }
+        .capability-focus-card:hover {
+          transform: translateY(-5px);
+          border-color: rgba(196,181,253,0.22);
+          box-shadow: 0 20px 60px rgba(124,58,237,0.11);
+        }
+        .capability-focus-icon {
+          min-width: 44px;
+          height: 44px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 10px;
+          border-radius: 14px;
+          margin-bottom: 14px;
+          background: rgba(168,85,247,0.14);
+          border: 1px solid rgba(196,181,253,0.16);
+          color: #f5f3ff;
+          font-weight: 900;
+        }
+        .capability-focus-card h3 {
+          margin: 0 0 10px;
+          font-size: 1.05rem;
+          line-height: 1.4;
+        }
+        .capability-focus-card p {
+          margin: 0;
+          color: #c7bfd8;
+          line-height: 1.75;
+          font-size: 0.92rem;
+        }
+        .capability-evidence {
+          margin-top: 24px;
+          padding: 28px;
+          display: grid;
+          grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+          gap: 24px;
+        }
+        .capability-evidence h2 {
+          margin: 0 0 10px;
+          font-size: 1.45rem;
+        }
+        .capability-evidence p {
+          margin: 0;
+          color: #c7bfd8;
+          line-height: 1.75;
+        }
+        .capability-evidence ul {
+          margin: 0;
+          padding-left: 20px;
+          color: #ede9fe;
+          line-height: 1.9;
+        }
+        .capability-page-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 24px;
+        }
         .working-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -1188,6 +1897,10 @@ export default function App() {
 .project-grid > *,
 .skill-grid > *,
 .working-grid > *,
+.linux-overview > *,
+.capability-grid > *,
+.support-overview > *,
+.support-grid > *,
 .work-grid > *,
 .cert-grid > *,
 .contact-box > * {
@@ -1217,6 +1930,8 @@ img {
 
   .intro-card,
   .spotlight-box,
+  .linux-overview,
+  .support-overview,
   .project-grid,
   .skill-grid,
   .working-grid,
@@ -1429,6 +2144,11 @@ img {
     gap: 10px;
   }
 
+  .capability-grid,
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
+
   .tool-tile {
     padding: 14px 8px;
   }
@@ -1449,6 +2169,10 @@ img {
 
   .intro-card,
   .spotlight-box,
+  .linux-overview,
+  .support-overview,
+  .linux-overview,
+  .support-overview,
   .project-card,
   .skill-group,
   .working-card,
@@ -1644,6 +2368,64 @@ img {
     transform: none;
   }
 }
+
+@media (max-width: 1040px) {
+  .capability-detail-hero,
+  .capability-evidence {
+    grid-template-columns: 1fr;
+  }
+
+  .capability-focus-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .capabilities-cta {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .capabilities-cta .mini-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .capability-page {
+    padding: 48px 0;
+  }
+
+  .capability-page-head h1 {
+    font-size: 2.15rem;
+  }
+
+  .capability-hub-grid,
+  .capability-focus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capability-hub-card,
+  .capability-detail-hero,
+  .capability-focus-card,
+  .capability-evidence {
+    padding: 20px;
+  }
+
+  .capability-detail-title {
+    flex-direction: column;
+  }
+
+  .capability-page-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .capability-page-actions .mini-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
       `}</style>
 
       <div className="cursor-ring"></div>
@@ -1667,6 +2449,7 @@ img {
               <a href="#about">About</a>
               <a href="#projects">Projects</a>
               <a href="#skills">Skills</a>
+              <a href="#/capabilities">Capabilities</a>
               <a href="#experience">Experience</a>
               <a href="#contact">Contact</a>
             </nav>
@@ -1674,6 +2457,112 @@ img {
         </header>
 
         <main>
+          {isCapabilitiesRoute ? (
+            <section className="container capability-page">
+              {selectedCapability ? (
+                <>
+                  <div className="capability-breadcrumbs">
+                    <a href="#/">Home</a>
+                    <span>›</span>
+                    <a href="#/capabilities">Technical Capabilities</a>
+                    <span>›</span>
+                    <span>{selectedCapability.title}</span>
+                  </div>
+
+                  <div className="panel capability-detail-hero">
+                    <div className="capability-detail-title">
+                      <div className="capability-hub-icon">{selectedCapability.icon}</div>
+                      <div>
+                        <small>{selectedCapability.eyebrow}</small>
+                        <h1>{selectedCapability.title}</h1>
+                        <p>{selectedCapability.summary}</p>
+                      </div>
+                    </div>
+                    <div className="capability-stack-box">
+                      <h3>Technologies and coverage</h3>
+                      <div className="skills-inline">
+                        {selectedCapability.tags.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="capability-focus-grid">
+                    {selectedCapability.focus.map((item) => (
+                      <article className="panel capability-focus-card" key={item.title}>
+                        <div className="capability-focus-icon">{item.icon}</div>
+                        <h3>{item.title}</h3>
+                        <p>{item.text}</p>
+                      </article>
+                    ))}
+                  </div>
+
+                  <div className="panel capability-evidence">
+                    <div>
+                      <span className="contact-label">Portfolio Evidence</span>
+                      <h2>What will be added as the portfolio grows</h2>
+                      <p>
+                        These items turn capability descriptions into practical proof through repositories, diagrams, screenshots, runbooks, and sanitized case studies.
+                      </p>
+                    </div>
+                    <ul>
+                      {selectedCapability.evidence.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="capability-page-actions">
+                    <a className="mini-btn" href="#/capabilities">View All Capabilities</a>
+                    <a className="mini-btn" href="#/">Back to Portfolio</a>
+                    <a className="mini-btn" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">Open GitHub</a>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="capability-breadcrumbs">
+                    <a href="#/">Home</a>
+                    <span>›</span>
+                    <span>Technical Capabilities</span>
+                  </div>
+
+                  <div className="capability-page-head">
+                    <span>Technical Capabilities</span>
+                    <h1>Explore the operational depth behind the portfolio</h1>
+                    <p>
+                      The homepage stays concise for recruiters, while these focused pages provide deeper coverage of Linux administration, cloud and platform engineering, observability and security, and L0–L2 technical support.
+                    </p>
+                  </div>
+
+                  <div className="capability-hub-grid">
+                    {capabilityAreas.map((area) => (
+                      <article className="panel capability-hub-card" key={area.slug}>
+                        <div className="capability-hub-icon">{area.icon}</div>
+                        <small>{area.eyebrow}</small>
+                        <h2>{area.title}</h2>
+                        <p>{area.summary}</p>
+                        <div className="skills-inline">
+                          {area.tags.slice(0, 6).map((tag) => (
+                            <span key={tag}>{tag}</span>
+                          ))}
+                        </div>
+                        <div className="project-actions">
+                          <a className="mini-btn" href={`#/capabilities/${area.slug}`}>View Details</a>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+
+                  <div className="capability-page-actions">
+                    <a className="mini-btn" href="#/">Back to Portfolio</a>
+                    <a className="mini-btn" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">View GitHub</a>
+                  </div>
+                </>
+              )}
+            </section>
+          ) : (
+            <>
           <section className="container hero reveal">
             <div>
               <div className="eyebrow">DevOps • SRE • Platform • Cloud • DevSecOps</div>
@@ -1843,6 +2732,47 @@ img {
                 </div>
               ))}
             </div>
+            <div className="panel capabilities-cta">
+              <div>
+                <h3>Explore detailed technical capabilities</h3>
+                <p>Open focused pages for Linux, cloud and platform engineering, observability and security, and L0–L2 support.</p>
+              </div>
+              <a className="mini-btn" href="#/capabilities">View All Capabilities</a>
+            </div>
+          </section>
+
+
+          <section id="linux" className="container section reveal">
+            <div className="section-head">
+              <span>Linux Administration</span>
+              <h2>Multi-distribution server administration and operations</h2>
+            </div>
+            <div className="panel linux-overview">
+              <div className="linux-summary">
+                <h3>Linux systems built for stable, secure operations</h3>
+                <p>
+                  Hands-on administration across cloud, hosting, and server environments, covering access control, services, packages, networking, security, logs, storage, troubleshooting, and operational recovery.
+                </p>
+                <div className="distribution-label">Distributions worked with</div>
+                <div className="distribution-list">
+                  {linuxDistributions.map((distribution) => (
+                    <span className="distribution-chip" key={distribution}>{distribution}</span>
+                  ))}
+                </div>
+                <div className="cta-row">
+                  <a className="mini-btn" href="#/capabilities/linux">View Full Linux Details</a>
+                </div>
+              </div>
+              <div className="capability-grid">
+                {linuxCapabilities.map((item) => (
+                  <div className="capability-card reveal-card" key={item.title}>
+                    <div className="capability-icon">{item.icon}</div>
+                    <h4>{item.title}</h4>
+                    <p>{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
 
           <section className="container section reveal">
@@ -1951,6 +2881,40 @@ img {
             </div>
           </section>
 
+
+          <section id="support" className="container section reveal">
+            <div className="section-head">
+              <span>L0–L2 Support</span>
+              <h2>Structured technical support from first contact to advanced investigation</h2>
+            </div>
+            <div className="panel support-overview">
+              <div className="support-summary">
+                <h3>Support ownership with an operations mindset</h3>
+                <p>
+                  A practical support approach that combines user communication, technical troubleshooting, incident handling, monitoring awareness, clear escalation, and reusable documentation across cloud, on-premises, application, identity, email, and network-related issues.
+                </p>
+                <div className="distribution-label">Support coverage</div>
+                <div className="distribution-list">
+                  {["User Support", "Access & Identity", "Applications", "Email & DNS", "Network", "Cloud & On-Prem", "Incident Escalation"].map((item) => (
+                    <span className="distribution-chip" key={item}>{item}</span>
+                  ))}
+                </div>
+                <div className="cta-row">
+                  <a className="mini-btn" href="#/capabilities/support">View Full Support Details</a>
+                </div>
+              </div>
+              <div className="support-grid">
+                {supportCapabilities.map((item) => (
+                  <div className="support-card reveal-card" key={item.title}>
+                    <div className="support-level">{item.level}</div>
+                    <h4>{item.title}</h4>
+                    <p>{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <section id="contact" className="container section reveal">
             <div className="panel contact-box">
               <div>
@@ -1973,6 +2937,8 @@ img {
               </div>
             </div>
           </section>
+            </>
+          )}
         </main>
 
         <footer className="container footer">
