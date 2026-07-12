@@ -874,7 +874,8 @@ export default function App() {
 
   useEffect(() => {
     const updateScrollButton = () => {
-      setShowScrollTop(window.scrollY > 520);
+      const triggerPoint = Math.min(480, window.innerHeight * 0.65);
+      setShowScrollTop(window.scrollY > triggerPoint);
     };
 
     updateScrollButton();
@@ -905,56 +906,89 @@ export default function App() {
 
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal, .reveal-card");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.14 }
-    );
+    const mobileOrTouch = window.matchMedia(
+      "(max-width: 720px), (hover: none), (pointer: coarse)"
+    ).matches;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    elements.forEach((el, index) => {
-      el.style.transitionDelay = `${Math.min((index % 8) * 80, 480)}ms`;
-      observer.observe(el);
-    });
+    let observer = null;
 
-    const ring = document.querySelector(".cursor-ring");
-    const dot = document.querySelector(".cursor-dot");
-    const interactive = document.querySelectorAll(
-      "a, .tool-tile, .strip-card, .flip-card, .project-card, .hero-brand-art, .mini-btn, .brand-img, .capability-hub-card, .capability-focus-card"
-    );
+    if (mobileOrTouch || reducedMotion) {
+      elements.forEach((element) => {
+        element.style.transitionDelay = "0ms";
+        element.classList.add("show");
+      });
+    } else {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              observer?.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px 120px 0px",
+        }
+      );
 
-    const moveCursor = (e) => {
+      elements.forEach((element, index) => {
+        element.style.transitionDelay = `${Math.min((index % 6) * 55, 275)}ms`;
+        observer.observe(element);
+      });
+    }
+
+    const enableCustomCursor = window.matchMedia(
+      "(min-width: 901px) and (hover: hover) and (pointer: fine)"
+    ).matches;
+    const ring = enableCustomCursor
+      ? document.querySelector(".cursor-ring")
+      : null;
+    const dot = enableCustomCursor
+      ? document.querySelector(".cursor-dot")
+      : null;
+    const interactive = enableCustomCursor
+      ? document.querySelectorAll(
+          "a, .tool-tile, .strip-card, .flip-card, .project-card, .hero-brand-art, .mini-btn, .brand-img, .capability-hub-card, .capability-focus-card"
+        )
+      : [];
+
+    const moveCursor = (event) => {
       if (ring) {
-        ring.style.left = `${e.clientX}px`;
-        ring.style.top = `${e.clientY}px`;
+        ring.style.left = `${event.clientX}px`;
+        ring.style.top = `${event.clientY}px`;
       }
       if (dot) {
-        dot.style.left = `${e.clientX}px`;
-        dot.style.top = `${e.clientY}px`;
+        dot.style.left = `${event.clientX}px`;
+        dot.style.top = `${event.clientY}px`;
       }
     };
 
-    const activateCursor = () => ring && ring.classList.add("cursor-active");
-    const deactivateCursor = () => ring && ring.classList.remove("cursor-active");
+    const activateCursor = () => ring?.classList.add("cursor-active");
+    const deactivateCursor = () => ring?.classList.remove("cursor-active");
 
-    window.addEventListener("mousemove", moveCursor);
-    interactive.forEach((el) => {
-      el.addEventListener("mouseenter", activateCursor);
-      el.addEventListener("mouseleave", deactivateCursor);
-    });
+    if (enableCustomCursor) {
+      window.addEventListener("mousemove", moveCursor, { passive: true });
+      interactive.forEach((element) => {
+        element.addEventListener("mouseenter", activateCursor);
+        element.addEventListener("mouseleave", deactivateCursor);
+      });
+    }
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener("mousemove", moveCursor);
-      interactive.forEach((el) => {
-        el.removeEventListener("mouseenter", activateCursor);
-        el.removeEventListener("mouseleave", deactivateCursor);
-      });
+      observer?.disconnect();
+
+      if (enableCustomCursor) {
+        window.removeEventListener("mousemove", moveCursor);
+        interactive.forEach((element) => {
+          element.removeEventListener("mouseenter", activateCursor);
+          element.removeEventListener("mouseleave", deactivateCursor);
+        });
+      }
     };
   }, [route]);
 
@@ -1412,6 +1446,8 @@ export default function App() {
         }
         .section {
           padding: 66px 0;
+          content-visibility: auto;
+          contain-intrinsic-size: 820px;
         }
         .section-head {
           margin-bottom: 10px;
@@ -1500,6 +1536,7 @@ export default function App() {
         }
         .stats-card, .exp-card, .cert-card, .skill-group, .project-card, .working-card {
           padding: 28px;
+          contain: layout paint style;
           transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
         }
         .stats-card:hover, .exp-card:hover, .cert-card:hover, .skill-group:hover, .project-card:hover, .working-card:hover {
@@ -1748,6 +1785,8 @@ export default function App() {
         .capability-page {
           min-height: 72vh;
           padding: 76px 0;
+          content-visibility: auto;
+          contain-intrinsic-size: 760px;
         }
         .capability-breadcrumbs {
           display: flex;
@@ -3093,14 +3132,18 @@ img {
     padding: 10px;
   }
   .scroll-top-btn {
-    right: 16px;
+    right: 14px;
     bottom: 14px;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
+    z-index: 110;
+    border-radius: 999px;
   }
 
-  .scroll-top-btn span:last-child {
-    display: none;
+  .scroll-top-arrow {
+    display: block;
+    font-size: 1.05rem;
+    line-height: 1;
   }
 }
 
@@ -3271,6 +3314,88 @@ img {
     text-align: center;
   }
 }
+
+/* =========================================================
+   PABAOPS PERFORMANCE OPTIMIZATIONS
+   ========================================================= */
+
+@media (max-width: 900px) {
+  /* Large fixed blurred shapes are expensive on mobile GPUs. */
+  .glow {
+    display: none;
+  }
+
+  .site {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(124,58,237,0.16), transparent 30%),
+      linear-gradient(180deg, #12031f 0%, #090212 48%, #06010d 100%);
+  }
+
+  /* Keep the glass appearance while avoiding costly mobile blur passes. */
+  .topbar,
+  .panel,
+  .floating-card,
+  .ai-agent-launcher,
+  .ai-welcome-popup,
+  .ai-chat-panel,
+  .scroll-top-btn {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .topbar {
+    background: rgba(11, 3, 21, 0.94);
+  }
+
+  .panel {
+    background: rgba(20, 8, 34, 0.94);
+  }
+
+  .floating-card {
+    background: rgba(31, 16, 49, 0.96);
+  }
+
+  /* Mobile visitors should see content immediately. */
+  .reveal,
+  .reveal-card,
+  .reveal.show,
+  .reveal-card.show {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* Reduce expensive shadows while retaining depth. */
+  .panel,
+  .project-card,
+  .skill-group,
+  .working-card,
+  .exp-card,
+  .cert-card {
+    box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .reveal,
+  .reveal-card {
+    opacity: 1;
+    transform: none;
+  }
+}
       `}</style>
 
       <div className="cursor-ring"></div>
@@ -3284,7 +3409,7 @@ img {
         <header className="topbar">
           <div className="container nav-wrap">
             <a className="brand" href="#/" onClick={goToHome} aria-label="Go to PabaOps home page">
-              <img src={BRAND_IMAGE} alt="PabaOps logo" className="brand-img" />
+              <img src={BRAND_IMAGE} alt="PabaOps logo" className="brand-img" decoding="async" fetchPriority="high" />
               <div className="brand-copy">
                 <strong>PabaOps</strong>
                 <span>Cloud • DevOps • SRE • Linux Admin • Platform</span>
@@ -3441,7 +3566,7 @@ img {
                 <div className="orbit"></div>
                 <div className="orbit two"></div>
                 <div className="orbit three"></div>
-                <img src={HERO_IMAGE} alt="PabaOps visual" className="hero-brand-art" />
+                <img src={HERO_IMAGE} alt="PabaOps visual" className="hero-brand-art" decoding="async" fetchPriority="high" />
 
                 <div className="floating-card f1">
                   <span>Cloud</span>
@@ -3477,7 +3602,7 @@ img {
               {toolIcons.map((tool) => (
                 <div className="tool-tile panel reveal-card" key={tool.name}>
                   {tool.image ? (
-                    <img src={tool.image} alt={tool.name} className="tool-icon-img" />
+                    <img src={tool.image} alt={tool.name} className="tool-icon-img" loading="lazy" decoding="async" />
                   ) : (
                     <span className="tool-icon">{tool.icon}</span>
                   )}
@@ -3576,7 +3701,7 @@ img {
                   <div className="flip-inner">
                     <div className="flip-face work-card">
                       <div className="work-icon">
-                        {item.image ? <img src={item.image} alt={item.title} /> : item.icon}
+                        {item.image ? <img src={item.image} alt={item.title} loading="lazy" decoding="async" /> : item.icon}
                       </div>
                       <small>{item.subtitle}</small>
                       <h3>{item.title}</h3>
@@ -3680,7 +3805,7 @@ img {
                 <div className="panel project-card reveal-card" key={project.title}>
                   <div className="project-top">
                     <div className="project-icon">
-                      {project.image ? <img src={project.image} alt={project.title} /> : project.icon}
+                      {project.image ? <img src={project.image} alt={project.title} loading="lazy" decoding="async" /> : project.icon}
                     </div>
                     <div>
                       <small>{project.subtitle}</small>
@@ -3820,7 +3945,7 @@ img {
               }
             }}
           >
-            <img src={BRAND_IMAGE} alt="PabaOps assistant" className="ai-welcome-photo" />
+            <img src={BRAND_IMAGE} alt="PabaOps assistant" className="ai-welcome-photo" decoding="async" />
             <div className="ai-welcome-copy">
               <strong>Hi there! 👋</strong>
               <span>
@@ -3840,7 +3965,7 @@ img {
           title="Ask PabaOps AI"
         >
           <span className="ai-launcher-icon" aria-hidden="true">
-            <img src={BRAND_IMAGE} alt="" className="ai-launcher-photo" />
+            <img src={BRAND_IMAGE} alt="" className="ai-launcher-photo" decoding="async" />
           </span>
           <span>Ask PabaOps AI</span>
         </button>
@@ -3853,7 +3978,7 @@ img {
           <div className="ai-chat-head">
             <div className="ai-chat-identity">
               <div className="ai-chat-avatar">
-                <img src={BRAND_IMAGE} alt="PabaOps AI Assistant" />
+                <img src={BRAND_IMAGE} alt="PabaOps AI Assistant" decoding="async" />
               </div>
               <div className="ai-chat-title">
                 <strong>PabaOps AI Assistant</strong>
