@@ -450,10 +450,13 @@ export default function App() {
         .nav a:hover { color: white; }
         .hero {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
           gap: 34px;
           align-items: center;
           padding: 86px 0 36px;
+        }
+        .hero > div:first-child {
+          min-width: 0;
         }
         .eyebrow {
           display: inline-flex;
@@ -471,9 +474,13 @@ export default function App() {
         }
         .hero h1 {
           margin: 18px 0 14px;
-          font-size: clamp(3.2rem, 6vw, 5.6rem);
-          line-height: 0.98;
-          letter-spacing: -0.05em;
+          max-width: 100%;
+          font-size: clamp(2.8rem, 4vw, 4rem);
+          line-height: 1.02;
+          letter-spacing: -0.045em;
+        }
+        .hero h1 span {
+          display: block;
         }
         .hero-sub {
           margin: 0;
@@ -501,16 +508,19 @@ export default function App() {
           font-weight: 800;
           transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
         }
-        .btn:hover { transform: translateY(-2px); }
-        .btn-primary {
-          background: linear-gradient(135deg, #c084fc, #8b5cf6);
-          color: white;
-          box-shadow: 0 18px 40px rgba(139,92,246,0.25);
-        }
-        .btn-secondary, .btn-ghost {
+        .btn-hero {
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.10);
           color: white;
+          box-shadow: none;
+        }
+        .hero-actions .btn-hero:hover,
+        .hero-actions .btn-hero:focus-visible {
+          transform: translateY(-3px);
+          background: linear-gradient(135deg, #c084fc, #8b5cf6);
+          border-color: rgba(216,180,254,0.65);
+          box-shadow: 0 18px 40px rgba(139,92,246,0.28);
+          outline: none;
         }
         .skill-cloud {
           display: flex;
@@ -1667,7 +1677,10 @@ img {
           <section className="container hero reveal">
             <div>
               <div className="eyebrow">DevOps • SRE • Platform • Cloud • DevSecOps</div>
-              <h1>Pabasara Meegahakumbura</h1>
+              <h1>
+                <span>Pabasara</span>
+                <span>Meegahakumbura</span>
+              </h1>
               <p className="hero-sub">
                 Building reliable cloud-native platforms with Kubernetes, Terraform automation, CI/CD, Linux operations, observability, security controls, and production-minded support.
               </p>
@@ -1676,10 +1689,10 @@ img {
               </p>
 
               <div className="hero-actions">
-                <a className="btn btn-primary" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">View GitHub</a>
-                <a className="btn btn-secondary" href={LINKEDIN_PROFILE} target="_blank" rel="noreferrer">LinkedIn</a>
-                <a className="btn btn-secondary" href={RESUME_FILE} target="_blank" rel="noreferrer">Download Resume</a>
-                <a className="btn btn-ghost" href="#contact">Contact Me</a>
+                <a className="btn btn-hero" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">View GitHub</a>
+                <a className="btn btn-hero" href={LINKEDIN_PROFILE} target="_blank" rel="noreferrer">LinkedIn</a>
+                <a className="btn btn-hero" href={RESUME_FILE} target="_blank" rel="noreferrer">Download Resume</a>
+                <a className="btn btn-hero" href="#contact">Contact Me</a>
               </div>
 
               <div className="skill-cloud">
