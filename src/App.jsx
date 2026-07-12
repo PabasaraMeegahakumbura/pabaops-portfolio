@@ -2728,52 +2728,6 @@ img {
             </div>
           </section>
 
-          <section id="projects" className="container section reveal">
-            <div className="section-head">
-              <span>Featured Projects</span>
-              <h2>Real project structure with repo-ready presentation</h2>
-            </div>
-            <div className="project-grid">
-              {featuredProjects.map((project) => (
-                <div className="panel project-card reveal-card" key={project.title}>
-                  <div className="project-top">
-                    <div className="project-icon">
-                      {project.image ? <img src={project.image} alt={project.title} /> : project.icon}
-                    </div>
-                    <div>
-                      <small>{project.subtitle}</small>
-                      <h3>{project.title}</h3>
-                    </div>
-                  </div>
-                  <p>{project.problem}</p>
-                  <div className="example-note">
-                    <div className="example-label">Example Outcome</div>
-                    <div>{project.outcome}</div>
-                  </div>
-                  <ul className="project-list">
-                    {project.implemented.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                  <div className="project-tags">
-                    {project.tools.map((tool) => (
-                      <span className="project-tag" key={tool}>{tool}</span>
-                    ))}
-                  </div>
-                  <ul className="replace-list">
-                    {project.replaceLater.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                  <div className="project-actions">
-                    <a className="mini-btn" href={project.link} target="_blank" rel="noreferrer">Open GitHub</a>
-                    <a className="mini-btn" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">More Repositories</a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
           <section id="skills" className="container section reveal">
             <div className="section-head">
               <span>Skills</span>
@@ -2798,40 +2752,6 @@ img {
                 <p>Open focused pages for Linux, cloud and platform engineering, observability and security, L0–L2 support, and DevOps principles and culture.</p>
               </div>
               <a className="mini-btn" href="#/capabilities">View All Capabilities</a>
-            </div>
-          </section>
-
-
-          <section id="linux" className="container section reveal">
-            <div className="section-head">
-              <span>Linux Administration</span>
-              <h2>Multi-distribution server administration and operations</h2>
-            </div>
-            <div className="panel linux-overview">
-              <div className="linux-summary">
-                <h3>Linux systems built for stable, secure operations</h3>
-                <p>
-                  Hands-on administration across cloud, hosting, and server environments, covering access control, services, packages, networking, security, logs, storage, troubleshooting, and operational recovery.
-                </p>
-                <div className="distribution-label">Distributions worked with</div>
-                <div className="distribution-list">
-                  {linuxDistributions.map((distribution) => (
-                    <span className="distribution-chip" key={distribution}>{distribution}</span>
-                  ))}
-                </div>
-                <div className="cta-row">
-                  <a className="mini-btn" href="#/capabilities/linux">View Full Linux Details</a>
-                </div>
-              </div>
-              <div className="capability-grid">
-                {linuxCapabilities.map((item) => (
-                  <div className="capability-card reveal-card" key={item.title}>
-                    <div className="capability-icon">{item.icon}</div>
-                    <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </section>
 
@@ -2899,48 +2819,38 @@ img {
             </div>
           </section>
 
-          <section id="experience" className="container section reveal">
+          <section id="linux" className="container section reveal">
             <div className="section-head">
-              <span>Experience</span>
-              <h2>From support foundations to platform operations</h2>
+              <span>Linux Administration</span>
+              <h2>Multi-distribution server administration and operations</h2>
             </div>
-            <div className="timeline">
-              {experience.map((item) => (
-                <div className="panel exp-card reveal-card" key={item.role}>
-                  <div className="timeline-top">
-                    <div>
-                      <h3>{item.role}</h3>
-                      <h4>{item.company}</h4>
-                    </div>
-                    <div className="date-pill">{item.period}</div>
+            <div className="panel linux-overview">
+              <div className="linux-summary">
+                <h3>Linux systems built for stable, secure operations</h3>
+                <p>
+                  Hands-on administration across cloud, hosting, and server environments, covering access control, services, packages, networking, security, logs, storage, troubleshooting, and operational recovery.
+                </p>
+                <div className="distribution-label">Distributions worked with</div>
+                <div className="distribution-list">
+                  {linuxDistributions.map((distribution) => (
+                    <span className="distribution-chip" key={distribution}>{distribution}</span>
+                  ))}
+                </div>
+                <div className="cta-row">
+                  <a className="mini-btn" href="#/capabilities/linux">View Full Linux Details</a>
+                </div>
+              </div>
+              <div className="capability-grid">
+                {linuxCapabilities.map((item) => (
+                  <div className="capability-card reveal-card" key={item.title}>
+                    <div className="capability-icon">{item.icon}</div>
+                    <h4>{item.title}</h4>
+                    <p>{item.text}</p>
                   </div>
-                  <p>{item.text}</p>
-                  <ul className="exp-list">
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </section>
-
-          <section id="certifications" className="container section reveal">
-            <div className="section-head">
-              <span>Certifications & Learning</span>
-              <h2>Professional credibility and ongoing growth</h2>
-            </div>
-            <div className="cert-grid">
-              {certifications.map((item) => (
-                <div className="panel cert-card reveal-card" key={item.title}>
-                  <div className="cert-badge">{item.badge}</div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
 
           <section id="support" className="container section reveal">
             <div className="section-head">
@@ -2972,6 +2882,94 @@ img {
                   </div>
                 ))}
               </div>
+            </div>
+          </section>
+
+          <section id="projects" className="container section reveal">
+            <div className="section-head">
+              <span>Featured Projects</span>
+              <h2>Real project structure with repo-ready presentation</h2>
+            </div>
+            <div className="project-grid">
+              {featuredProjects.map((project) => (
+                <div className="panel project-card reveal-card" key={project.title}>
+                  <div className="project-top">
+                    <div className="project-icon">
+                      {project.image ? <img src={project.image} alt={project.title} /> : project.icon}
+                    </div>
+                    <div>
+                      <small>{project.subtitle}</small>
+                      <h3>{project.title}</h3>
+                    </div>
+                  </div>
+                  <p>{project.problem}</p>
+                  <div className="example-note">
+                    <div className="example-label">Example Outcome</div>
+                    <div>{project.outcome}</div>
+                  </div>
+                  <ul className="project-list">
+                    {project.implemented.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <div className="project-tags">
+                    {project.tools.map((tool) => (
+                      <span className="project-tag" key={tool}>{tool}</span>
+                    ))}
+                  </div>
+                  <ul className="replace-list">
+                    {project.replaceLater.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <div className="project-actions">
+                    <a className="mini-btn" href={project.link} target="_blank" rel="noreferrer">Open GitHub</a>
+                    <a className="mini-btn" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">More Repositories</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="certifications" className="container section reveal">
+            <div className="section-head">
+              <span>Certifications & Learning</span>
+              <h2>Professional credibility and ongoing growth</h2>
+            </div>
+            <div className="cert-grid">
+              {certifications.map((item) => (
+                <div className="panel cert-card reveal-card" key={item.title}>
+                  <div className="cert-badge">{item.badge}</div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="experience" className="container section reveal">
+            <div className="section-head">
+              <span>Experience</span>
+              <h2>From support foundations to platform operations</h2>
+            </div>
+            <div className="timeline">
+              {experience.map((item) => (
+                <div className="panel exp-card reveal-card" key={item.role}>
+                  <div className="timeline-top">
+                    <div>
+                      <h3>{item.role}</h3>
+                      <h4>{item.company}</h4>
+                    </div>
+                    <div className="date-pill">{item.period}</div>
+                  </div>
+                  <p>{item.text}</p>
+                  <ul className="exp-list">
+                    {item.bullets.map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </section>
 
@@ -3008,7 +3006,7 @@ img {
             <a className="mini-btn" href="mailto:prpabasara512@gmail.com">Email</a>
             <a className="mini-btn" href={RESUME_FILE} target="_blank" rel="noreferrer">Resume</a>
           </div>
-          <div style={{ marginTop: 16 }}>© PabaOps • Pabasara Meegahakumbura</div>
+          <div style={{ marginTop: 16 }}>© PabaOps • Pabasara Meegahakumbura. All rights reserved.</div>
         </footer>
       </div>
     </>
