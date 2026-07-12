@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const BRAND_IMAGE = `${import.meta.env.BASE_URL}pabaops-logo.png`;
-const HERO_IMAGE = `${import.meta.env.BASE_URL}pabaops-hero.png`;
+const BRAND_IMAGE = `${import.meta.env.BASE_URL}pabaops-logo.webp`;
+const HERO_IMAGE = `${import.meta.env.BASE_URL}pabaops-hero.webp`;
 const K8S_LOGO = `${import.meta.env.BASE_URL}k8s-logo.svg`;
 const RESUME_FILE = `${import.meta.env.BASE_URL}Pabasara_Resume.pdf`;
 const GITHUB_PROFILE = "https://github.com/PabasaraMeegahakumbura";
