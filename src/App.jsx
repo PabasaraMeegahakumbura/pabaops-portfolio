@@ -547,6 +547,66 @@ export default function App() {
         "Knowledge-base articles, technical runbooks, and support checklists",
       ],
     },
+    {
+      slug: "devops-principles",
+      icon: "🤝",
+      title: "DevOps Principles & Culture",
+      eyebrow: "Collaboration, Ownership & Continuous Improvement",
+      summary:
+        "A practical DevOps mindset built around collaboration, shared ownership, automation, fast feedback, measurable improvement, knowledge sharing, reliability, and continuous learning.",
+      tags: [
+        "CALMS",
+        "Collaboration",
+        "Shared Ownership",
+        "Automation",
+        "CI/CD",
+        "Measurement",
+        "Feedback Loops",
+        "Knowledge Sharing",
+        "Continuous Improvement",
+        "DevSecOps",
+      ],
+      focus: [
+        {
+          icon: "🤝",
+          title: "Collaboration & Shared Ownership",
+          text: "Work across development, operations, support, security, and business teams with shared goals, clear communication, and collective responsibility for outcomes.",
+        },
+        {
+          icon: "🔁",
+          title: "Continuous Integration & Delivery",
+          text: "Promote small, frequent, testable changes through repeatable pipelines, early validation, safer releases, and fast recovery when issues occur.",
+        },
+        {
+          icon: "⚙️",
+          title: "Automation & Repeatability",
+          text: "Reduce manual effort and inconsistency through infrastructure as code, scripting, reusable workflows, standardization, and automated operational checks.",
+        },
+        {
+          icon: "📊",
+          title: "Measurement & Feedback",
+          text: "Use monitoring, logs, deployment signals, incidents, user feedback, and service metrics to understand performance and guide improvement.",
+        },
+        {
+          icon: "📚",
+          title: "Sharing & Documentation",
+          text: "Create runbooks, troubleshooting notes, diagrams, knowledge-base content, and clear handovers so knowledge is reusable and not dependent on one person.",
+        },
+        {
+          icon: "🌱",
+          title: "Learning & Continuous Improvement",
+          text: "Use blameless reviews, retrospectives, root-cause analysis, experimentation, and lessons learned to improve systems, processes, and team capability.",
+        },
+      ],
+      evidence: [
+        "Repositories that show small, structured commits and clear documentation",
+        "CI/CD workflows with validation, repeatability, and rollback awareness",
+        "Infrastructure-as-code and automation examples that reduce manual work",
+        "Monitoring, incident, post-incident, and continuous-improvement case studies",
+        "Runbooks, knowledge articles, diagrams, and collaboration-ready handovers",
+      ],
+    },
+
   ];
 
   const linuxDistributions = [
@@ -2531,7 +2591,7 @@ img {
                     <span>Technical Capabilities</span>
                     <h1>Explore the operational depth behind the portfolio</h1>
                     <p>
-                      The homepage stays concise for recruiters, while these focused pages provide deeper coverage of Linux administration, cloud and platform engineering, observability and security, and L0–L2 technical support.
+                      The homepage stays concise for recruiters, while these focused pages provide deeper coverage of Linux administration, cloud and platform engineering, observability and security, L0–L2 technical support, and the DevOps principles and collaborative culture behind the work.
                     </p>
                   </div>
 
@@ -2735,7 +2795,7 @@ img {
             <div className="panel capabilities-cta">
               <div>
                 <h3>Explore detailed technical capabilities</h3>
-                <p>Open focused pages for Linux, cloud and platform engineering, observability and security, and L0–L2 support.</p>
+                <p>Open focused pages for Linux, cloud and platform engineering, observability and security, L0–L2 support, and DevOps principles and culture.</p>
               </div>
               <a className="mini-btn" href="#/capabilities">View All Capabilities</a>
             </div>
