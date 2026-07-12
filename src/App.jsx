@@ -9,6 +9,7 @@ const LINKEDIN_PROFILE = "https://www.linkedin.com/in/pabasara-meegahakumbura/";
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const impactStats = [
     { label: "Primary Focus", value: "DevOps + SRE + Platform" },
@@ -684,6 +685,17 @@ export default function App() {
 
 
   useEffect(() => {
+    const updateScrollButton = () => {
+      setShowScrollTop(window.scrollY > 520);
+    };
+
+    updateScrollButton();
+    window.addEventListener("scroll", updateScrollButton, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateScrollButton);
+  }, []);
+
+  useEffect(() => {
     const syncRoute = () => {
       const nextRoute = window.location.hash || "#/";
       setRoute(nextRoute);
@@ -761,6 +773,22 @@ export default function App() {
   const isCapabilitiesRoute = route.startsWith("#/capabilities");
   const capabilitySlug = isCapabilitiesRoute ? route.split("/")[2] : null;
   const selectedCapability = capabilityAreas.find((area) => area.slug === capabilitySlug);
+
+  const goToHome = (event) => {
+    event.preventDefault();
+
+    if (window.location.hash !== "#/") {
+      window.location.hash = "#/";
+      return;
+    }
+
+    setRoute("#/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -1899,6 +1927,49 @@ export default function App() {
           margin-right: 10px;
           opacity: 0.9;
         }
+        .scroll-top-btn {
+          position: fixed;
+          right: 24px;
+          bottom: 24px;
+          z-index: 90;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          min-width: 54px;
+          height: 54px;
+          padding: 0 16px;
+          border: 1px solid rgba(216,180,254,0.30);
+          border-radius: 999px;
+          background: rgba(23, 8, 39, 0.90);
+          color: #ffffff;
+          box-shadow: 0 18px 45px rgba(0,0,0,0.34), 0 0 30px rgba(139,92,246,0.18);
+          backdrop-filter: blur(16px);
+          cursor: pointer;
+          font: inherit;
+          font-weight: 800;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(18px) scale(0.92);
+          transition: opacity .25s ease, visibility .25s ease, transform .25s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
+        }
+        .scroll-top-btn.show {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0) scale(1);
+        }
+        .scroll-top-btn:hover,
+        .scroll-top-btn:focus-visible {
+          background: linear-gradient(135deg, #c084fc, #8b5cf6);
+          border-color: rgba(216,180,254,0.68);
+          box-shadow: 0 20px 48px rgba(139,92,246,0.30);
+          transform: translateY(-3px) scale(1.02);
+          outline: none;
+        }
+        .scroll-top-arrow {
+          font-size: 1.15rem;
+          line-height: 1;
+        }
         .footer {
           padding: 26px 0 40px;
           color: #8c82a3;
@@ -2329,6 +2400,18 @@ img {
   .cursor-dot {
     display: none;
   }
+
+  .scroll-top-btn {
+    right: 14px;
+    bottom: 14px;
+    min-width: 48px;
+    height: 48px;
+    padding: 0 13px;
+  }
+
+  .scroll-top-btn span:last-child {
+    display: none;
+  }
 }
 
 /* Very small phones */
@@ -2498,13 +2581,13 @@ img {
 
         <header className="topbar">
           <div className="container nav-wrap">
-            <div className="brand">
+            <a className="brand" href="#/" onClick={goToHome} aria-label="Go to PabaOps home page">
               <img src={BRAND_IMAGE} alt="PabaOps logo" className="brand-img" />
               <div className="brand-copy">
                 <strong>PabaOps</strong>
-                <span>Cloud • DevOps • Platform</span>
+                <span>Cloud • DevOps • SRE • Linux Admin • Platform</span>
               </div>
-            </div>
+            </a>
             <nav className="nav">
               <a href="#about">About</a>
               <a href="#projects">Projects</a>
@@ -3008,6 +3091,17 @@ img {
           </div>
           <div style={{ marginTop: 16 }}>© PabaOps • Pabasara Meegahakumbura. All rights reserved.</div>
         </footer>
+
+        <button
+          type="button"
+          className={`scroll-top-btn ${showScrollTop ? "show" : ""}`}
+          onClick={scrollToTop}
+          aria-label="Back to top"
+          title="Back to top"
+        >
+          <span className="scroll-top-arrow" aria-hidden="true">↑</span>
+          <span>Top</span>
+        </button>
       </div>
     </>
   );
