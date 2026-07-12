@@ -1165,6 +1165,475 @@ export default function App() {
           .floating-card { width: 150px; }
           .f1, .f2, .f3, .f4 { transform: none; }
         }
+          /* =========================================================
+   PABAOPS RESPONSIVE MOBILE FIX
+   Keeps desktop design unchanged
+   ========================================================= */
+
+.hero > *,
+.hero-strip > *,
+.tool-row > *,
+.intro-card > *,
+.spotlight-box > *,
+.project-grid > *,
+.skill-grid > *,
+.working-grid > *,
+.work-grid > *,
+.cert-grid > *,
+.contact-box > * {
+  min-width: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tablets and smaller laptops */
+@media (max-width: 1040px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+    padding-top: 64px;
+  }
+
+  .hero-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tool-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .intro-card,
+  .spotlight-box,
+  .project-grid,
+  .skill-grid,
+  .working-grid,
+  .work-grid,
+  .cert-grid,
+  .contact-box {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Phones */
+@media (max-width: 720px) {
+  html,
+  body,
+  #root,
+  .site {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .nav-wrap {
+    padding: 12px 0;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-img {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+
+  .brand-copy {
+    min-width: 0;
+  }
+
+  .brand-copy strong {
+    font-size: 0.92rem;
+  }
+
+  .brand-copy span {
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    white-space: normal;
+  }
+
+  .hero {
+    padding: 48px 0 28px;
+    gap: 28px;
+  }
+
+  .eyebrow {
+    max-width: 100%;
+    padding: 8px 12px;
+    font-size: 0.67rem;
+    line-height: 1.5;
+    letter-spacing: 0.09em;
+    white-space: normal;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.05rem, 11vw, 3.2rem);
+    line-height: 1.03;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .hero-sub {
+    font-size: 1.03rem;
+    line-height: 1.65;
+  }
+
+  .hero-text {
+    margin-top: 16px;
+    font-size: 0.94rem;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 13px 16px;
+    text-align: center;
+  }
+
+  .skill-cloud {
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .chip {
+    padding: 8px 11px;
+    font-size: 0.77rem;
+  }
+
+  /* Rebuild hero picture area for mobile */
+  .hero-visual {
+    min-height: 0;
+    padding: 10px;
+    overflow: visible;
+    border-radius: 24px;
+  }
+
+  .hero-screen {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    min-height: 0;
+    padding: 14px;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .orbit,
+  .orbit.two,
+  .orbit.three {
+    display: none;
+  }
+
+  .hero-brand-art {
+    position: relative;
+    left: auto;
+    top: auto;
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 6px;
+    border-radius: 18px;
+    transform: none;
+  }
+
+  .hero-screen:hover .hero-brand-art {
+    transform: none;
+    filter: drop-shadow(0 18px 38px rgba(124, 58, 237, 0.28));
+    box-shadow: none;
+  }
+
+  .floating-card {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border-radius: 14px;
+    transform: none;
+  }
+
+  .f1,
+  .f2,
+  .f3,
+  .f4 {
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    transform: none;
+  }
+
+  .floating-card span {
+    margin-bottom: 5px;
+    font-size: 0.62rem;
+  }
+
+  .floating-card strong {
+    display: block;
+    font-size: 0.76rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-strip {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .strip-card {
+    padding: 16px;
+  }
+
+  .tool-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .tool-tile {
+    padding: 14px 8px;
+  }
+
+  .section {
+    padding: 48px 0;
+  }
+
+  .section-head h2 {
+    font-size: 1.72rem;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .panel {
+    border-radius: 22px;
+  }
+
+  .intro-card,
+  .spotlight-box,
+  .project-card,
+  .skill-group,
+  .working-card,
+  .exp-card,
+  .cert-card,
+  .contact-box {
+    padding: 20px;
+  }
+
+  .intro-card,
+  .spotlight-box {
+    gap: 18px;
+  }
+
+  .spotlight-title {
+    font-size: 1.08rem;
+    line-height: 1.55;
+  }
+
+  .project-top {
+    align-items: flex-start;
+  }
+
+  .project-card h3,
+  .exp-card h3,
+  .cert-card h3,
+  .skill-group h3,
+  .working-card h3,
+  .work-card h3 {
+    font-size: 1.12rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .project-card p,
+  .exp-card p,
+  .cert-card p,
+  .working-card p,
+  .work-card p {
+    font-size: 0.93rem;
+    line-height: 1.7;
+  }
+
+  .example-note {
+    padding: 13px;
+  }
+
+  .project-list,
+  .exp-list,
+  .working-list,
+  .replace-list,
+  .detail-list {
+    padding-left: 20px;
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .project-actions,
+  .cta-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .mini-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .timeline-top {
+    flex-direction: column;
+  }
+
+  .date-pill {
+    white-space: normal;
+  }
+
+  .contact-box h2 {
+    font-size: 1.75rem;
+  }
+
+  .contact-links a,
+  .contact-links div {
+    padding: 14px;
+    font-size: 0.88rem;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cursor-ring,
+  .cursor-dot {
+    display: none;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  .container {
+    width: calc(100% - 18px);
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-screen {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .hero-brand-art {
+    grid-column: 1;
+  }
+
+  .floating-card {
+    width: 100%;
+  }
+
+  .project-card,
+  .skill-group,
+  .working-card,
+  .exp-card,
+  .cert-card,
+  .contact-box {
+    padding: 16px;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Touch devices do not have real hover */
+@media (hover: none), (pointer: coarse) {
+  .cursor-ring,
+  .cursor-dot {
+    display: none;
+  }
+
+  #work:hover .section-kicker {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .work-grid:hover .flip-card,
+  .project-grid:hover .project-card {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .work-grid:hover .flip-card:hover,
+  .project-grid:hover .project-card:hover {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  /* On mobile show the detailed side directly */
+  .flip-card {
+    min-height: auto;
+    transform: none;
+  }
+
+  .flip-inner {
+    min-height: auto;
+    transform: none;
+  }
+
+  .flip-card:hover .flip-inner {
+    transform: none;
+  }
+
+  .flip-face {
+    position: relative;
+    inset: auto;
+    min-height: auto;
+    transform: none;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+
+  .flip-face:first-child {
+    display: none;
+  }
+
+  .flip-back {
+    display: flex;
+    transform: none;
+  }
+}
       `}</style>
 
       <div className="cursor-ring"></div>
