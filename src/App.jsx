@@ -6,10 +6,183 @@ const K8S_LOGO = `${import.meta.env.BASE_URL}k8s-logo.svg`;
 const RESUME_FILE = `${import.meta.env.BASE_URL}Pabasara_Resume.pdf`;
 const GITHUB_PROFILE = "https://github.com/PabasaraMeegahakumbura";
 const LINKEDIN_PROFILE = "https://www.linkedin.com/in/pabasara-meegahakumbura/";
+const AI_API_URL = import.meta.env.VITE_AI_API_URL || "";
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [aiOpen, setAiOpen] = useState(false);
+  const [showAiGreeting, setShowAiGreeting] = useState(false);
+  const [aiInput, setAiInput] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiMessages, setAiMessages] = useState([
+    {
+      role: "assistant",
+      content:
+        "Hi, I’m the PabaOps AI Assistant. Ask me about Pabasara’s DevOps, SRE, cloud, Linux, platform, support, projects, or availability.",
+    },
+  ]);
+
+
+  const aiQuickPrompts = [
+    "Why should we hire Pabasara?",
+    "Summarize his DevOps experience",
+    "What Linux distributions has he worked with?",
+    "Show his Kubernetes and Terraform strengths",
+    "Explain his L0–L2 support background",
+  ];
+
+  const getLocalAIResponse = (question) => {
+    const normalized = question.toLowerCase();
+
+    if (
+      normalized.includes("hire") ||
+      normalized.includes("why") ||
+      normalized.includes("value")
+    ) {
+      return "Pabasara combines DevOps engineering with strong production support discipline. His value comes from cloud and platform operations, Kubernetes, Terraform, CI/CD, Linux administration, observability, security-aware operations, and L0–L2 troubleshooting. This combination helps him build systems while also understanding how to operate, monitor, support, and recover them.";
+    }
+
+    if (
+      normalized.includes("linux") ||
+      normalized.includes("ubuntu") ||
+      normalized.includes("rhel") ||
+      normalized.includes("centos") ||
+      normalized.includes("almalinux")
+    ) {
+      return "His Linux administration experience includes Ubuntu, RHEL, CentOS, and AlmaLinux. Key areas include users and groups, permissions, sudo, SSH, systemd, packages, processes, cron, networking, DNS, firewalls, storage, logs, troubleshooting, WHM/cPanel, SSL, mail, WordPress hosting, and server operations.";
+    }
+
+    if (
+      normalized.includes("kubernetes") ||
+      normalized.includes("terraform") ||
+      normalized.includes("container") ||
+      normalized.includes("docker")
+    ) {
+      return "His platform strengths include Kubernetes operations, Docker, Terraform infrastructure automation, Git-based CI/CD, Linux systems, cloud infrastructure, deployment consistency, troubleshooting, monitoring, and repeatable operational workflows. The portfolio includes dedicated capability pages and project structures for these areas.";
+    }
+
+    if (
+      normalized.includes("support") ||
+      normalized.includes("l0") ||
+      normalized.includes("l1") ||
+      normalized.includes("l2") ||
+      normalized.includes("incident")
+    ) {
+      return "Pabasara has L0–L2 support depth covering issue intake, validation, prioritization, user communication, common service troubleshooting, access and identity, email and DNS, networking, application support, log analysis, advanced investigation, escalation, incident ownership, Jira, Zoho, runbooks, and knowledge documentation.";
+    }
+
+    if (
+      normalized.includes("experience") ||
+      normalized.includes("career") ||
+      normalized.includes("role")
+    ) {
+      return "He progressed from End User Support and L0–L2 Support into Associate DevOps and then DevOps & IT Operations responsibilities. His work spans AWS, GCP, Azure, Kubernetes, Docker, Terraform, Linux, CI/CD, Cloudflare, monitoring, databases, security-aware operations, WHM/cPanel, WordPress, and production support.";
+    }
+
+    if (
+      normalized.includes("cloud") ||
+      normalized.includes("aws") ||
+      normalized.includes("gcp") ||
+      normalized.includes("azure") ||
+      normalized.includes("cloudflare")
+    ) {
+      return "His cloud and edge experience includes AWS, GCP, Azure, Cloudflare, IAM, compute, networking, firewalls, backups, snapshots, service accounts, DNS, WAF, SSL, hosting, migrations, and operational troubleshooting.";
+    }
+
+    if (
+      normalized.includes("monitor") ||
+      normalized.includes("observability") ||
+      normalized.includes("grafana") ||
+      normalized.includes("prometheus") ||
+      normalized.includes("datadog")
+    ) {
+      return "His observability stack includes Prometheus, Grafana, Datadog, ELK/EFK, UptimeRobot, and cloud-native monitoring. He focuses on dashboards, alerts, uptime checks, logs, service health, incident detection, investigation, and operational response.";
+    }
+
+    if (
+      normalized.includes("contact") ||
+      normalized.includes("email") ||
+      normalized.includes("available") ||
+      normalized.includes("linkedin") ||
+      normalized.includes("github")
+    ) {
+      return "Pabasara is open to DevOps, Cloud Operations, Platform Engineering, SRE, Linux Administration, and technical support opportunities. You can use the portfolio Contact section, LinkedIn, GitHub, or resume links to reach him.";
+    }
+
+    return "Pabasara is a DevOps & IT Operations Engineer with strengths across cloud, Kubernetes, Terraform, CI/CD, Linux administration, observability, security-aware operations, databases, WHM/cPanel, WordPress, and L0–L2 support. Ask me a more specific question about his skills, projects, experience, Linux work, support background, or availability.";
+  };
+
+  const sendAIMessage = async (promptText = aiInput) => {
+    const question = promptText.trim();
+
+    if (!question || aiLoading) {
+      return;
+    }
+
+    const userMessage = { role: "user", content: question };
+    const conversationForRequest = [...aiMessages, userMessage].slice(-10);
+
+    setAiMessages((current) => [...current, userMessage]);
+    setAiInput("");
+    setAiLoading(true);
+
+    try {
+      let answer;
+
+      if (AI_API_URL) {
+        const response = await fetch(AI_API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: question,
+            history: conversationForRequest,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`AI request failed with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        answer = data.answer?.trim();
+
+        if (!answer) {
+          throw new Error("The AI service returned an empty answer.");
+        }
+      } else {
+        await new Promise((resolve) => window.setTimeout(resolve, 450));
+        answer = getLocalAIResponse(question);
+      }
+
+      setAiMessages((current) => [
+        ...current,
+        { role: "assistant", content: answer },
+      ]);
+    } catch (error) {
+      console.error("PabaOps AI Assistant error:", error);
+
+      setAiMessages((current) => [
+        ...current,
+        {
+          role: "assistant",
+          content:
+            `${getLocalAIResponse(question)} The live AI service is temporarily unavailable, so I answered using the portfolio’s built-in knowledge.`,
+        },
+      ]);
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
+  const handleAIKeyDown = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      sendAIMessage();
+    }
+  };
 
   const impactStats = [
     { label: "Primary Focus", value: "DevOps + SRE + Platform" },
@@ -685,6 +858,21 @@ export default function App() {
 
 
   useEffect(() => {
+    const showTimer = window.setTimeout(() => {
+      setShowAiGreeting(true);
+    }, 900);
+
+    const hideTimer = window.setTimeout(() => {
+      setShowAiGreeting(false);
+    }, 8500);
+
+    return () => {
+      window.clearTimeout(showTimer);
+      window.clearTimeout(hideTimer);
+    };
+  }, []);
+
+  useEffect(() => {
     const updateScrollButton = () => {
       setShowScrollTop(window.scrollY > 520);
     };
@@ -784,6 +972,16 @@ export default function App() {
 
     setRoute("#/");
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const openAIAssistant = () => {
+    setShowAiGreeting(false);
+    setAiOpen(true);
+  };
+
+  const toggleAIAssistant = () => {
+    setShowAiGreeting(false);
+    setAiOpen((current) => !current);
   };
 
   const scrollToTop = () => {
@@ -1927,48 +2125,495 @@ export default function App() {
           margin-right: 10px;
           opacity: 0.9;
         }
-        .scroll-top-btn {
+
+        .ai-agent-launcher {
           position: fixed;
-          right: 24px;
-          bottom: 24px;
-          z-index: 90;
+          right: 22px;
+          bottom: 78px;
+          z-index: 96;
           display: inline-flex;
           align-items: center;
-          justify-content: center;
-          gap: 8px;
-          min-width: 54px;
-          height: 54px;
-          padding: 0 16px;
-          border: 1px solid rgba(216,180,254,0.30);
+          gap: 10px;
+          min-height: 54px;
+          padding: 6px 17px 6px 7px;
+          border: 1px solid rgba(216,180,254,0.38);
           border-radius: 999px;
-          background: rgba(23, 8, 39, 0.90);
+          background:
+            linear-gradient(135deg, rgba(35, 11, 58, 0.97), rgba(12, 5, 25, 0.97));
           color: #ffffff;
-          box-shadow: 0 18px 45px rgba(0,0,0,0.34), 0 0 30px rgba(139,92,246,0.18);
-          backdrop-filter: blur(16px);
+          box-shadow:
+            0 18px 48px rgba(0,0,0,0.40),
+            0 0 34px rgba(139,92,246,0.20);
+          backdrop-filter: blur(18px);
           cursor: pointer;
           font: inherit;
           font-weight: 800;
+          transition:
+            transform .25s ease,
+            border-color .25s ease,
+            box-shadow .25s ease,
+            background .25s ease;
+        }
+        .ai-agent-launcher:hover,
+        .ai-agent-launcher:focus-visible {
+          transform: translateY(-4px) scale(1.015);
+          border-color: rgba(216,180,254,0.72);
+          background:
+            linear-gradient(135deg, rgba(73, 26, 113, 0.98), rgba(32, 10, 56, 0.98));
+          box-shadow:
+            0 24px 65px rgba(0,0,0,0.44),
+            0 0 48px rgba(168,85,247,0.34);
+          outline: none;
+        }
+        .ai-launcher-icon {
+          position: relative;
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          overflow: visible;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #c084fc, #7c3aed);
+          box-shadow: 0 0 24px rgba(168,85,247,0.42);
+        }
+        .ai-launcher-photo {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+          border-radius: inherit;
+          border: 2px solid rgba(255,255,255,0.42);
+        }
+        .ai-launcher-icon::after {
+          content: "";
+          position: absolute;
+          inset: -4px;
+          border: 1px solid rgba(216,180,254,0.40);
+          border-radius: inherit;
+          animation: aiPulse 2.2s ease-out infinite;
+          pointer-events: none;
+        }
+        @keyframes aiPulse {
+          0% { opacity: 0.7; transform: scale(0.86); }
+          70%, 100% { opacity: 0; transform: scale(1.35); }
+        }
+        .ai-welcome-popup {
+          position: fixed;
+          right: 22px;
+          bottom: 145px;
+          z-index: 95;
+          width: min(310px, calc(100vw - 44px));
+          padding: 14px 42px 14px 14px;
+          border: 1px solid rgba(216,180,254,0.28);
+          border-radius: 20px 20px 6px 20px;
+          background:
+            radial-gradient(circle at top right, rgba(168,85,247,0.18), transparent 42%),
+            rgba(17, 7, 31, 0.96);
+          color: #f5f3ff;
+          box-shadow:
+            0 22px 64px rgba(0,0,0,0.46),
+            0 0 34px rgba(124,58,237,0.16);
+          backdrop-filter: blur(18px);
           opacity: 0;
           visibility: hidden;
-          transform: translateY(18px) scale(0.92);
-          transition: opacity .25s ease, visibility .25s ease, transform .25s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
+          transform: translateY(14px) scale(0.94);
+          transform-origin: bottom right;
+          transition:
+            opacity .28s ease,
+            visibility .28s ease,
+            transform .28s ease;
         }
-        .scroll-top-btn.show {
+        .ai-welcome-popup.show {
           opacity: 1;
           visibility: visible;
           transform: translateY(0) scale(1);
         }
+        .ai-welcome-popup::after {
+          content: "";
+          position: absolute;
+          right: 28px;
+          bottom: -9px;
+          width: 18px;
+          height: 18px;
+          border-right: 1px solid rgba(216,180,254,0.24);
+          border-bottom: 1px solid rgba(216,180,254,0.24);
+          background: rgba(17, 7, 31, 0.96);
+          transform: rotate(45deg);
+        }
+        .ai-welcome-content {
+          display: flex;
+          align-items: flex-start;
+          gap: 11px;
+          cursor: pointer;
+        }
+        .ai-welcome-photo {
+          width: 42px;
+          height: 42px;
+          flex-shrink: 0;
+          object-fit: cover;
+          border-radius: 14px;
+          border: 1px solid rgba(255,255,255,0.22);
+          box-shadow: 0 0 24px rgba(168,85,247,0.20);
+        }
+        .ai-welcome-copy strong {
+          display: block;
+          margin-bottom: 5px;
+          font-size: 0.9rem;
+        }
+        .ai-welcome-copy span {
+          display: block;
+          color: #cfc7df;
+          font-size: 0.79rem;
+          line-height: 1.55;
+        }
+        .ai-welcome-close {
+          position: absolute;
+          top: 9px;
+          right: 9px;
+          width: 28px;
+          height: 28px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border: 0;
+          border-radius: 9px;
+          background: rgba(255,255,255,0.05);
+          color: #ddd6fe;
+          cursor: pointer;
+          font-size: 0.95rem;
+          transition: background .2s ease, color .2s ease;
+        }
+        .ai-welcome-close:hover,
+        .ai-welcome-close:focus-visible {
+          background: rgba(255,255,255,0.10);
+          color: #ffffff;
+          outline: none;
+        }
+        .ai-chat-panel {
+          position: fixed;
+          right: 22px;
+          bottom: 142px;
+          z-index: 97;
+          width: min(370px, calc(100vw - 48px));
+          height: min(520px, calc(100vh - 175px));
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          border: 1px solid rgba(216,180,254,0.22);
+          border-radius: 26px;
+          background:
+            radial-gradient(circle at top right, rgba(168,85,247,0.17), transparent 34%),
+            rgba(13, 5, 25, 0.97);
+          box-shadow:
+            0 30px 90px rgba(0,0,0,0.52),
+            0 0 50px rgba(124,58,237,0.16);
+          backdrop-filter: blur(22px);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(24px) scale(0.94);
+          transform-origin: bottom right;
+          transition:
+            opacity .28s ease,
+            visibility .28s ease,
+            transform .28s ease;
+        }
+        .ai-chat-panel.open {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0) scale(1);
+        }
+        .ai-chat-head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 14px 15px;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          background: rgba(255,255,255,0.025);
+        }
+        .ai-chat-identity {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          min-width: 0;
+        }
+        .ai-chat-avatar {
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          overflow: hidden;
+          border-radius: 15px;
+          background: linear-gradient(135deg, #c084fc, #7c3aed);
+          border: 1px solid rgba(255,255,255,0.20);
+          box-shadow: 0 0 28px rgba(168,85,247,0.32);
+        }
+        .ai-chat-avatar img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+        }
+        .ai-chat-title {
+          min-width: 0;
+        }
+        .ai-chat-title strong {
+          display: block;
+          font-size: 0.91rem;
+        }
+        .ai-chat-title span {
+          display: block;
+          margin-top: 2px;
+          color: #c4b5fd;
+          font-size: 0.68rem;
+          line-height: 1.3;
+        }
+        .ai-chat-close {
+          width: 34px;
+          height: 34px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          border: 1px solid rgba(255,255,255,0.09);
+          border-radius: 12px;
+          background: rgba(255,255,255,0.04);
+          color: #ffffff;
+          cursor: pointer;
+          font-size: 1.1rem;
+          transition: background .2s ease, border-color .2s ease, transform .2s ease;
+        }
+        .ai-chat-close:hover,
+        .ai-chat-close:focus-visible {
+          background: rgba(255,255,255,0.08);
+          border-color: rgba(216,180,254,0.28);
+          transform: rotate(4deg);
+          outline: none;
+        }
+        .ai-status-row {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          padding: 7px 15px;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          color: #b8acd3;
+          font-size: 0.72rem;
+        }
+        .ai-status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 999px;
+          background: #86efac;
+          box-shadow: 0 0 14px rgba(134,239,172,0.55);
+        }
+        .ai-quick-prompts {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 7px;
+          max-height: 82px;
+          padding: 9px 12px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          scrollbar-width: none;
+        }
+        .ai-quick-prompts::-webkit-scrollbar {
+          display: none;
+        }
+        .ai-quick-prompt {
+          min-width: 0;
+          padding: 7px 9px;
+          border: 1px solid rgba(216,180,254,0.14);
+          border-radius: 999px;
+          background: rgba(168,85,247,0.08);
+          color: #ddd6fe;
+          cursor: pointer;
+          font: inherit;
+          font-size: 0.67rem;
+          line-height: 1.35;
+          white-space: normal;
+          transition: background .2s ease, border-color .2s ease, transform .2s ease;
+        }
+        .ai-quick-prompt:hover,
+        .ai-quick-prompt:focus-visible {
+          background: rgba(168,85,247,0.16);
+          border-color: rgba(216,180,254,0.30);
+          transform: translateY(-2px);
+          outline: none;
+        }
+        .ai-chat-messages {
+          flex: 1;
+          min-height: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 12px;
+          overflow-y: auto;
+          scroll-behavior: smooth;
+        }
+        .ai-message {
+          max-width: 90%;
+          padding: 10px 12px;
+          border-radius: 15px;
+          font-size: 0.81rem;
+          line-height: 1.55;
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+        .ai-message.assistant {
+          align-self: flex-start;
+          border: 1px solid rgba(255,255,255,0.08);
+          border-bottom-left-radius: 6px;
+          background: rgba(255,255,255,0.045);
+          color: #e9e5f4;
+        }
+        .ai-message.user {
+          align-self: flex-end;
+          border: 1px solid rgba(216,180,254,0.20);
+          border-bottom-right-radius: 6px;
+          background: linear-gradient(135deg, rgba(168,85,247,0.26), rgba(124,58,237,0.18));
+          color: #ffffff;
+        }
+        .ai-typing {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          min-width: 58px;
+        }
+        .ai-typing span {
+          width: 7px;
+          height: 7px;
+          border-radius: 999px;
+          background: #c4b5fd;
+          animation: aiTyping 1.1s ease-in-out infinite;
+        }
+        .ai-typing span:nth-child(2) { animation-delay: .14s; }
+        .ai-typing span:nth-child(3) { animation-delay: .28s; }
+        @keyframes aiTyping {
+          0%, 60%, 100% { opacity: .35; transform: translateY(0); }
+          30% { opacity: 1; transform: translateY(-4px); }
+        }
+        .ai-chat-compose {
+          padding: 10px 12px 11px;
+          border-top: 1px solid rgba(255,255,255,0.08);
+          background: rgba(5, 2, 12, 0.55);
+        }
+        .ai-input-wrap {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 9px;
+          align-items: end;
+        }
+        .ai-chat-input {
+          width: 100%;
+          min-height: 42px;
+          max-height: 72px;
+          resize: none;
+          padding: 10px 11px;
+          border: 1px solid rgba(255,255,255,0.10);
+          border-radius: 15px;
+          background: rgba(255,255,255,0.045);
+          color: #ffffff;
+          font: inherit;
+          font-size: 0.78rem;
+          line-height: 1.4;
+          outline: none;
+        }
+        .ai-chat-input::placeholder {
+          color: #8f84a8;
+        }
+        .ai-chat-input:focus {
+          border-color: rgba(216,180,254,0.42);
+          box-shadow: 0 0 0 3px rgba(168,85,247,0.08);
+        }
+        .ai-chat-send {
+          width: 42px;
+          height: 42px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border: 0;
+          border-radius: 15px;
+          background: linear-gradient(135deg, #c084fc, #7c3aed);
+          color: #ffffff;
+          cursor: pointer;
+          font-size: 1.05rem;
+          box-shadow: 0 12px 26px rgba(124,58,237,0.24);
+          transition: transform .2s ease, filter .2s ease, opacity .2s ease;
+        }
+        .ai-chat-send:hover:not(:disabled),
+        .ai-chat-send:focus-visible:not(:disabled) {
+          transform: translateY(-2px);
+          filter: brightness(1.08);
+          outline: none;
+        }
+        .ai-chat-send:disabled {
+          cursor: not-allowed;
+          opacity: 0.45;
+        }
+        .ai-chat-note {
+          margin-top: 6px;
+          color: #7f7495;
+          font-size: 0.66rem;
+          line-height: 1.4;
+          text-align: center;
+        }
+        .scroll-top-btn {
+          position: fixed;
+          right: 26px;
+          bottom: 24px;
+          z-index: 94;
+          width: 42px;
+          height: 42px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          border: 1px solid rgba(216,180,254,0.34);
+          border-radius: 14px;
+          background:
+            linear-gradient(145deg, rgba(54, 19, 84, 0.96), rgba(17, 7, 31, 0.96));
+          color: #ffffff;
+          box-shadow:
+            0 14px 34px rgba(0,0,0,0.38),
+            0 0 22px rgba(139,92,246,0.18);
+          backdrop-filter: blur(16px);
+          cursor: pointer;
+          font: inherit;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(14px) rotate(8deg) scale(0.88);
+          transition:
+            opacity .25s ease,
+            visibility .25s ease,
+            transform .25s ease,
+            background .25s ease,
+            border-color .25s ease,
+            box-shadow .25s ease;
+        }
+        .scroll-top-btn.show {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0) rotate(0) scale(1);
+        }
         .scroll-top-btn:hover,
         .scroll-top-btn:focus-visible {
-          background: linear-gradient(135deg, #c084fc, #8b5cf6);
-          border-color: rgba(216,180,254,0.68);
-          box-shadow: 0 20px 48px rgba(139,92,246,0.30);
-          transform: translateY(-3px) scale(1.02);
+          background: linear-gradient(135deg, #c084fc, #7c3aed);
+          border-color: rgba(255,255,255,0.48);
+          box-shadow:
+            0 18px 42px rgba(139,92,246,0.34),
+            0 0 26px rgba(192,132,252,0.34);
+          transform: translateY(-3px) scale(1.08);
           outline: none;
         }
         .scroll-top-arrow {
-          font-size: 1.15rem;
+          font-size: 1.12rem;
           line-height: 1;
+          font-weight: 900;
         }
         .footer {
           padding: 26px 0 40px;
@@ -2401,12 +3046,57 @@ img {
     display: none;
   }
 
+
+  .ai-agent-launcher {
+    right: 12px;
+    bottom: 66px;
+    min-width: 50px;
+    min-height: 50px;
+    padding: 5px;
+  }
+
+  .ai-agent-launcher > span:last-child {
+    display: none;
+  }
+
+  .ai-launcher-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ai-welcome-popup {
+    right: 10px;
+    bottom: 128px;
+    width: min(300px, calc(100vw - 20px));
+  }
+
+  .ai-chat-panel {
+    left: auto;
+    right: 10px;
+    bottom: 124px;
+    width: min(340px, calc(100vw - 20px));
+    height: min(470px, calc(100vh - 165px));
+    transform-origin: bottom right;
+  }
+
+  .ai-chat-head {
+    padding: 12px;
+  }
+
+  .ai-quick-prompts {
+    grid-template-columns: 1fr;
+    max-height: 72px;
+    padding: 8px 10px;
+  }
+
+  .ai-chat-messages {
+    padding: 10px;
+  }
   .scroll-top-btn {
-    right: 14px;
+    right: 16px;
     bottom: 14px;
-    min-width: 48px;
-    height: 48px;
-    padding: 0 13px;
+    width: 38px;
+    height: 38px;
   }
 
   .scroll-top-btn span:last-child {
@@ -2416,6 +3106,18 @@ img {
 
 /* Very small phones */
 @media (max-width: 420px) {
+  .ai-chat-panel {
+    right: 8px;
+    bottom: 118px;
+    width: calc(100vw - 16px);
+    height: min(445px, calc(100vh - 145px));
+    border-radius: 22px;
+  }
+
+  .ai-chat-title span {
+    max-width: 190px;
+  }
+
   .container {
     width: calc(100% - 18px);
   }
@@ -3092,6 +3794,149 @@ img {
           <div style={{ marginTop: 16 }}>© PabaOps • Pabasara Meegahakumbura. All rights reserved.</div>
         </footer>
 
+
+        <div
+          className={`ai-welcome-popup ${showAiGreeting && !aiOpen ? "show" : ""}`}
+          role="status"
+          aria-live="polite"
+        >
+          <button
+            type="button"
+            className="ai-welcome-close"
+            onClick={() => setShowAiGreeting(false)}
+            aria-label="Close welcome message"
+          >
+            ×
+          </button>
+          <div
+            className="ai-welcome-content"
+            onClick={openAIAssistant}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openAIAssistant();
+              }
+            }}
+          >
+            <img src={BRAND_IMAGE} alt="PabaOps assistant" className="ai-welcome-photo" />
+            <div className="ai-welcome-copy">
+              <strong>Hi there! 👋</strong>
+              <span>
+                Hope you have a wonderful day. Ask me anything about Pabasara’s DevOps journey.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className="ai-agent-launcher"
+          onClick={toggleAIAssistant}
+          aria-expanded={aiOpen}
+          aria-controls="pabaops-ai-panel"
+          aria-label={aiOpen ? "Close PabaOps AI Assistant" : "Open PabaOps AI Assistant"}
+          title="Ask PabaOps AI"
+        >
+          <span className="ai-launcher-icon" aria-hidden="true">
+            <img src={BRAND_IMAGE} alt="" className="ai-launcher-photo" />
+          </span>
+          <span>Ask PabaOps AI</span>
+        </button>
+
+        <aside
+          id="pabaops-ai-panel"
+          className={`ai-chat-panel ${aiOpen ? "open" : ""}`}
+          aria-hidden={!aiOpen}
+        >
+          <div className="ai-chat-head">
+            <div className="ai-chat-identity">
+              <div className="ai-chat-avatar">
+                <img src={BRAND_IMAGE} alt="PabaOps AI Assistant" />
+              </div>
+              <div className="ai-chat-title">
+                <strong>PabaOps AI Assistant</strong>
+                <span>Portfolio guide for recruiters and technical visitors</span>
+              </div>
+            </div>
+            <button
+              type="button"
+              className="ai-chat-close"
+              onClick={() => setAiOpen(false)}
+              aria-label="Close AI Assistant"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="ai-status-row">
+            <span className="ai-status-dot" aria-hidden="true"></span>
+            <span>{AI_API_URL ? "Live AI connected" : "Smart portfolio mode active"}</span>
+          </div>
+
+          <div className="ai-quick-prompts" aria-label="Suggested questions">
+            {aiQuickPrompts.map((prompt) => (
+              <button
+                type="button"
+                className="ai-quick-prompt"
+                key={prompt}
+                onClick={() => sendAIMessage(prompt)}
+                disabled={aiLoading}
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+
+          <div className="ai-chat-messages" aria-live="polite">
+            {aiMessages.map((message, index) => (
+              <div
+                className={`ai-message ${message.role}`}
+                key={`${message.role}-${index}`}
+              >
+                {message.content}
+              </div>
+            ))}
+
+            {aiLoading && (
+              <div className="ai-message assistant">
+                <span className="ai-typing" aria-label="AI is typing">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </div>
+            )}
+          </div>
+
+          <div className="ai-chat-compose">
+            <div className="ai-input-wrap">
+              <textarea
+                className="ai-chat-input"
+                value={aiInput}
+                onChange={(event) => setAiInput(event.target.value)}
+                onKeyDown={handleAIKeyDown}
+                placeholder="Ask about skills, projects, Linux, cloud, SRE, or support..."
+                maxLength={700}
+                rows={1}
+              />
+              <button
+                type="button"
+                className="ai-chat-send"
+                onClick={() => sendAIMessage()}
+                disabled={!aiInput.trim() || aiLoading}
+                aria-label="Send question"
+              >
+                ➤
+              </button>
+            </div>
+            <div className="ai-chat-note">
+              AI responses are portfolio guidance and may occasionally be incomplete.
+            </div>
+          </div>
+        </aside>
+
         <button
           type="button"
           className={`scroll-top-btn ${showScrollTop ? "show" : ""}`}
@@ -3100,7 +3945,6 @@ img {
           title="Back to top"
         >
           <span className="scroll-top-arrow" aria-hidden="true">↑</span>
-          <span>Top</span>
         </button>
       </div>
     </>
