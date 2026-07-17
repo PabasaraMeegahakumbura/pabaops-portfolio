@@ -24,10 +24,11 @@ import {
 import { aiQuickPrompts, getLocalAIResponse } from "./data/assistant";
 import { SiteHeader } from "./components/SiteHeader";
 import { SiteFooter } from "./components/SiteFooter";
-import { HighlightedProjectCard } from "./components/ProjectCards";
+import { HighlightedProjectCard, ProjectCard } from "./components/ProjectCards";
 import { EmailPlatformCaseStudy } from "./pages/EmailPlatformCaseStudy";
 import { CapabilitiesPage } from "./pages/CapabilitiesPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
+import { CaseStudiesPage } from "./pages/CaseStudiesPage";
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
@@ -277,6 +278,7 @@ export default function App() {
 
   const isProjectRoute = route === "#/projects/self-hosted-email-platform";
   const isProjectsRoute = route === "#/projects";
+  const isCaseStudiesRoute = route === "#/case-studies";
   const isCapabilitiesRoute = route.startsWith("#/capabilities");
   const capabilitySlug = isCapabilitiesRoute ? route.split("/")[2] : null;
   const selectedCapability = capabilityAreas.find((area) => area.slug === capabilitySlug);
@@ -285,13 +287,15 @@ export default function App() {
     const pageTitle = isProjectRoute
       ? "Self-Hosted Email Platform Engineering Lab | PabaOps"
       : isProjectsRoute
-        ? "DevOps Projects & Case Studies | PabaOps"
+        ? "DevOps Projects | PabaOps"
+      : isCaseStudiesRoute
+        ? "Engineering Case Studies | PabaOps"
       : selectedCapability
         ? `${selectedCapability.title} | PabaOps`
         : "Pabasara Meegahakumbura | DevOps, Cloud & Platform Engineer";
 
     document.title = pageTitle;
-  }, [isProjectRoute, isProjectsRoute, selectedCapability]);
+  }, [isCaseStudiesRoute, isProjectRoute, isProjectsRoute, selectedCapability]);
 
   const goToHome = (event) => {
     event.preventDefault();
@@ -340,6 +344,8 @@ export default function App() {
             <EmailPlatformCaseStudy />
           ) : isProjectsRoute ? (
             <ProjectsPage projects={featuredProjects} />
+          ) : isCaseStudiesRoute ? (
+            <CaseStudiesPage projects={featuredProjects} />
           ) : isCapabilitiesRoute ? (
             <CapabilitiesPage
               capabilities={capabilityAreas}
@@ -525,7 +531,22 @@ export default function App() {
               ))}
             </div>
             <div className="section-actions">
-              <a className="mini-btn" href="#/projects">View All Projects &amp; Case Studies</a>
+              <a className="mini-btn" href="#/case-studies">View All Selected Work &amp; Case Studies</a>
+            </div>
+          </section>
+
+          <section id="projects" className="container section reveal">
+            <div className="section-head">
+              <span>Projects</span>
+              <h2>Implementation-focused engineering projects</h2>
+            </div>
+            <div className="project-grid">
+              {highlightedProjects.map((project) => (
+                <ProjectCard project={project} key={`project-${project.title}`} />
+              ))}
+            </div>
+            <div className="section-actions">
+              <a className="mini-btn" href="#/projects">View All Projects</a>
             </div>
           </section>
 
