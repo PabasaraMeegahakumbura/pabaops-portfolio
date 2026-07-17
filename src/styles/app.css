@@ -1028,6 +1028,12 @@
           gap: 10px;
           margin-top: 24px;
         }
+        .skills-page-tools {
+          margin-top: 28px;
+        }
+        .skills-page-section {
+          margin-top: 54px;
+        }
         .working-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
