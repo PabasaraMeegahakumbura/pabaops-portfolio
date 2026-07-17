@@ -1,4 +1,9 @@
-import { EMAIL_PLATFORM_REPO, GITHUB_PROFILE, K8S_LOGO } from "../config/site";
+import {
+  EMAIL_PLATFORM_REPO,
+  GITHUB_PROFILE,
+  K8S_LOGO,
+  OBSERVABILITY_REPO,
+} from "../config/site";
 
 export const impactStats = [
     { label: "Primary Focus", value: "DevOps + SRE + Platform" },
@@ -31,6 +36,8 @@ export const quickChips = [
     "Zabbix",
     "Uptime Kuma",
     "Netdata",
+    "AWS CloudWatch",
+    "Google Cloud Observability",
     "Datadog",
     "Cloudflare",
     "WAF",
@@ -78,7 +85,7 @@ export const skillGroups = [
     { title: "CI/CD & Automation", items: ["GitLab CI", "Jenkins", "Terraform", "Infrastructure Automation"] },
     { title: "Languages & Scripting", items: ["Python", "Bash", "PowerShell", "Java (Basic)", "C# (Basic)"] },
     { title: "Linux Administration", items: ["Ubuntu", "RHEL", "CentOS", "AlmaLinux", "systemd", "SSH", "firewalld"] },
-    { title: "Observability", items: ["Prometheus", "Grafana", "Zabbix", "Uptime Kuma", "Netdata", "Datadog", "ELK/EFK", "UptimeRobot", "Cloud Monitoring"] },
+    { title: "Observability", items: ["Prometheus", "Grafana", "Zabbix (Hands-on AWS/GCP)", "AWS CloudWatch", "Google Cloud Monitoring & Logging", "UptimeRobot", "Uptime Kuma (Lab/Testing)", "Netdata (Lab/Testing)", "Datadog", "ELK/EFK"] },
     { title: "Networking & Security", items: ["SonicWall", "FortiWeb", "FortiClient", "Cloudflare WAF", "WireGuard", "DNS", "SSL/TLS", "IAM/RBAC"] },
     { title: "Database Operations & Support", items: ["MongoDB", "MySQL", "Cloud SQL", "Backup/Restore Awareness"] },
     { title: "On-Prem & Self-Hosted", items: ["VMware ESXi/vSphere", "Virtual Machines", "WHM/cPanel", "BTCPay Server", "Mail Platforms"] },
@@ -131,16 +138,16 @@ export const featuredProjects = [
         "Improve operational visibility and support faster troubleshooting across services and infrastructure.",
       implemented: [
         "Prometheus and Grafana metrics, dashboards, and service visibility",
-        "Zabbix infrastructure monitoring and alerting workflows",
-        "Uptime Kuma service, endpoint, and availability checks",
-        "Netdata real-time server health and performance visibility",
+        "Hands-on Zabbix infrastructure monitoring and alerting across AWS/GCP-hosted Linux environments",
+        "AWS CloudWatch and Google Cloud Monitoring/Logging operational workflows",
+        "UptimeRobot availability checks with Uptime Kuma and Netdata maintained as lab/testing coverage",
         "Incident-oriented alert review, investigation, and response readiness",
       ],
       outcome:
         "Demonstrates layered visibility across infrastructure, services, endpoints, and host performance using practical monitoring workflows.",
-      tools: ["Prometheus", "Grafana", "Zabbix", "Uptime Kuma", "Netdata", "Datadog", "UptimeRobot"],
+      tools: ["Prometheus", "Grafana", "Zabbix", "AWS CloudWatch", "Google Cloud Observability", "UptimeRobot", "Uptime Kuma (Lab)", "Netdata (Lab)"],
       icon: "📊",
-      link: GITHUB_PROFILE,
+      link: OBSERVABILITY_REPO,
     },
     {
       title: "Secure Cloudflare and WAF Hardening",
@@ -484,6 +491,8 @@ export const capabilityAreas = [
         "Zabbix",
         "Uptime Kuma",
         "Netdata",
+        "AWS CloudWatch",
+        "Google Cloud Monitoring & Logging",
         "Datadog",
         "ELK/EFK",
         "UptimeRobot",
@@ -500,7 +509,7 @@ export const capabilityAreas = [
         {
           icon: "📊",
           title: "Metrics & Dashboards",
-          text: "Prometheus, Grafana, Zabbix, and Netdata visibility for service, host, and workload health, trends, and investigation.",
+          text: "Prometheus, Grafana, hands-on Zabbix, AWS CloudWatch, Google Cloud Monitoring, and Netdata lab coverage for service, host, and workload visibility.",
         },
         {
           icon: "📚",
@@ -529,9 +538,9 @@ export const capabilityAreas = [
         },
       ],
       evidence: [
-        "Monitoring repositories with architecture, dashboards, and alert examples",
+        "Structured observability-monitoring-lab repository with architecture, commands, validation, troubleshooting, and runbooks",
         "Sanitized security-hardening and incident-response case studies",
-        "Zabbix, Uptime Kuma, Netdata, uptime, SSL, server, Kubernetes, and application monitoring examples",
+        "Hands-on Zabbix AWS/GCP documentation plus clearly labelled Uptime Kuma and Netdata lab/testing guides",
         "Operational runbooks for alerts, containment, recovery, and validation",
       ],
     },
