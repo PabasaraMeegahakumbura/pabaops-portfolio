@@ -1155,6 +1155,13 @@
           gap: 20px;
           margin-top: 28px;
         }
+        .experience-preview-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          align-items: stretch;
+        }
+        .experience-preview-grid .exp-card {
+          height: 100%;
+        }
         .timeline-top {
           display: flex;
           justify-content: space-between;
@@ -1808,6 +1815,10 @@ img {
 
 /* Tablets and smaller laptops */
 @media (max-width: 1040px) {
+  .experience-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 48px;
