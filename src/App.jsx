@@ -270,12 +270,7 @@ export default function App() {
         "Release-friendly delivery flow",
       ],
       outcome:
-        "Example outcome to replace later: improved deployment consistency and reduced manual release steps across environments.",
-      replaceLater: [
-        "Add your real GitHub repo link",
-        "Add a real screenshot or architecture image",
-        "Replace with an actual result or metric",
-      ],
+        "Demonstrates a repeatable path from source control to Kubernetes deployment, with fewer manual release steps.",
       tools: ["Kubernetes", "Docker", "CI/CD", "Git", "Linux"],
       image: K8S_LOGO,
       link: GITHUB_PROFILE,
@@ -292,12 +287,7 @@ export default function App() {
         "Support for controlled environment setup",
       ],
       outcome:
-        "Example outcome to replace later: reduced repetitive setup work and improved repeatability for infrastructure changes.",
-      replaceLater: [
-        "Add your Terraform repo",
-        "Show what cloud resources were included",
-        "Replace with a real automation win",
-      ],
+        "Demonstrates reusable infrastructure provisioning patterns designed for consistent, reviewable changes.",
       tools: ["Terraform", "Cloud", "Automation", "Linux"],
       icon: "🧩",
       link: GITHUB_PROFILE,
@@ -314,12 +304,7 @@ export default function App() {
         "Incident support readiness",
       ],
       outcome:
-        "Example outcome to replace later: stronger visibility into services and quicker issue detection during operational support.",
-      replaceLater: [
-        "Add your dashboard or screenshot",
-        "Mention alerting or uptime improvements",
-        "Replace with your actual monitoring result",
-      ],
+        "Demonstrates service visibility through dashboards, alerting concepts, and incident-oriented monitoring workflows.",
       tools: ["Prometheus", "Grafana", "Datadog", "UptimeRobot"],
       icon: "📊",
       link: GITHUB_PROFILE,
@@ -336,12 +321,7 @@ export default function App() {
         "Operational hardening mindset",
       ],
       outcome:
-        "Example outcome to replace later: improved edge-layer protection and better traffic control for exposed services.",
-      replaceLater: [
-        "Add your Cloudflare-related repo or notes",
-        "Mention rule tuning or attack reduction",
-        "Replace with your real security result",
-      ],
+        "Demonstrates practical edge protection, traffic control, and security-aware Cloudflare operations.",
       tools: ["Cloudflare", "WAF", "Security", "Operations"],
       icon: "🔐",
       link: GITHUB_PROFILE,
@@ -358,12 +338,7 @@ export default function App() {
         "Operational consistency across environments",
       ],
       outcome:
-        "Example outcome to replace later: cleaner packaging and easier service movement between development and runtime environments.",
-      replaceLater: [
-        "Add your Docker or compose repo",
-        "Show service structure or architecture",
-        "Replace with your real platform result",
-      ],
+        "Demonstrates consistent container packaging and a platform-oriented structure across development and runtime environments.",
       tools: ["Docker", "Platform", "Linux", "Cloud"],
       icon: "🐳",
       link: GITHUB_PROFILE,
@@ -380,12 +355,7 @@ export default function App() {
         "Operations support discipline",
       ],
       outcome:
-        "Example outcome to replace later: better incident handling, stronger support flow, and improved visibility into operational issues.",
-      replaceLater: [
-        "Mention your real support workflow",
-        "Add database-related scripts or notes",
-        "Replace with your actual support impact",
-      ],
+        "Demonstrates a structured support workflow across databases, ticketing, investigation, escalation, and documentation.",
       tools: ["MongoDB", "MySQL", "Jira", "Zoho"],
       icon: "🗄️",
       link: GITHUB_PROFILE,
@@ -402,12 +372,7 @@ export default function App() {
         "Web and hosting operations across Linux and WHM/cPanel environments",
       ],
       outcome:
-        "Example outcome to replace later: improved server stability, safer access control, and faster diagnosis of Linux service and connectivity issues.",
-      replaceLater: [
-        "Add a Linux administration lab repository",
-        "Include terminal screenshots or a server architecture diagram",
-        "Replace with a real operational result or incident example",
-      ],
+        "Demonstrates practical Linux administration for stable services, controlled access, and systematic troubleshooting.",
       tools: ["Ubuntu", "RHEL", "CentOS", "AlmaLinux", "systemd", "Bash", "SSH"],
       icon: "🐧",
       link: GITHUB_PROFILE,
@@ -424,12 +389,7 @@ export default function App() {
         "Incident communication, Jira/Zoho tracking, and knowledge documentation",
       ],
       outcome:
-        "Example outcome to replace later: improved incident ownership, clearer escalation paths, and more consistent communication throughout issue resolution.",
-      replaceLater: [
-        "Add a sanitized troubleshooting case study",
-        "Show an incident workflow or knowledge-base example",
-        "Replace with a real support metric or service improvement",
-      ],
+        "Demonstrates structured incident ownership, clear escalation paths, and consistent communication throughout issue resolution.",
       tools: ["L0–L2", "Jira", "Zoho", "Monitoring", "Troubleshooting", "Documentation"],
       icon: "🎧",
       link: GITHUB_PROFILE,
@@ -451,10 +411,6 @@ export default function App() {
       outcome:
         "Built a working, multi-platform email engineering lab with verified external mail flow and integrity-checked backups, while recording the isolated restore drill as the next production-readiness milestone.",
       caseStudy: "#/projects/self-hosted-email-platform",
-      replaceLater: [
-        "Next: complete an isolated Mailcow restore drill",
-        "Next: measure RTO/RPO and add service, queue, certificate and backup alerts",
-      ],
       tools: [
         "GCP",
         "Ubuntu",
@@ -1036,6 +992,16 @@ export default function App() {
   const capabilitySlug = isCapabilitiesRoute ? route.split("/")[2] : null;
   const selectedCapability = capabilityAreas.find((area) => area.slug === capabilitySlug);
 
+  useEffect(() => {
+    const pageTitle = isProjectRoute
+      ? "Self-Hosted Email Platform Engineering Lab | PabaOps"
+      : selectedCapability
+        ? `${selectedCapability.title} | PabaOps`
+        : "Pabasara Meegahakumbura | DevOps, Cloud & Platform Engineer";
+
+    document.title = pageTitle;
+  }, [isProjectRoute, selectedCapability]);
+
   const goToHome = (event) => {
     event.preventDefault();
 
@@ -1074,6 +1040,23 @@ export default function App() {
           background: #0a0315;
         }
         a { color: inherit; text-decoration: none; }
+        a:focus-visible, button:focus-visible, textarea:focus-visible {
+          outline: 3px solid #c4b5fd;
+          outline-offset: 3px;
+        }
+        .skip-link {
+          position: fixed;
+          left: 16px;
+          top: -80px;
+          z-index: 3000;
+          padding: 12px 16px;
+          border-radius: 12px;
+          background: #ffffff;
+          color: #160525;
+          font-weight: 800;
+          transition: top .2s ease;
+        }
+        .skip-link:focus { top: 16px; }
         .cursor-ring {
           position: fixed;
           left: 0;
@@ -2730,7 +2713,14 @@ export default function App() {
           }
         }
         @media (max-width: 720px) {
-          .nav { display: none; }
+          .nav {
+            display: flex;
+            width: 100%;
+            overflow-x: auto;
+            padding: 8px 0 2px;
+            gap: 18px;
+            scrollbar-width: thin;
+          }
           .hero { padding-top: 56px; }
           .timeline-top { flex-direction: column; }
           .container { width: min(1180px, calc(100% - 26px)); }
@@ -3438,8 +3428,9 @@ img {
 }
       `}</style>
 
-      <div className="cursor-ring"></div>
-      <div className="cursor-dot"></div>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <div className="cursor-ring" aria-hidden="true"></div>
+      <div className="cursor-dot" aria-hidden="true"></div>
 
       <div className="site">
         <div className="glow g1"></div>
@@ -3449,13 +3440,13 @@ img {
         <header className="topbar">
           <div className="container nav-wrap">
             <a className="brand" href="#/" onClick={goToHome} aria-label="Go to PabaOps home page">
-              <img src={BRAND_IMAGE} alt="PabaOps logo" className="brand-img" decoding="async" fetchPriority="high" />
+              <img src={BRAND_IMAGE} alt="PabaOps logo" className="brand-img" decoding="async" fetchPriority="high" width="56" height="56" />
               <div className="brand-copy">
                 <strong>PabaOps</strong>
                 <span>Cloud • DevOps • SRE • Linux Admin • Platform</span>
               </div>
             </a>
-            <nav className="nav">
+            <nav className="nav" aria-label="Primary navigation">
               <a href="#about">About</a>
               <a href="#projects">Projects</a>
               <a href="#skills">Skills</a>
@@ -3466,7 +3457,7 @@ img {
           </div>
         </header>
 
-        <main>
+        <main id="main-content">
           {isProjectRoute ? (
             <section className="container capability-page">
               <div className="capability-breadcrumbs">
@@ -3708,7 +3699,7 @@ img {
                 <div className="orbit"></div>
                 <div className="orbit two"></div>
                 <div className="orbit three"></div>
-                <img src={HERO_IMAGE} alt="PabaOps visual" className="hero-brand-art" decoding="async" fetchPriority="high" />
+                <img src={HERO_IMAGE} alt="PabaOps cloud and platform engineering illustration" className="hero-brand-art" decoding="async" fetchPriority="high" width="560" height="560" />
 
                 <div className="floating-card f1">
                   <span>Cloud</span>
@@ -3855,7 +3846,7 @@ img {
                       <h3>{item.title}</h3>
                       <p>{item.problem}</p>
                       <div className="example-note">
-                        <div className="example-label">{item.outcomeLabel || "Example Outcome"}</div>
+                        <div className="example-label">{item.outcomeLabel || "Project Summary"}</div>
                         <div>{item.outcome}</div>
                       </div>
                       <ul className="detail-list">
@@ -3956,7 +3947,7 @@ img {
                   </div>
                   <p>{project.problem}</p>
                   <div className="example-note">
-                    <div className="example-label">{project.outcomeLabel || "Example Outcome"}</div>
+                    <div className="example-label">{project.outcomeLabel || "Project Summary"}</div>
                     <div>{project.outcome}</div>
                   </div>
                   <ul className="project-list">
@@ -3969,16 +3960,11 @@ img {
                       <span className="project-tag" key={tool}>{tool}</span>
                     ))}
                   </div>
-                  <ul className="replace-list">
-                    {project.replaceLater.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
                   <div className="project-actions">
                     {project.caseStudy && (
                       <a className="mini-btn" href={project.caseStudy}>View Case Study</a>
                     )}
-                    <a className="mini-btn" href={project.link} target="_blank" rel="noreferrer">Open Repository</a>
+                    <a className="mini-btn" href={project.link} target="_blank" rel="noreferrer">{project.link === GITHUB_PROFILE ? "View GitHub Profile" : "Open Repository"}</a>
                     <a className="mini-btn" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">More Repositories</a>
                   </div>
                 </div>
