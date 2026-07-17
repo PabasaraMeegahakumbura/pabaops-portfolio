@@ -29,6 +29,7 @@ import { EmailPlatformCaseStudy } from "./pages/EmailPlatformCaseStudy";
 import { CapabilitiesPage } from "./pages/CapabilitiesPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { CaseStudiesPage } from "./pages/CaseStudiesPage";
+import { SkillsPage } from "./pages/SkillsPage";
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
@@ -279,6 +280,7 @@ export default function App() {
   const isProjectRoute = route === "#/projects/self-hosted-email-platform";
   const isProjectsRoute = route === "#/projects";
   const isCaseStudiesRoute = route === "#/case-studies";
+  const isSkillsRoute = route === "#/skills";
   const isCapabilitiesRoute = route.startsWith("#/capabilities");
   const capabilitySlug = isCapabilitiesRoute ? route.split("/")[2] : null;
   const selectedCapability = capabilityAreas.find((area) => area.slug === capabilitySlug);
@@ -290,12 +292,14 @@ export default function App() {
         ? "DevOps Projects | PabaOps"
       : isCaseStudiesRoute
         ? "Engineering Case Studies | PabaOps"
+      : isSkillsRoute
+        ? "Technical Skills | PabaOps"
       : selectedCapability
         ? `${selectedCapability.title} | PabaOps`
         : "Pabasara Meegahakumbura | DevOps, Cloud & Platform Engineer";
 
     document.title = pageTitle;
-  }, [isCaseStudiesRoute, isProjectRoute, isProjectsRoute, selectedCapability]);
+  }, [isCaseStudiesRoute, isProjectRoute, isProjectsRoute, isSkillsRoute, selectedCapability]);
 
   const goToHome = (event) => {
     event.preventDefault();
@@ -346,6 +350,8 @@ export default function App() {
             <ProjectsPage projects={featuredProjects} />
           ) : isCaseStudiesRoute ? (
             <CaseStudiesPage projects={featuredProjects} />
+          ) : isSkillsRoute ? (
+            <SkillsPage skillGroups={skillGroups} tools={toolIcons} />
           ) : isCapabilitiesRoute ? (
             <CapabilitiesPage
               capabilities={capabilityAreas}
