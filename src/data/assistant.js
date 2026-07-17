@@ -123,7 +123,7 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("uptime kuma") ||
       normalized.includes("netdata")
     ) {
-      return "His observability stack includes Prometheus and Grafana for metrics and dashboards, Zabbix for infrastructure monitoring and alerting, Uptime Kuma and UptimeRobot for endpoint availability checks, Netdata for real-time host performance, plus Datadog, ELK/EFK, and cloud-native monitoring. He applies these tools to service health, incident detection, investigation, and operational response.";
+      return "His observability experience includes Prometheus and Grafana for metrics and dashboards, hands-on Zabbix monitoring across AWS/GCP-hosted Linux environments, AWS CloudWatch, Google Cloud Monitoring and Logging, and UptimeRobot. Uptime Kuma and Netdata are clearly presented as lab/testing work. His observability-monitoring-lab repository documents architecture, commands, validation, troubleshooting, and alert-response runbooks without exposing customer data.";
     }
 
     if (
