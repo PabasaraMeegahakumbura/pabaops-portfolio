@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pabasarameegahakumbura.github.io/pabaops-portfolio/sitemap.xml
