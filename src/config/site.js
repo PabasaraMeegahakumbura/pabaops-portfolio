@@ -8,5 +8,8 @@ export const EMAIL_PLATFORM_REPO =
   "https://github.com/PabasaraMeegahakumbura/self-hosted-email-platform-lab";
 export const LINKEDIN_PROFILE =
   "https://www.linkedin.com/in/pabasara-meegahakumbura/";
+export const SITE_URL =
+  "https://pabasarameegahakumbura.github.io/pabaops-portfolio/";
+export const PORTFOLIO_QR = `${import.meta.env.BASE_URL}portfolio-qr.svg`;
 
 export const AI_API_URL = import.meta.env.VITE_AI_API_URL || "";
