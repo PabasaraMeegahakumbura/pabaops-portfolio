@@ -15,6 +15,9 @@ import {
   measurableImpact,
   skillGroups,
   featuredProjects,
+  highlightedProjects,
+  freelanceServices,
+  engagementSteps,
   experience,
   certifications,
   workingNow,
@@ -26,9 +29,12 @@ import {
 import { aiQuickPrompts, getLocalAIResponse } from "./data/assistant";
 import { SiteHeader } from "./components/SiteHeader";
 import { SiteFooter } from "./components/SiteFooter";
-import { HighlightedProjectCard, ProjectCard } from "./components/ProjectCards";
+import { HighlightedProjectCard } from "./components/ProjectCards";
 import { EmailPlatformCaseStudy } from "./pages/EmailPlatformCaseStudy";
 import { CapabilitiesPage } from "./pages/CapabilitiesPage";
+import { ProjectsPage } from "./pages/ProjectsPage";
+import { ServicesPage } from "./pages/ServicesPage";
+import { EmployersPage } from "./pages/EmployersPage";
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
@@ -257,6 +263,9 @@ export default function App() {
   }, [route]);
 
   const isProjectRoute = route === "#/projects/self-hosted-email-platform";
+  const isAllProjectsRoute = route === "#/projects";
+  const isServicesRoute = route === "#/services";
+  const isEmployersRoute = route === "#/employers";
   const isCapabilitiesRoute = route.startsWith("#/capabilities");
   const capabilitySlug = isCapabilitiesRoute ? route.split("/")[2] : null;
   const selectedCapability = capabilityAreas.find((area) => area.slug === capabilitySlug);
@@ -264,12 +273,18 @@ export default function App() {
   useEffect(() => {
     const pageTitle = isProjectRoute
       ? "Self-Hosted Email Platform Engineering Lab | PabaOps"
+      : isAllProjectsRoute
+        ? "Engineering Projects | PabaOps"
+        : isServicesRoute
+          ? "Freelance Cloud & DevOps Services | PabaOps"
+          : isEmployersRoute
+            ? "DevOps Engineer Profile | PabaOps"
       : selectedCapability
         ? `${selectedCapability.title} | PabaOps`
         : "Pabasara Meegahakumbura | DevOps, Cloud & Platform Engineer";
 
     document.title = pageTitle;
-  }, [isProjectRoute, selectedCapability]);
+  }, [isAllProjectsRoute, isEmployersRoute, isProjectRoute, isServicesRoute, selectedCapability]);
 
   const goToHome = (event) => {
     event.preventDefault();
@@ -315,6 +330,12 @@ export default function App() {
         <main id="main-content">
           {isProjectRoute ? (
             <EmailPlatformCaseStudy />
+          ) : isAllProjectsRoute ? (
+            <ProjectsPage projects={featuredProjects} />
+          ) : isServicesRoute ? (
+            <ServicesPage engagementSteps={engagementSteps} services={freelanceServices} />
+          ) : isEmployersRoute ? (
+            <EmployersPage experience={experience} projects={highlightedProjects} />
           ) : isCapabilitiesRoute ? (
             <CapabilitiesPage
               capabilities={capabilityAreas}
@@ -330,17 +351,17 @@ export default function App() {
                 <span>Meegahakumbura</span>
               </h1>
               <p className="hero-sub">
-                Building reliable cloud-native platforms with Kubernetes, Terraform automation, CI/CD, Linux operations, observability, security controls, and production-minded support.
+                Operating reliable cloud, Kubernetes, Linux, hosting and on-premises environments through automation, observability, security-aware controls and production-minded support.
               </p>
               <p className="hero-text">
-                I focus on DevOps first, while bringing Cloud, SRE, Platform, and DevSecOps strengths into real environments across AWS, GCP, Azure, Cloudflare, and Linux-based systems. My work centers on automation, infrastructure control, monitoring, security, database support, and production-minded operations.
+                I focus on DevOps first, with hands-on work across AWS, GCP, Kubernetes, Terraform, CI/CD, Cloudflare, Linux, hosting platforms, VMware and self-hosted services. Azure remains a basic/testing capability, while Helm is part of my current Kubernetes lab development.
               </p>
 
               <div className="hero-actions">
-                <a className="btn btn-hero" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">View GitHub</a>
-                <a className="btn btn-hero" href={LINKEDIN_PROFILE} target="_blank" rel="noreferrer">LinkedIn</a>
+                <a className="btn btn-hero" href="#/employers">For Employers</a>
+                <a className="btn btn-hero" href="#/services">Freelance Services</a>
+                <a className="btn btn-hero" href="#/projects">View Projects</a>
                 <a className="btn btn-hero" href={RESUME_FILE} target="_blank" rel="noreferrer">Download Resume</a>
-                <a className="btn btn-hero" href="#contact">Contact Me</a>
               </div>
 
               <div className="skill-cloud">
@@ -363,7 +384,7 @@ export default function App() {
                 </div>
                 <div className="floating-card f2">
                   <span>Platform</span>
-                  <strong>Kubernetes, Docker, Linux, WHM/cPanel, MongoDB</strong>
+                  <strong>Kubernetes, Docker, Linux, VMware, WHM/cPanel</strong>
                 </div>
                 <div className="floating-card f3">
                   <span>Observability</span>
@@ -408,10 +429,10 @@ export default function App() {
             </div>
             <div className="panel intro-card">
               <p>
-                I am a DevOps & IT Operations Engineer with hands-on experience across AWS, GCP, Azure, Kubernetes, Docker, Terraform, Linux, CI/CD pipelines, Cloudflare, and WHM/cPanel-oriented operations. My work focuses on operating microservices environments, improving deployment consistency, automating infrastructure, and strengthening observability through monitoring and logging tools.
+                I am a DevOps Engineer with hands-on experience across AWS, GCP, Kubernetes, Docker, Terraform, Linux, CI/CD pipelines, Cloudflare, WHM/cPanel, WordPress hosting, VMware and self-hosted services. My recent remote work includes GCP and server operations, GKE, Cloud SQL, Cloud Build and Deploy, monitoring, security controls and server-side support for more than 100 hosted websites.
               </p>
               <p>
-                My support background gives me a practical reliability mindset. That helps me approach systems with troubleshooting discipline, operational awareness, security awareness, and production-focused thinking. I also bring scripting exposure through Bash and Python, along with secure configuration practices using Vault, Consul, IAM/RBAC, WAF, CrowdStrike Admin exposure, MongoDB, MySQL, Jira, and Zoho-related support work.
+                My support background gives me a practical reliability mindset across cloud and on-premises environments. I bring Bash and Python exposure, security-aware operations, and MongoDB, MySQL and Cloud SQL operational support. I describe Azure and database work at the level I have actually used them rather than presenting myself as an Azure specialist or database administrator.
               </p>
             </div>
 
@@ -471,24 +492,26 @@ export default function App() {
               </div>
               <div className="panel working-card reveal-card">
                 <h3>Open to Opportunities</h3>
-                <p>I am open to DevOps, Cloud Operations, Platform Engineering, and SRE-oriented roles where I can contribute through hands-on delivery, operational support, automation, and reliability thinking.</p>
+                <p>I am open to DevOps, Cloud Operations, Platform Engineering, SRE-oriented roles, and clearly scoped freelance infrastructure work.</p>
                 <div className="cta-row">
                   <a className="mini-btn" href={RESUME_FILE} target="_blank" rel="noreferrer">View Resume</a>
                   <a className="mini-btn" href={LINKEDIN_PROFILE} target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+                  <a className="mini-btn" href="#/services">Freelance Services</a>
                 </div>
               </div>
             </div>
           </section>
 
-          <section id="work" className="container section reveal">
+          <section id="projects" className="container section reveal">
             <div className="work-head">
               <div className="section-kicker">Highlighted Work • Hover to focus</div>
             </div>
             <div className="work-grid">
-              {featuredProjects.map((project) => (
+              {highlightedProjects.map((project) => (
                 <HighlightedProjectCard project={project} key={`flip-${project.title}`} />
               ))}
             </div>
+            <div className="section-actions"><a className="mini-btn" href="#/projects">View All Projects</a></div>
           </section>
 
           <section id="linux" className="container section reveal">
@@ -557,18 +580,6 @@ export default function App() {
             </div>
           </section>
 
-          <section id="projects" className="container section reveal">
-            <div className="section-head">
-              <span>Featured Projects</span>
-              <h2>Real project structure with repo-ready presentation</h2>
-            </div>
-            <div className="project-grid">
-              {featuredProjects.map((project) => (
-                <ProjectCard project={project} key={project.title} />
-              ))}
-            </div>
-          </section>
-
           <section id="certifications" className="container section reveal">
             <div className="section-head">
               <span>Certifications & Learning</span>
@@ -615,13 +626,14 @@ export default function App() {
             <div className="panel contact-box">
               <div>
                 <span className="contact-label">Contact</span>
-                <h2>Open to DevOps, Cloud, Platform, and SRE opportunities.</h2>
+                <h2>Open to DevOps opportunities and clearly scoped freelance projects.</h2>
                 <p>
-                  Available for full-time roles and technical collaborations where I can contribute through automation, observability, Kubernetes operations, security-aware operations, database support, and operational excellence.
+                  Available for full-time roles and remote technical engagements involving cloud and Linux operations, Kubernetes, hosting, monitoring, automation, security-aware configuration and structured troubleshooting.
                 </p>
                 <div className="cta-row">
                   <a className="mini-btn" href={RESUME_FILE} target="_blank" rel="noreferrer">Download Resume</a>
                   <a className="mini-btn" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">Featured Repositories</a>
+                  <a className="mini-btn" href="#/services">Discuss Freelance Work</a>
                 </div>
               </div>
               <div className="contact-links">
