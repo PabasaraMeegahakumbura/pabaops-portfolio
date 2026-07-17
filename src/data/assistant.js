@@ -118,9 +118,12 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("observability") ||
       normalized.includes("grafana") ||
       normalized.includes("prometheus") ||
-      normalized.includes("datadog")
+      normalized.includes("datadog") ||
+      normalized.includes("zabbix") ||
+      normalized.includes("uptime kuma") ||
+      normalized.includes("netdata")
     ) {
-      return "His observability stack includes Prometheus, Grafana, Datadog, ELK/EFK, UptimeRobot, and cloud-native monitoring. He focuses on dashboards, alerts, uptime checks, logs, service health, incident detection, investigation, and operational response.";
+      return "His observability stack includes Prometheus and Grafana for metrics and dashboards, Zabbix for infrastructure monitoring and alerting, Uptime Kuma and UptimeRobot for endpoint availability checks, Netdata for real-time host performance, plus Datadog, ELK/EFK, and cloud-native monitoring. He applies these tools to service health, incident detection, investigation, and operational response.";
     }
 
     if (
