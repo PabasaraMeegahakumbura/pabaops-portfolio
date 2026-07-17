@@ -130,7 +130,7 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("linkedin") ||
       normalized.includes("github")
     ) {
-      return "Pabasara is open to DevOps, Cloud Operations, Platform Engineering, SRE, Linux Administration, and clearly scoped freelance infrastructure engagements. Use the Employer or Freelance Services path, Contact section, LinkedIn, GitHub, or resume links to reach him.";
+      return "Pabasara is open to DevOps, Cloud Operations, Platform Engineering, SRE, and Linux Administration opportunities. Use the Contact section, LinkedIn, GitHub, or resume links to reach him.";
     }
 
     return "Pabasara is a DevOps & IT Operations Engineer with strengths across cloud, Kubernetes, Helm, containerized microservices, Terraform, CI/CD, Linux, observability, networking and firewalls, Microsoft 365, Active Directory/LDAP, databases, WHM/cPanel, WordPress, and L0–L2 support. Ask me a specific question about his skills, projects, experience, support background, or availability.";
