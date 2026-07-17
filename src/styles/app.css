@@ -783,6 +783,16 @@
           color: #c7bfd8;
           line-height: 1.7;
         }
+        .work-section-title {
+          margin: 12px 0 0;
+          font-size: clamp(1.45rem, 2.8vw, 2.15rem);
+          line-height: 1.2;
+        }
+        .section-actions {
+          display: flex;
+          justify-content: center;
+          margin-top: 24px;
+        }
         .capabilities-cta-content {
           min-width: 0;
         }
