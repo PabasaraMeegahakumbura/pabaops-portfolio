@@ -30,6 +30,7 @@ import { CapabilitiesPage } from "./pages/CapabilitiesPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { CaseStudiesPage } from "./pages/CaseStudiesPage";
 import { SkillsPage } from "./pages/SkillsPage";
+import { ExperiencePage } from "./pages/ExperiencePage";
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
@@ -281,6 +282,7 @@ export default function App() {
   const isProjectsRoute = route === "#/projects";
   const isCaseStudiesRoute = route === "#/case-studies";
   const isSkillsRoute = route === "#/skills";
+  const isExperienceRoute = route === "#/experience";
   const isCapabilitiesRoute = route.startsWith("#/capabilities");
   const capabilitySlug = isCapabilitiesRoute ? route.split("/")[2] : null;
   const selectedCapability = capabilityAreas.find((area) => area.slug === capabilitySlug);
@@ -294,12 +296,14 @@ export default function App() {
         ? "Engineering Case Studies | PabaOps"
       : isSkillsRoute
         ? "Technical Skills | PabaOps"
+      : isExperienceRoute
+        ? "Professional Experience | PabaOps"
       : selectedCapability
         ? `${selectedCapability.title} | PabaOps`
         : "Pabasara Meegahakumbura | DevOps, Cloud & Platform Engineer";
 
     document.title = pageTitle;
-  }, [isCaseStudiesRoute, isProjectRoute, isProjectsRoute, isSkillsRoute, selectedCapability]);
+  }, [isCaseStudiesRoute, isExperienceRoute, isProjectRoute, isProjectsRoute, isSkillsRoute, selectedCapability]);
 
   const goToHome = (event) => {
     event.preventDefault();
@@ -352,6 +356,8 @@ export default function App() {
             <CaseStudiesPage projects={featuredProjects} />
           ) : isSkillsRoute ? (
             <SkillsPage skillGroups={skillGroups} tools={toolIcons} />
+          ) : isExperienceRoute ? (
+            <ExperiencePage experience={experience} />
           ) : isCapabilitiesRoute ? (
             <CapabilitiesPage
               capabilities={capabilityAreas}
@@ -404,7 +410,7 @@ export default function App() {
                 </div>
                 <div className="floating-card f3">
                   <span>Observability</span>
-                  <strong>Prometheus, Grafana, Datadog, UptimeRobot</strong>
+                  <strong>Zabbix, Prometheus/Grafana, CloudWatch, GCP Observability</strong>
                 </div>
                 <div className="floating-card f4">
                   <span>Security</span>
@@ -573,13 +579,13 @@ export default function App() {
             </div>
           </section>
 
-          <section id="experience" className="container section reveal">
+          <section id="experience" className="container section reveal experience-preview">
             <div className="section-head">
               <span>Experience</span>
-              <h2>From support foundations to platform operations</h2>
+              <h2>Recent professional experience</h2>
             </div>
-            <div className="timeline">
-              {experience.map((item) => (
+            <div className="timeline experience-preview-grid">
+              {experience.slice(0, 2).map((item) => (
                 <div className="panel exp-card reveal-card" key={item.role}>
                   <div className="timeline-top">
                     <div>
@@ -590,12 +596,15 @@ export default function App() {
                   </div>
                   <p>{item.text}</p>
                   <ul className="exp-list">
-                    {item.bullets.map((bullet) => (
+                    {item.bullets.slice(0, 3).map((bullet) => (
                       <li key={bullet}>{bullet}</li>
                     ))}
                   </ul>
                 </div>
               ))}
+            </div>
+            <div className="section-actions">
+              <a className="mini-btn" href="#/experience">View Full Experience &amp; Career Progression</a>
             </div>
           </section>
 

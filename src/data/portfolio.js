@@ -1,4 +1,9 @@
-import { EMAIL_PLATFORM_REPO, GITHUB_PROFILE, K8S_LOGO } from "../config/site";
+import {
+  EMAIL_PLATFORM_REPO,
+  GITHUB_PROFILE,
+  K8S_LOGO,
+  OBSERVABILITY_REPO,
+} from "../config/site";
 
 export const impactStats = [
     { label: "Primary Focus", value: "DevOps + SRE + Platform" },
@@ -28,6 +33,11 @@ export const quickChips = [
     "CI/CD",
     "Prometheus",
     "Grafana",
+    "Zabbix",
+    "Uptime Kuma",
+    "Netdata",
+    "AWS CloudWatch",
+    "Google Cloud Observability",
     "Datadog",
     "Cloudflare",
     "WAF",
@@ -50,6 +60,9 @@ export const toolIcons = [
     { icon: "⚙️", name: "CI/CD" },
     { icon: "🛠️", name: "Automation" },
     { icon: "📊", name: "Monitoring" },
+    { icon: "📡", name: "Zabbix" },
+    { icon: "✅", name: "Uptime Kuma" },
+    { icon: "📈", name: "Netdata" },
     { icon: "🔐", name: "Security" },
     { icon: "🐧", name: "Linux Admin" },
     { icon: "🖥️", name: "On-Prem & VMs" },
@@ -72,7 +85,7 @@ export const skillGroups = [
     { title: "CI/CD & Automation", items: ["GitLab CI", "Jenkins", "Terraform", "Infrastructure Automation"] },
     { title: "Languages & Scripting", items: ["Python", "Bash", "PowerShell", "Java (Basic)", "C# (Basic)"] },
     { title: "Linux Administration", items: ["Ubuntu", "RHEL", "CentOS", "AlmaLinux", "systemd", "SSH", "firewalld"] },
-    { title: "Observability", items: ["Prometheus", "Grafana", "Datadog", "ELK/EFK", "UptimeRobot"] },
+    { title: "Observability", items: ["Prometheus", "Grafana", "Zabbix (Hands-on AWS/GCP)", "AWS CloudWatch", "Google Cloud Monitoring & Logging", "UptimeRobot", "Uptime Kuma (Lab/Testing)", "Netdata (Lab/Testing)", "Datadog", "ELK/EFK"] },
     { title: "Networking & Security", items: ["SonicWall", "FortiWeb", "FortiClient", "Cloudflare WAF", "WireGuard", "DNS", "SSL/TLS", "IAM/RBAC"] },
     { title: "Database Operations & Support", items: ["MongoDB", "MySQL", "Cloud SQL", "Backup/Restore Awareness"] },
     { title: "On-Prem & Self-Hosted", items: ["VMware ESXi/vSphere", "Virtual Machines", "WHM/cPanel", "BTCPay Server", "Mail Platforms"] },
@@ -119,21 +132,22 @@ export const featuredProjects = [
       link: GITHUB_PROFILE,
     },
     {
-      title: "Monitoring Stack with Prometheus and Grafana",
+      title: "Multi-Tool Monitoring & Observability Stack",
       subtitle: "Observability and incident support",
       problem:
         "Improve operational visibility and support faster troubleshooting across services and infrastructure.",
       implemented: [
-        "Monitoring-focused architecture approach",
-        "Dashboard-oriented visibility planning",
-        "Alerting and operational awareness mindset",
-        "Incident support readiness",
+        "Prometheus and Grafana metrics, dashboards, and service visibility",
+        "Hands-on Zabbix infrastructure monitoring and alerting across AWS/GCP-hosted Linux environments",
+        "AWS CloudWatch and Google Cloud Monitoring/Logging operational workflows",
+        "UptimeRobot availability checks with Uptime Kuma and Netdata maintained as lab/testing coverage",
+        "Incident-oriented alert review, investigation, and response readiness",
       ],
       outcome:
-        "Demonstrates service visibility through dashboards, alerting concepts, and incident-oriented monitoring workflows.",
-      tools: ["Prometheus", "Grafana", "Datadog", "UptimeRobot"],
+        "Demonstrates layered visibility across infrastructure, services, endpoints, and host performance using practical monitoring workflows.",
+      tools: ["Prometheus", "Grafana", "Zabbix", "AWS CloudWatch", "Google Cloud Observability", "UptimeRobot", "Uptime Kuma (Lab)", "Netdata (Lab)"],
       icon: "📊",
-      link: GITHUB_PROFILE,
+      link: OBSERVABILITY_REPO,
     },
     {
       title: "Secure Cloudflare and WAF Hardening",
@@ -474,6 +488,11 @@ export const capabilityAreas = [
       tags: [
         "Prometheus",
         "Grafana",
+        "Zabbix",
+        "Uptime Kuma",
+        "Netdata",
+        "AWS CloudWatch",
+        "Google Cloud Monitoring & Logging",
         "Datadog",
         "ELK/EFK",
         "UptimeRobot",
@@ -490,7 +509,7 @@ export const capabilityAreas = [
         {
           icon: "📊",
           title: "Metrics & Dashboards",
-          text: "Service, host, and workload metrics with practical dashboards that support health checks, trends, and investigation.",
+          text: "Prometheus, Grafana, hands-on Zabbix, AWS CloudWatch, Google Cloud Monitoring, and Netdata lab coverage for service, host, and workload visibility.",
         },
         {
           icon: "📚",
@@ -500,12 +519,12 @@ export const capabilityAreas = [
         {
           icon: "🔔",
           title: "Alerting & Notification",
-          text: "Actionable alert rules, thresholds, notification routing, noise reduction, escalation awareness, and validation.",
+          text: "Zabbix and monitoring-platform alert rules, thresholds, notification routing, noise reduction, escalation awareness, and validation.",
         },
         {
           icon: "⏱️",
           title: "Availability & Uptime",
-          text: "Endpoint checks, SSL and service visibility, uptime monitoring, external validation, and response readiness.",
+          text: "Uptime Kuma and UptimeRobot checks for endpoints, SSL, services, external availability validation, and response readiness.",
         },
         {
           icon: "🔐",
@@ -519,9 +538,9 @@ export const capabilityAreas = [
         },
       ],
       evidence: [
-        "Monitoring repositories with architecture, dashboards, and alert examples",
+        "Structured observability-monitoring-lab repository with architecture, commands, validation, troubleshooting, and runbooks",
         "Sanitized security-hardening and incident-response case studies",
-        "Uptime, SSL, server, Kubernetes, and application monitoring examples",
+        "Hands-on Zabbix AWS/GCP documentation plus clearly labelled Uptime Kuma and Netdata lab/testing guides",
         "Operational runbooks for alerts, containment, recovery, and validation",
       ],
     },

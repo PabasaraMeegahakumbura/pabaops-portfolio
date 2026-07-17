@@ -6,6 +6,8 @@ export const RESUME_FILE = `${import.meta.env.BASE_URL}Pabasara_Resume.pdf`;
 export const GITHUB_PROFILE = "https://github.com/PabasaraMeegahakumbura";
 export const EMAIL_PLATFORM_REPO =
   "https://github.com/PabasaraMeegahakumbura/self-hosted-email-platform-lab";
+export const OBSERVABILITY_REPO =
+  "https://github.com/PabasaraMeegahakumbura/observability-monitoring-lab";
 export const LINKEDIN_PROFILE =
   "https://www.linkedin.com/in/pabasara-meegahakumbura/";
 

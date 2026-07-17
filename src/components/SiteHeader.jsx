@@ -30,7 +30,7 @@ export function SiteHeader({ onHome }) {
           <a href="#/projects">Projects</a>
           <a href="#/skills">Skills</a>
           <a href="#/capabilities">Capabilities</a>
-          <a href="#experience">Experience</a>
+          <a href="#/experience">Experience</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
