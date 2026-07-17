@@ -773,6 +773,9 @@
           align-items: center;
           justify-content: space-between;
           gap: 18px;
+          background:
+            linear-gradient(115deg, rgba(91,33,182,0.18), rgba(20,8,34,0.88) 55%),
+            rgba(20,8,34,0.72);
         }
         .capabilities-cta h3 {
           margin: 0 0 6px;
@@ -802,14 +805,34 @@
           gap: 8px;
           margin-top: 14px;
         }
-        .capability-preview-list span {
-          padding: 7px 10px;
+        .capability-preview-list a {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          padding: 8px 11px;
           border: 1px solid rgba(196,181,253,0.18);
           border-radius: 999px;
           background: rgba(139,92,246,0.09);
           color: #ddd6fe;
           font-size: 0.76rem;
           line-height: 1.2;
+          transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease;
+        }
+        .capability-preview-list a span {
+          color: #c084fc;
+          font-size: .9rem;
+        }
+        .capability-preview-list a:hover,
+        .capability-preview-list a:focus-visible {
+          border-color: rgba(216,180,254,0.48);
+          background: rgba(139,92,246,0.2);
+          color: #ffffff;
+          transform: translateY(-2px);
+        }
+        .capability-hub-btn {
+          flex: 0 0 auto;
+          max-width: 190px;
+          text-align: center;
         }
         .capability-page {
           min-height: 72vh;
@@ -1021,8 +1044,8 @@
         }
         .flip-card {
           perspective: 1200px;
-          min-height: 500px;
-          transition: transform .28s ease, opacity .28s ease, filter .28s ease;
+          min-height: 360px;
+          transition: min-height .32s ease, transform .28s ease, opacity .28s ease, filter .28s ease;
           position: relative;
           z-index: 1;
         }
@@ -1049,16 +1072,18 @@
           z-index: 5;
         }
         .flip-card:hover {
+          min-height: 540px;
           transform: translateY(-6px);
         }
         .flip-inner {
           position: relative;
           width: 100%;
-          min-height: 500px;
-          transition: transform .7s ease;
+          min-height: 360px;
+          transition: min-height .32s ease, transform .7s ease;
           transform-style: preserve-3d;
         }
         .flip-card:hover .flip-inner {
+          min-height: 540px;
           transform: rotateY(180deg);
         }
         .flip-face {
@@ -1085,6 +1110,10 @@
         }
         .case-studies-page .flip-card,
         .case-studies-page .flip-inner {
+          min-height: 420px;
+        }
+        .case-studies-page .flip-card:hover,
+        .case-studies-page .flip-card:hover .flip-inner {
           min-height: 620px;
         }
         .work-icon {
@@ -2273,9 +2302,21 @@ img {
     transform: none;
   }
 
+  .flip-card:hover,
+  .case-studies-page .flip-card,
+  .case-studies-page .flip-card:hover {
+    min-height: auto;
+  }
+
   .flip-inner {
     min-height: auto;
     transform: none;
+  }
+
+  .flip-card:hover .flip-inner,
+  .case-studies-page .flip-inner,
+  .case-studies-page .flip-card:hover .flip-inner {
+    min-height: auto;
   }
 
   .flip-card:hover .flip-inner {
@@ -2321,6 +2362,7 @@ img {
 
   .capabilities-cta .mini-btn {
     width: 100%;
+    max-width: none;
     text-align: center;
   }
 
