@@ -249,54 +249,6 @@ export const featuredProjects = [
     }
   ];
 
-export const highlightedProjects = featuredProjects.slice(0, 3);
-
-export const freelanceServices = [
-  {
-    icon: "☁️",
-    title: "Cloud & Server Operations",
-    text: "Operational support for AWS and GCP infrastructure, Linux servers, virtual machines, backups, snapshots, access, networking, and day-to-day reliability.",
-    tools: ["AWS", "GCP", "Linux", "VMs", "Backups"],
-  },
-  {
-    icon: "🌐",
-    title: "Hosting & Website Infrastructure",
-    text: "Server-side administration for WHM/cPanel and WordPress environments, including migrations, SSL, DNS, backups, availability checks, and troubleshooting.",
-    tools: ["WHM/cPanel", "WordPress", "Cloudflare", "SSL/TLS"],
-  },
-  {
-    icon: "🛡️",
-    title: "Security, DNS & Connectivity",
-    text: "Configuration and troubleshooting across Cloudflare, WAF controls, SonicWall, FortiWeb, FortiClient, firewall rules, WireGuard, DNS, certificates, access controls, and secure connectivity checks.",
-    tools: ["SonicWall", "FortiWeb", "FortiClient", "Cloudflare WAF", "WireGuard", "DNS"],
-  },
-  {
-    icon: "📊",
-    title: "Monitoring & Incident Support",
-    text: "Monitoring setup and operational support using dashboards, alerts, uptime checks, logs, triage, documentation, and structured follow-up.",
-    tools: ["Prometheus", "Grafana", "UptimeRobot", "Cloud Monitoring"],
-  },
-  {
-    icon: "🏢",
-    title: "On-Prem & Self-Hosted Systems",
-    text: "Support for Linux-based on-premises or self-hosted services, VMware virtual machines, hosted applications, service health, patching, backups, and recovery planning.",
-    tools: ["VMware", "Linux", "Self-Hosted", "Patching", "Recovery"],
-  },
-  {
-    icon: "⚙️",
-    title: "DevOps & Automation Support",
-    text: "Practical assistance with Kubernetes, Helm, Dockerized microservices, Terraform, CI/CD, Bash automation, deployment workflows, and operational documentation.",
-    tools: ["Kubernetes", "Helm", "Microservices", "Docker", "Terraform", "CI/CD"],
-  },
-];
-
-export const engagementSteps = [
-  "Understand the environment, goal, access boundaries, and urgency",
-  "Confirm scope, risks, deliverables, timeline, and communication method",
-  "Implement changes with backups, validation, and rollback awareness",
-  "Provide a clear handover with commands, findings, and next recommendations",
-];
-
 export const experience = [
     {
       role: "DevOps Engineer",
