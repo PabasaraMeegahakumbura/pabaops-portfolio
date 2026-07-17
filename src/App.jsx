@@ -26,6 +26,7 @@ import { SiteHeader } from "./components/SiteHeader";
 import { SiteFooter } from "./components/SiteFooter";
 import { HighlightedProjectCard, ProjectCard } from "./components/ProjectCards";
 import { EmailPlatformCaseStudy } from "./pages/EmailPlatformCaseStudy";
+import { MonitoringCaseStudy } from "./pages/MonitoringCaseStudy";
 import { CapabilitiesPage } from "./pages/CapabilitiesPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { CaseStudiesPage } from "./pages/CaseStudiesPage";
@@ -279,6 +280,7 @@ export default function App() {
   }, [route]);
 
   const isProjectRoute = route === "#/projects/self-hosted-email-platform";
+  const isMonitoringProjectRoute = route === "#/projects/observability-monitoring-lab";
   const isProjectsRoute = route === "#/projects";
   const isCaseStudiesRoute = route === "#/case-studies";
   const isSkillsRoute = route === "#/skills";
@@ -290,6 +292,8 @@ export default function App() {
   useEffect(() => {
     const pageTitle = isProjectRoute
       ? "Self-Hosted Email Platform Engineering Lab | PabaOps"
+      : isMonitoringProjectRoute
+        ? "Observability & Monitoring Engineering Lab | PabaOps"
       : isProjectsRoute
         ? "DevOps Projects | PabaOps"
       : isCaseStudiesRoute
@@ -303,7 +307,7 @@ export default function App() {
         : "Pabasara Meegahakumbura | DevOps, Cloud & Platform Engineer";
 
     document.title = pageTitle;
-  }, [isCaseStudiesRoute, isExperienceRoute, isProjectRoute, isProjectsRoute, isSkillsRoute, selectedCapability]);
+  }, [isCaseStudiesRoute, isExperienceRoute, isMonitoringProjectRoute, isProjectRoute, isProjectsRoute, isSkillsRoute, selectedCapability]);
 
   const goToHome = (event) => {
     event.preventDefault();
@@ -350,6 +354,8 @@ export default function App() {
         <main id="main-content">
           {isProjectRoute ? (
             <EmailPlatformCaseStudy />
+          ) : isMonitoringProjectRoute ? (
+            <MonitoringCaseStudy />
           ) : isProjectsRoute ? (
             <ProjectsPage projects={featuredProjects} />
           ) : isCaseStudiesRoute ? (
