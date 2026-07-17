@@ -393,7 +393,7 @@ export default function App() {
       tools: ["L0–L2", "Jira", "Zoho", "Monitoring", "Troubleshooting", "Documentation"],
       icon: "🎧",
       link: GITHUB_PROFILE,
-    },,
+    },
     {
       title: "Self-Hosted Email Platform Engineering Lab",
       subtitle: "Email Infrastructure & Platform Engineering",
