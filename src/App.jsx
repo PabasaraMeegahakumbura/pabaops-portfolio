@@ -214,6 +214,9 @@ export default function App() {
     "Grafana",
     "Datadog",
     "Cloudflare",
+    "Email Infrastructure",
+    "Mailcow",
+    "Postfix / Dovecot",
     "WAF",
     "MongoDB",
     "Jira",
@@ -230,6 +233,7 @@ export default function App() {
     { icon: "🐧", name: "Linux Admin" },
     { icon: "🎧", name: "L0–L2 Support" },
     { icon: "🐍", name: "Python" },
+    { icon: "📧", name: "Mail Platforms" },
   ];
 
   const measurableImpact = [
@@ -250,43 +254,10 @@ export default function App() {
     { title: "Security", items: ["WAF", "Vault", "Consul", "IAM/RBAC", "CrowdStrike Admin"] },
     { title: "Databases & Ops Tools", items: ["MongoDB", "MySQL", "Jira", "Zoho"] },
     { title: "L0–L2 Support", items: ["Incident Triage", "Troubleshooting", "Escalation", "SLA Awareness", "Documentation", "User Support"] },
+    { title: "Email & Collaboration", items: ["Mailcow", "Poste.io", "Postfix", "Dovecot", "SOGo", "SPF/DKIM/DMARC"] },
   ];
 
   const featuredProjects = [
-    {
-      title: "Self-Hosted Email Platform Engineering Lab",
-      subtitle: "Mailcow, Poste.io, UCS/Nubus and platform evaluation",
-      problem:
-        "Evaluate and operate self-hosted business email platforms with production-minded attention to Linux, containers, DNS authentication, deliverability, security, backups, recovery and cost.",
-      implemented: [
-        "Deployed and tested Mailcow and Poste.io with domains, mailboxes and webmail",
-        "Validated internal delivery and two-way Gmail mail flow",
-        "Published and checked MX, SPF and DKIM records with DMARC and PTR/rDNS planning",
-        "Created Mailcow component backups and verified every Zstandard archive",
-        "Evaluated UCS/Nubus and designed an Open-Xchange proof-of-concept architecture",
-        "Produced security, monitoring, recovery, pricing and operations documentation",
-      ],
-      outcomeLabel: "Verified Outcome",
-      outcome:
-        "Built a working, multi-platform email engineering lab with verified external mail flow and integrity-checked backups, while recording the isolated restore drill as the next production-readiness milestone.",
-      caseStudy: "#/projects/self-hosted-email-platform",
-      replaceLater: [
-        "Next: complete an isolated Mailcow restore drill",
-        "Next: measure RTO/RPO and add service, queue, certificate and backup alerts",
-      ],
-      tools: [
-        "GCP",
-        "Ubuntu",
-        "Docker Compose",
-        "Mailcow",
-        "Poste.io",
-        "Postfix",
-        "Dovecot",
-        "Cloudflare DNS",
-      ],
-      icon: "📧",
-      link: EMAIL_PLATFORM_REPO,
-    },
     {
       title: "Kubernetes CI/CD Deployment Project",
       subtitle: "End-to-end deployment workflow",
@@ -462,8 +433,41 @@ export default function App() {
       tools: ["L0–L2", "Jira", "Zoho", "Monitoring", "Troubleshooting", "Documentation"],
       icon: "🎧",
       link: GITHUB_PROFILE,
-    },
-
+    },,
+    {
+      title: "Self-Hosted Email Platform Engineering Lab",
+      subtitle: "Email Infrastructure & Platform Engineering",
+      problem:
+        "Evaluate and operate self-hosted business email platforms with production-minded attention to Linux, containers, DNS authentication, deliverability, security, backups, recovery and cost.",
+      implemented: [
+        "Deployed and tested Mailcow and Poste.io with domains, mailboxes and webmail",
+        "Validated internal delivery and two-way Gmail mail flow",
+        "Published and checked MX, SPF and DKIM records with DMARC and PTR/rDNS planning",
+        "Created Mailcow component backups and verified every Zstandard archive",
+        "Evaluated UCS/Nubus and designed an Open-Xchange proof-of-concept architecture",
+        "Produced security, monitoring, recovery, pricing and operations documentation",
+      ],
+      outcomeLabel: "Verified Outcome",
+      outcome:
+        "Built a working, multi-platform email engineering lab with verified external mail flow and integrity-checked backups, while recording the isolated restore drill as the next production-readiness milestone.",
+      caseStudy: "#/projects/self-hosted-email-platform",
+      replaceLater: [
+        "Next: complete an isolated Mailcow restore drill",
+        "Next: measure RTO/RPO and add service, queue, certificate and backup alerts",
+      ],
+      tools: [
+        "GCP",
+        "Ubuntu",
+        "Docker Compose",
+        "Mailcow",
+        "Poste.io",
+        "Postfix",
+        "Dovecot",
+        "Cloudflare DNS",
+      ],
+      icon: "📧",
+      link: EMAIL_PLATFORM_REPO,
+    }
   ];
 
   const experience = [
