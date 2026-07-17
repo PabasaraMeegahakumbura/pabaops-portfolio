@@ -3,6 +3,7 @@ export const aiQuickPrompts = [
     "Summarize his DevOps experience",
     "What Linux distributions has he worked with?",
     "Show his Kubernetes and Terraform strengths",
+    "What freelance services does he offer?",
     "Explain his L0–L2 support background",
   ];
 
@@ -33,7 +34,7 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("container") ||
       normalized.includes("docker")
     ) {
-      return "His platform strengths include Kubernetes operations, Docker, Terraform infrastructure automation, Git-based CI/CD, Linux systems, cloud infrastructure, deployment consistency, troubleshooting, monitoring, and repeatable operational workflows. The portfolio includes dedicated capability pages and project structures for these areas.";
+      return "His platform strengths include Kubernetes operations, Docker, Terraform infrastructure automation, Git-based CI/CD, Linux systems, cloud infrastructure, deployment consistency, troubleshooting, monitoring, and repeatable operational workflows. Helm is currently presented as lab and learning experience, not as a production specialization.";
     }
 
     if (
@@ -51,7 +52,7 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("career") ||
       normalized.includes("role")
     ) {
-      return "He progressed from End User Support and L0–L2 Support into Associate DevOps and then DevOps & IT Operations responsibilities. His work spans AWS, GCP, Azure, Kubernetes, Docker, Terraform, Linux, CI/CD, Cloudflare, monitoring, databases, security-aware operations, WHM/cPanel, WordPress, and production support.";
+      return "He progressed from End User Support and L0–L2 Support into Associate DevOps, DevOps & IT Operations, and a remote DevOps Engineer role from November 2025. His recent work includes GCP and server operations, GKE, Cloud SQL, Cloud Build and Deploy, WHM/cPanel and WordPress support for more than 100 websites, monitoring, security controls, DNS, SSL, and incident support.";
     }
 
     if (
@@ -61,7 +62,35 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("azure") ||
       normalized.includes("cloudflare")
     ) {
-      return "His cloud and edge experience includes AWS, GCP, Azure, Cloudflare, IAM, compute, networking, firewalls, backups, snapshots, service accounts, DNS, WAF, SSL, hosting, migrations, and operational troubleshooting.";
+      return "His cloud and edge experience includes hands-on AWS and GCP operations plus basic/testing exposure to Azure VMs, Storage, and AKS. He also works with Cloudflare, IAM, compute, networking, firewalls, backups, snapshots, service accounts, DNS, WAF, SSL, hosting, migrations, and operational troubleshooting.";
+    }
+
+    if (
+      normalized.includes("database") ||
+      normalized.includes("mongodb") ||
+      normalized.includes("mysql") ||
+      normalized.includes("cloud sql")
+    ) {
+      return "His database background is operations and support focused across MongoDB, MySQL, and GCP Cloud SQL. It includes service health, connectivity, configuration support, access awareness, backups, logs, application troubleshooting, and escalation. The portfolio does not present him as a specialist DBA.";
+    }
+
+    if (
+      normalized.includes("on-prem") ||
+      normalized.includes("on prem") ||
+      normalized.includes("vmware") ||
+      normalized.includes("self-hosted") ||
+      normalized.includes("self hosted")
+    ) {
+      return "He supports cloud and on-premises environments, including Linux servers, VMware ESXi/vSphere, virtual machines, hosted platforms, WHM/cPanel, BTCPay Server, self-hosted services, patching, backups, connectivity, monitoring, and recovery-oriented operations.";
+    }
+
+    if (
+      normalized.includes("freelance") ||
+      normalized.includes("service") ||
+      normalized.includes("client") ||
+      normalized.includes("consult")
+    ) {
+      return "His freelance services cover clearly scoped cloud and Linux operations, WHM/cPanel and WordPress infrastructure, Cloudflare, DNS and SSL, monitoring, security-aware configuration, on-premises and self-hosted systems, incident troubleshooting, and practical DevOps automation support. Each engagement starts with scope, access, risk, deliverables, and validation.";
     }
 
     if (
@@ -81,7 +110,7 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("linkedin") ||
       normalized.includes("github")
     ) {
-      return "Pabasara is open to DevOps, Cloud Operations, Platform Engineering, SRE, Linux Administration, and technical support opportunities. You can use the portfolio Contact section, LinkedIn, GitHub, or resume links to reach him.";
+      return "Pabasara is open to DevOps, Cloud Operations, Platform Engineering, SRE, Linux Administration, and clearly scoped freelance infrastructure engagements. Use the Employer or Freelance Services path, Contact section, LinkedIn, GitHub, or resume links to reach him.";
     }
 
     return "Pabasara is a DevOps & IT Operations Engineer with strengths across cloud, Kubernetes, Terraform, CI/CD, Linux administration, observability, security-aware operations, databases, WHM/cPanel, WordPress, and L0–L2 support. Ask me a more specific question about his skills, projects, experience, Linux work, support background, or availability.";
