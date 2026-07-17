@@ -148,6 +148,7 @@ export const featuredProjects = [
       tools: ["Prometheus", "Grafana", "Zabbix", "AWS CloudWatch", "Google Cloud Observability", "UptimeRobot", "Uptime Kuma (Lab)", "Netdata (Lab)"],
       icon: "📊",
       link: OBSERVABILITY_REPO,
+      caseStudy: "#/projects/observability-monitoring-lab",
     },
     {
       title: "Secure Cloudflare and WAF Hardening",
