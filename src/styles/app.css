@@ -1021,7 +1021,7 @@
         }
         .flip-card {
           perspective: 1200px;
-          min-height: 330px;
+          min-height: 500px;
           transition: transform .28s ease, opacity .28s ease, filter .28s ease;
           position: relative;
           z-index: 1;
@@ -1054,7 +1054,7 @@
         .flip-inner {
           position: relative;
           width: 100%;
-          min-height: 330px;
+          min-height: 500px;
           transition: transform .7s ease;
           transform-style: preserve-3d;
         }
@@ -1077,7 +1077,15 @@
         }
         .flip-back {
           transform: rotateY(180deg);
-          justify-content: center;
+          justify-content: flex-start;
+          overflow-y: auto;
+        }
+        .case-studies-page .work-grid {
+          margin-top: 28px;
+        }
+        .case-studies-page .flip-card,
+        .case-studies-page .flip-inner {
+          min-height: 620px;
         }
         .work-icon {
           width: 52px;
