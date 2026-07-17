@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/app.css";
 import {
   AI_API_URL,
@@ -32,6 +32,8 @@ import { CapabilitiesPage } from "./pages/CapabilitiesPage";
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
+  const currentRouteRef = useRef(window.location.hash || "#/");
+  const portfolioScrollRef = useRef(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [aiOpen, setAiOpen] = useState(false);
   const [showAiGreeting, setShowAiGreeting] = useState(false);
@@ -151,9 +153,27 @@ export default function App() {
   useEffect(() => {
     const syncRoute = () => {
       const nextRoute = window.location.hash || "#/";
+      const previousRoute = currentRouteRef.current;
+      const wasPortfolioRoute =
+        previousRoute === "#/" || !previousRoute.startsWith("#/");
+
+      if (wasPortfolioRoute && nextRoute.startsWith("#/") && nextRoute !== "#/") {
+        portfolioScrollRef.current = window.scrollY;
+      }
+
+      currentRouteRef.current = nextRoute;
       setRoute(nextRoute);
 
       window.setTimeout(() => {
+        if (nextRoute === "#/") {
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+              window.scrollTo({ top: portfolioScrollRef.current, behavior: "auto" });
+            });
+          });
+          return;
+        }
+
         if (nextRoute.startsWith("#/")) {
           window.scrollTo({ top: 0, behavior: "smooth" });
           return;
@@ -273,6 +293,7 @@ export default function App() {
 
   const goToHome = (event) => {
     event.preventDefault();
+    portfolioScrollRef.current = 0;
 
     if (window.location.hash !== "#/") {
       window.location.hash = "#/";
@@ -446,9 +467,16 @@ export default function App() {
               ))}
             </div>
             <div className="panel capabilities-cta">
-              <div>
+              <div className="capabilities-cta-content">
                 <h3>Explore detailed technical capabilities</h3>
-                <p>Open focused pages for Linux, cloud and platform engineering, observability and security, L0–L2 support, and DevOps principles and culture.</p>
+                <p>Go deeper into the infrastructure, platform, identity, security and operational experience behind the main portfolio.</p>
+                <div className="capability-preview-list" aria-label="Capability highlights">
+                  <span>Kubernetes &amp; Helm</span>
+                  <span>On-Prem &amp; VMware</span>
+                  <span>Microsoft 365 &amp; Identity</span>
+                  <span>Database Operations</span>
+                  <span>Networking &amp; Security</span>
+                </div>
               </div>
               <a className="mini-btn" href="#/capabilities">View All Capabilities</a>
             </div>
