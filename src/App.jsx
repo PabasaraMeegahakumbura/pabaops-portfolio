@@ -15,13 +15,11 @@ import {
   measurableImpact,
   skillGroups,
   featuredProjects,
+  highlightedProjects,
   experience,
   certifications,
   workingNow,
   capabilityAreas,
-  linuxDistributions,
-  linuxCapabilities,
-  supportCapabilities
 } from "./data/portfolio";
 import { aiQuickPrompts, getLocalAIResponse } from "./data/assistant";
 import { SiteHeader } from "./components/SiteHeader";
@@ -29,6 +27,8 @@ import { SiteFooter } from "./components/SiteFooter";
 import { HighlightedProjectCard, ProjectCard } from "./components/ProjectCards";
 import { EmailPlatformCaseStudy } from "./pages/EmailPlatformCaseStudy";
 import { CapabilitiesPage } from "./pages/CapabilitiesPage";
+import { ProjectsPage } from "./pages/ProjectsPage";
+import { CaseStudiesPage } from "./pages/CaseStudiesPage";
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
@@ -277,6 +277,8 @@ export default function App() {
   }, [route]);
 
   const isProjectRoute = route === "#/projects/self-hosted-email-platform";
+  const isProjectsRoute = route === "#/projects";
+  const isCaseStudiesRoute = route === "#/case-studies";
   const isCapabilitiesRoute = route.startsWith("#/capabilities");
   const capabilitySlug = isCapabilitiesRoute ? route.split("/")[2] : null;
   const selectedCapability = capabilityAreas.find((area) => area.slug === capabilitySlug);
@@ -284,12 +286,16 @@ export default function App() {
   useEffect(() => {
     const pageTitle = isProjectRoute
       ? "Self-Hosted Email Platform Engineering Lab | PabaOps"
+      : isProjectsRoute
+        ? "DevOps Projects | PabaOps"
+      : isCaseStudiesRoute
+        ? "Engineering Case Studies | PabaOps"
       : selectedCapability
         ? `${selectedCapability.title} | PabaOps`
         : "Pabasara Meegahakumbura | DevOps, Cloud & Platform Engineer";
 
     document.title = pageTitle;
-  }, [isProjectRoute, selectedCapability]);
+  }, [isCaseStudiesRoute, isProjectRoute, isProjectsRoute, selectedCapability]);
 
   const goToHome = (event) => {
     event.preventDefault();
@@ -336,6 +342,10 @@ export default function App() {
         <main id="main-content">
           {isProjectRoute ? (
             <EmailPlatformCaseStudy />
+          ) : isProjectsRoute ? (
+            <ProjectsPage projects={featuredProjects} />
+          ) : isCaseStudiesRoute ? (
+            <CaseStudiesPage projects={featuredProjects} />
           ) : isCapabilitiesRoute ? (
             <CapabilitiesPage
               capabilities={capabilityAreas}
@@ -470,15 +480,16 @@ export default function App() {
               <div className="capabilities-cta-content">
                 <h3>Explore detailed technical capabilities</h3>
                 <p>Go deeper into the infrastructure, platform, identity, security and operational experience behind the main portfolio.</p>
-                <div className="capability-preview-list" aria-label="Capability highlights">
-                  <span>Kubernetes &amp; Helm</span>
-                  <span>On-Prem &amp; VMware</span>
-                  <span>Microsoft 365 &amp; Identity</span>
-                  <span>Database Operations</span>
-                  <span>Networking &amp; Security</span>
+                <div className="capability-preview-list" aria-label="Explore capabilities by domain">
+                  <a href="#/capabilities/cloud-platform">Cloud, Kubernetes &amp; Helm <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/linux">Linux, VMware &amp; On-Prem <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/observability-security">Observability &amp; Security <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/support">Microsoft 365, AD &amp; Support <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/database-operations">Database Operations <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/devops-principles">DevOps Principles &amp; Automation <span aria-hidden="true">→</span></a>
                 </div>
               </div>
-              <a className="mini-btn" href="#/capabilities">View All Capabilities</a>
+              <a className="mini-btn capability-hub-btn" href="#/capabilities">Open Complete Capability Hub</a>
             </div>
           </section>
 
@@ -510,90 +521,33 @@ export default function App() {
 
           <section id="work" className="container section reveal">
             <div className="work-head">
-              <div className="section-kicker">Highlighted Work • Hover to focus</div>
+              <div>
+                <div className="section-kicker">Selected Work • Hover to focus</div>
+                <h2 className="work-section-title">Three projects to review first</h2>
+              </div>
             </div>
             <div className="work-grid">
-              {featuredProjects.map((project) => (
+              {highlightedProjects.map((project) => (
                 <HighlightedProjectCard project={project} key={`flip-${project.title}`} />
               ))}
             </div>
-          </section>
-
-          <section id="linux" className="container section reveal">
-            <div className="section-head">
-              <span>Linux Administration</span>
-              <h2>Multi-distribution server administration and operations</h2>
-            </div>
-            <div className="panel linux-overview">
-              <div className="linux-summary">
-                <h3>Linux systems built for stable, secure operations</h3>
-                <p>
-                  Hands-on administration across cloud, hosting, and server environments, covering access control, services, packages, networking, security, logs, storage, troubleshooting, and operational recovery.
-                </p>
-                <div className="distribution-label">Distributions worked with</div>
-                <div className="distribution-list">
-                  {linuxDistributions.map((distribution) => (
-                    <span className="distribution-chip" key={distribution}>{distribution}</span>
-                  ))}
-                </div>
-                <div className="cta-row">
-                  <a className="mini-btn" href="#/capabilities/linux">View Full Linux Details</a>
-                </div>
-              </div>
-              <div className="capability-grid">
-                {linuxCapabilities.map((item) => (
-                  <div className="capability-card reveal-card" key={item.title}>
-                    <div className="capability-icon">{item.icon}</div>
-                    <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section id="support" className="container section reveal">
-            <div className="section-head">
-              <span>L0–L2 Support</span>
-              <h2>Structured technical support from first contact to advanced investigation</h2>
-            </div>
-            <div className="panel support-overview">
-              <div className="support-summary">
-                <h3>Support ownership with an operations mindset</h3>
-                <p>
-                  A practical support approach that combines user communication, technical troubleshooting, incident handling, monitoring awareness, clear escalation, and reusable documentation across cloud, on-premises, application, identity, email, and network-related issues.
-                </p>
-                <div className="distribution-label">Support coverage</div>
-                <div className="distribution-list">
-                  {["User Support", "Access & Identity", "Applications", "Email & DNS", "Network", "Cloud & On-Prem", "Incident Escalation"].map((item) => (
-                    <span className="distribution-chip" key={item}>{item}</span>
-                  ))}
-                </div>
-                <div className="cta-row">
-                  <a className="mini-btn" href="#/capabilities/support">View Full Support Details</a>
-                </div>
-              </div>
-              <div className="support-grid">
-                {supportCapabilities.map((item) => (
-                  <div className="support-card reveal-card" key={item.title}>
-                    <div className="support-level">{item.level}</div>
-                    <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="section-actions">
+              <a className="mini-btn" href="#/case-studies">View All Selected Work &amp; Case Studies</a>
             </div>
           </section>
 
           <section id="projects" className="container section reveal">
             <div className="section-head">
-              <span>Featured Projects</span>
-              <h2>Real project structure with repo-ready presentation</h2>
+              <span>Projects</span>
+              <h2>Implementation-focused engineering projects</h2>
             </div>
             <div className="project-grid">
-              {featuredProjects.map((project) => (
-                <ProjectCard project={project} key={project.title} />
+              {highlightedProjects.map((project) => (
+                <ProjectCard project={project} key={`project-${project.title}`} />
               ))}
+            </div>
+            <div className="section-actions">
+              <a className="mini-btn" href="#/projects">View All Projects</a>
             </div>
           </section>
 

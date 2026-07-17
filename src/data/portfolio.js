@@ -45,14 +45,17 @@ export const quickChips = [
 export const toolIcons = [
     { icon: "☁️", name: "Cloud" },
     { image: K8S_LOGO, name: "Kubernetes" },
+    { icon: "⎈", name: "Helm" },
     { icon: "🐳", name: "Docker" },
     { icon: "⚙️", name: "CI/CD" },
+    { icon: "🛠️", name: "Automation" },
     { icon: "📊", name: "Monitoring" },
     { icon: "🔐", name: "Security" },
     { icon: "🐧", name: "Linux Admin" },
     { icon: "🖥️", name: "On-Prem & VMs" },
     { icon: "🎧", name: "L0–L2 Support" },
     { icon: "🐍", name: "Python" },
+    { icon: "✉️", name: "Mail Systems" },
   ];
 
 export const measurableImpact = [
@@ -248,6 +251,8 @@ export const featuredProjects = [
       link: EMAIL_PLATFORM_REPO,
     }
   ];
+
+export const highlightedProjects = featuredProjects.slice(0, 3);
 
 export const experience = [
     {
