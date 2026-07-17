@@ -253,6 +253,38 @@ export default function App() {
 
   const featuredProjects = [
     {
+      title: "Self-Hosted Email Platform Engineering Lab",
+      subtitle: "Mailcow, Poste.io, UCS/Nubus and platform evaluation",
+      problem:
+        "Evaluate and operate self-hosted business email platforms with production-minded attention to Linux, containers, DNS authentication, deliverability, security, backups, recovery and cost.",
+      implemented: [
+        "Deployed and tested Mailcow and Poste.io with domains, mailboxes and webmail",
+        "Validated internal delivery and two-way Gmail mail flow",
+        "Published and checked MX, SPF and DKIM records with DMARC and PTR/rDNS planning",
+        "Created Mailcow component backups and verified every Zstandard archive",
+        "Evaluated UCS/Nubus and designed an Open-Xchange proof-of-concept architecture",
+        "Produced security, monitoring, recovery, pricing and operations documentation",
+      ],
+      outcome:
+        "Built a working, multi-platform email engineering lab with verified external mail flow and integrity-checked backups, while recording the isolated restore drill as the next production-readiness milestone.",
+      replaceLater: [
+        "Next: complete an isolated Mailcow restore drill",
+        "Next: measure RTO/RPO and add service, queue, certificate and backup alerts",
+      ],
+      tools: [
+        "GCP",
+        "Ubuntu",
+        "Docker Compose",
+        "Mailcow",
+        "Poste.io",
+        "Postfix",
+        "Dovecot",
+        "Cloudflare DNS",
+      ],
+      icon: "📧",
+      link: "https://github.com/PabasaraMeegahakumbura/self-hosted-email-platform-lab",
+    },
+    {
       title: "Kubernetes CI/CD Deployment Project",
       subtitle: "End-to-end deployment workflow",
       problem:
