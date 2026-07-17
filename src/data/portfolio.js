@@ -2,7 +2,7 @@ import { EMAIL_PLATFORM_REPO, GITHUB_PROFILE, K8S_LOGO } from "../config/site";
 
 export const impactStats = [
     { label: "Primary Focus", value: "DevOps + SRE + Platform" },
-    { label: "Core Stack", value: "Kubernetes + Terraform Automation" },
+    { label: "Core Stack", value: "Kubernetes + Helm + Terraform" },
     { label: "Cloud & Edge", value: "AWS / GCP / Azure / Cloudflare" },
     { label: "Linux Administration", value: "Ubuntu / RHEL / CentOS / AlmaLinux" },
     { label: "Languages", value: "Python + Bash + Java/C# Basics" },
@@ -35,6 +35,9 @@ export const quickChips = [
     "MySQL",
     "VMware ESXi/vSphere",
     "On-Prem Infrastructure",
+    "Microsoft 365",
+    "Active Directory / LDAP",
+    "SonicWall / FortiWeb",
     "Jira",
     "L0–L2 Support",
   ];
@@ -62,14 +65,15 @@ export const measurableImpact = [
 
 export const skillGroups = [
     { title: "Cloud", items: ["AWS", "GCP", "Azure (Basic/Testing)", "Cloudflare"] },
-    { title: "Containers & Platform", items: ["Kubernetes", "Docker", "Helm (Lab/Learning)", "Platform Operations"] },
+    { title: "Containers, Helm & Microservices", items: ["Kubernetes", "Helm", "Docker", "Microservices", "Platform Operations"] },
     { title: "CI/CD & Automation", items: ["GitLab CI", "Jenkins", "Terraform", "Infrastructure Automation"] },
     { title: "Languages & Scripting", items: ["Python", "Bash", "PowerShell", "Java (Basic)", "C# (Basic)"] },
     { title: "Linux Administration", items: ["Ubuntu", "RHEL", "CentOS", "AlmaLinux", "systemd", "SSH", "firewalld"] },
     { title: "Observability", items: ["Prometheus", "Grafana", "Datadog", "ELK/EFK", "UptimeRobot"] },
-    { title: "Security", items: ["WAF", "Vault", "Consul", "IAM/RBAC", "CrowdStrike Admin"] },
+    { title: "Networking & Security", items: ["SonicWall", "FortiWeb", "FortiClient", "Cloudflare WAF", "WireGuard", "DNS", "SSL/TLS", "IAM/RBAC"] },
     { title: "Database Operations & Support", items: ["MongoDB", "MySQL", "Cloud SQL", "Backup/Restore Awareness"] },
     { title: "On-Prem & Self-Hosted", items: ["VMware ESXi/vSphere", "Virtual Machines", "WHM/cPanel", "BTCPay Server", "Mail Platforms"] },
+    { title: "Identity & Collaboration", items: ["Microsoft 365 / Office 365", "Active Directory", "LDAP", "Mailbox Administration", "Permissions", "License Provisioning", "Intune", "Teams", "SharePoint"] },
     { title: "ITSM & Workflow", items: ["Jira", "Zoho", "Zoho Flow", "Freshdesk"] },
     { title: "L0–L2 Support", items: ["Incident Triage", "Troubleshooting", "Escalation", "SLA Awareness", "Documentation", "User Support"] },
     { title: "Email & Collaboration", items: ["Mailcow", "Poste.io", "Postfix", "Dovecot", "SOGo", "SPF/DKIM/DMARC"] },
@@ -84,12 +88,13 @@ export const featuredProjects = [
       implemented: [
         "Dockerized application components",
         "Git-based CI/CD workflow structure",
-        "Kubernetes deployment layout",
+        "Kubernetes deployment layout with Helm-based application packaging",
+        "Microservice workload deployment and operational support",
         "Release-friendly delivery flow",
       ],
       outcome:
         "Demonstrates a repeatable path from source control to Kubernetes deployment, with fewer manual release steps.",
-      tools: ["Kubernetes", "Docker", "CI/CD", "Git", "Linux"],
+      tools: ["Kubernetes", "Helm", "Docker", "Microservices", "CI/CD", "Git", "Linux"],
       image: K8S_LOGO,
       link: GITHUB_PROFILE,
     },
@@ -262,8 +267,8 @@ export const freelanceServices = [
   {
     icon: "🛡️",
     title: "Security, DNS & Connectivity",
-    text: "Configuration and troubleshooting for Cloudflare, WAF controls, firewall rules, WireGuard, DNS records, certificates, access controls, and secure operational checks.",
-    tools: ["Cloudflare", "WAF", "WireGuard", "DNS", "Firewalls"],
+    text: "Configuration and troubleshooting across Cloudflare, WAF controls, SonicWall, FortiWeb, FortiClient, firewall rules, WireGuard, DNS, certificates, access controls, and secure connectivity checks.",
+    tools: ["SonicWall", "FortiWeb", "FortiClient", "Cloudflare WAF", "WireGuard", "DNS"],
   },
   {
     icon: "📊",
@@ -280,8 +285,8 @@ export const freelanceServices = [
   {
     icon: "⚙️",
     title: "DevOps & Automation Support",
-    text: "Practical assistance with Docker, Kubernetes, Terraform, CI/CD, Bash automation, deployment workflows, and operational documentation.",
-    tools: ["Docker", "Kubernetes", "Terraform", "CI/CD", "Bash"],
+    text: "Practical assistance with Kubernetes, Helm, Dockerized microservices, Terraform, CI/CD, Bash automation, deployment workflows, and operational documentation.",
+    tools: ["Kubernetes", "Helm", "Microservices", "Docker", "Terraform", "CI/CD"],
   },
 ];
 
@@ -313,12 +318,12 @@ export const experience = [
       period: "Aug 2024 – Dec 2025",
       text: "Operate cloud and Kubernetes environments across AWS and GCP, maintain CI/CD pipelines, automate infrastructure with Terraform and scripting, improve observability, and support secure operations across Linux-based environments.",
       bullets: [
-        "Kubernetes environment support",
+        "Kubernetes and Helm support for containerized microservice environments",
         "Terraform automation and scripting",
         "CI/CD pipeline maintenance",
         "Monitoring, logging, and observability support",
         "Linux operations and platform reliability",
-        "Cloudflare, WAF, and security-aware support",
+        "Cloudflare WAF, SonicWall, FortiWeb, FortiClient, and security-aware network support",
       ],
     },
     {
@@ -351,8 +356,8 @@ export const experience = [
       period: "Feb 2023 – Aug 2023",
       text: "Supported users, endpoints, identity, Microsoft 365 and workplace applications while building the troubleshooting and service-ownership foundation later carried into infrastructure and DevOps work.",
       bullets: [
-        "Microsoft Intune, Active Directory, Office 365, Teams, SharePoint, and Google Workspace support",
-        "User onboarding, offboarding, access, licensing, endpoint compliance, and group-based controls",
+        "Administered Office 365 mailboxes, permissions, license provisioning, Teams, SharePoint, and Microsoft Intune",
+        "Administered Active Directory and LDAP-based identity, users, groups, access, onboarding, offboarding, and group-based controls",
         "Windows, hardware, software, connectivity, AnyDesk, and RDP troubleshooting",
         "Documentation, escalation, user communication, and cross-team operational support",
       ],
@@ -371,7 +376,7 @@ export const workingNow = [
     "Improving Kubernetes deployment workflows",
     "Deepening Terraform automation practice",
     "Strengthening observability and reliability patterns",
-    "Building Helm lab experience for reusable Kubernetes application packaging",
+    "Improving Helm-based packaging and deployment for Kubernetes microservices",
     "Preparing toward stronger Kubernetes capability",
   ];
 
@@ -447,7 +452,8 @@ export const capabilityAreas = [
         "GCP",
         "Azure (Basic/Testing)",
         "Kubernetes",
-        "Helm (Lab)",
+        "Helm",
+        "Microservices",
         "Docker",
         "Terraform",
         "GitLab CI",
@@ -466,7 +472,7 @@ export const capabilityAreas = [
         {
           icon: "☸️",
           title: "Kubernetes Platform Operations",
-          text: "Clusters, nodes, pods, deployments, services, configuration, troubleshooting, availability, workload support, and growing Helm lab practice.",
+          text: "Clusters, nodes, pods, deployments, services, Helm releases, containerized microservices, configuration, troubleshooting, availability, and workload support.",
         },
         {
           icon: "🐳",
@@ -516,6 +522,9 @@ export const capabilityAreas = [
         "UptimeRobot",
         "Cloud Monitoring",
         "Cloudflare WAF",
+        "SonicWall",
+        "FortiWeb",
+        "FortiClient",
         "IAM/RBAC",
         "Vault",
         "CrowdStrike",
@@ -544,7 +553,7 @@ export const capabilityAreas = [
         {
           icon: "🔐",
           title: "Security Controls",
-          text: "WAF, Cloudflare, firewall, IAM/RBAC, Vault, access review, endpoint security awareness, and least-privilege thinking.",
+          text: "Cloudflare WAF, SonicWall, FortiWeb, FortiClient, firewall controls, WireGuard, IAM/RBAC, access review, endpoint security, and least-privilege thinking.",
         },
         {
           icon: "🚨",
@@ -617,6 +626,9 @@ export const capabilityAreas = [
         "Jira",
         "Zoho",
         "Microsoft 365",
+        "Office 365",
+        "Active Directory",
+        "LDAP",
         "Google Workspace",
         "DNS & Email",
         "Remote Support",
@@ -746,7 +758,7 @@ export const linuxCapabilities = [
     {
       icon: "🌐",
       title: "Networking & Firewall",
-      text: "IP, route, DNS, port, SSH, firewalld, connectivity, and service-listening checks across cloud and hosted systems.",
+      text: "IP, route, DNS, ports, SSH, firewalld, SonicWall, FortiWeb, FortiClient, Cloudflare WAF, VPN connectivity, and service-listening checks across cloud, hosted, and on-premises systems.",
     },
     {
       icon: "📋",
