@@ -249,6 +249,8 @@ export const featuredProjects = [
     }
   ];
 
+export const highlightedProjects = featuredProjects.slice(0, 3);
+
 export const experience = [
     {
       role: "DevOps Engineer",
