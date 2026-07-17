@@ -75,7 +75,7 @@ export function CapabilitiesPage({ capabilities, selectedCapability }) {
             <span>Technical Capabilities</span>
             <h1>Explore the operational depth behind the portfolio</h1>
             <p>
-              The homepage stays concise for recruiters, while these focused pages provide deeper coverage of Linux administration, cloud and platform engineering, observability and security, L0–L2 technical support, and the DevOps principles and collaborative culture behind the work.
+              The homepage stays concise for recruiters, while these focused pages provide deeper coverage of Linux and on-premises administration, cloud and platform engineering, observability and security, database operations support, L0–L2 technical support, and the DevOps principles behind the work.
             </p>
           </div>
 

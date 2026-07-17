@@ -330,10 +330,10 @@ export default function App() {
                 <span>Meegahakumbura</span>
               </h1>
               <p className="hero-sub">
-                Building reliable cloud-native platforms with Kubernetes, Terraform automation, CI/CD, Linux operations, observability, security controls, and production-minded support.
+                Operating reliable cloud, Kubernetes, Linux, hosting and on-premises environments through automation, observability, security-aware controls and production-minded support.
               </p>
               <p className="hero-text">
-                I focus on DevOps first, while bringing Cloud, SRE, Platform, and DevSecOps strengths into real environments across AWS, GCP, Azure, Cloudflare, and Linux-based systems. My work centers on automation, infrastructure control, monitoring, security, database support, and production-minded operations.
+                I focus on DevOps first, with hands-on work across AWS, GCP, Kubernetes, Helm, containerized microservices, Terraform, CI/CD, Cloudflare, Linux, hosting platforms, VMware and self-hosted services. I also bring Azure testing exposure and practical database operations support.
               </p>
 
               <div className="hero-actions">
@@ -363,7 +363,7 @@ export default function App() {
                 </div>
                 <div className="floating-card f2">
                   <span>Platform</span>
-                  <strong>Kubernetes, Docker, Linux, WHM/cPanel, MongoDB</strong>
+                  <strong>Kubernetes, Helm, Microservices, Docker, Linux</strong>
                 </div>
                 <div className="floating-card f3">
                   <span>Observability</span>
@@ -371,7 +371,7 @@ export default function App() {
                 </div>
                 <div className="floating-card f4">
                   <span>Security</span>
-                  <strong>WAF, CrowdStrike Admin, Vault, IAM/RBAC</strong>
+                  <strong>Cloudflare WAF, SonicWall, FortiWeb, IAM/RBAC</strong>
                 </div>
               </div>
             </div>
@@ -408,10 +408,10 @@ export default function App() {
             </div>
             <div className="panel intro-card">
               <p>
-                I am a DevOps & IT Operations Engineer with hands-on experience across AWS, GCP, Azure, Kubernetes, Docker, Terraform, Linux, CI/CD pipelines, Cloudflare, and WHM/cPanel-oriented operations. My work focuses on operating microservices environments, improving deployment consistency, automating infrastructure, and strengthening observability through monitoring and logging tools.
+                I am a DevOps Engineer with hands-on experience across AWS, GCP, Kubernetes, Helm, Dockerized microservices, Terraform, Linux, CI/CD pipelines, Cloudflare, WHM/cPanel, WordPress hosting, VMware and self-hosted services. My recent remote work includes GCP and server operations, GKE, Cloud SQL, Cloud Build and Deploy, monitoring, security controls and server-side support for more than 100 hosted websites.
               </p>
               <p>
-                My support background gives me a practical reliability mindset. That helps me approach systems with troubleshooting discipline, operational awareness, security awareness, and production-focused thinking. I also bring scripting exposure through Bash and Python, along with secure configuration practices using Vault, Consul, IAM/RBAC, WAF, CrowdStrike Admin exposure, MongoDB, MySQL, Jira, and Zoho-related support work.
+                My support background gives me a practical reliability mindset across cloud and on-premises environments. It includes Office 365 mailbox, permission and license administration; Active Directory and LDAP identity support; and networking and security work with SonicWall, FortiWeb, FortiClient, Cloudflare WAF and WireGuard. I also bring Bash and Python exposure plus MongoDB, MySQL and Cloud SQL operational support.
               </p>
             </div>
 
