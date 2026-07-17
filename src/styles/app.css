@@ -163,6 +163,14 @@
           font-size: 0.96rem;
         }
         .nav a:hover { color: white; }
+        .mobile-nav-toggle { display: none; }
+        .route-loading {
+          min-height: 52vh;
+          display: grid;
+          place-items: center;
+          color: #ddd6fe;
+          font-weight: 800;
+        }
         .hero {
           display: grid;
           grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
@@ -1867,12 +1875,70 @@ img {
     top: 0;
   }
 
-  .nav {
-    display: none;
+  .nav-wrap {
+    position: relative;
+    padding: 12px 0;
   }
 
-  .nav-wrap {
-    padding: 12px 0;
+  .mobile-nav-toggle {
+    display: inline-grid;
+    place-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 13px;
+    color: white;
+    background: rgba(31,16,49,0.96);
+    cursor: pointer;
+  }
+
+  .mobile-nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  .nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    max-height: 0;
+    padding: 0 12px;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    border: 1px solid transparent;
+    border-radius: 0 0 18px 18px;
+    background: rgba(11,3,21,0.98);
+    transform: translateY(-8px);
+    transition: max-height .24s ease, padding .24s ease, opacity .2s ease, transform .2s ease, visibility .2s;
+  }
+
+  .nav.nav-open {
+    max-height: 240px;
+    padding: 12px;
+    visibility: visible;
+    opacity: 1;
+    border-color: rgba(255,255,255,0.10);
+    transform: translateY(0);
+  }
+
+  .nav a {
+    display: grid;
+    min-height: 44px;
+    place-items: center;
+    padding: 10px;
+    border-radius: 11px;
+    background: rgba(255,255,255,0.045);
   }
 
   .brand {
@@ -1940,6 +2006,7 @@ img {
   }
 
   .btn {
+    min-height: 46px;
     width: 100%;
     padding: 13px 16px;
     text-align: center;
@@ -2142,6 +2209,9 @@ img {
   }
 
   .mini-btn {
+    min-height: 44px;
+    display: inline-grid;
+    place-items: center;
     width: 100%;
     text-align: center;
   }
@@ -2204,7 +2274,7 @@ img {
     right: 10px;
     bottom: 124px;
     width: min(340px, calc(100vw - 20px));
-    height: min(470px, calc(100vh - 165px));
+    height: min(470px, calc(100dvh - 165px));
     transform-origin: bottom right;
   }
 
@@ -2230,6 +2300,13 @@ img {
     border-radius: 999px;
   }
 
+  #about,
+  #skills,
+  #contact,
+  #work {
+    scroll-margin-top: 76px;
+  }
+
   .scroll-top-arrow {
     display: block;
     font-size: 1.05rem;
@@ -2243,7 +2320,7 @@ img {
     right: 8px;
     bottom: 118px;
     width: calc(100vw - 16px);
-    height: min(445px, calc(100vh - 145px));
+    height: min(445px, calc(100dvh - 145px));
     border-radius: 22px;
   }
 
