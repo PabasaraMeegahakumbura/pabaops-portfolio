@@ -14,6 +14,7 @@ export const quickChips = [
     "GCP",
     "Azure",
     "Kubernetes",
+    "Helm",
     "Docker",
     "Terraform",
     "Linux Administration",
@@ -29,11 +30,11 @@ export const quickChips = [
     "Grafana",
     "Datadog",
     "Cloudflare",
-    "Email Infrastructure",
-    "Mailcow",
-    "Postfix / Dovecot",
     "WAF",
     "MongoDB",
+    "MySQL",
+    "VMware ESXi/vSphere",
+    "On-Prem Infrastructure",
     "Jira",
     "L0–L2 Support",
   ];
@@ -46,9 +47,9 @@ export const toolIcons = [
     { icon: "📊", name: "Monitoring" },
     { icon: "🔐", name: "Security" },
     { icon: "🐧", name: "Linux Admin" },
+    { icon: "🖥️", name: "On-Prem & VMs" },
     { icon: "🎧", name: "L0–L2 Support" },
     { icon: "🐍", name: "Python" },
-    { icon: "📧", name: "Mail Platforms" },
   ];
 
 export const measurableImpact = [
@@ -60,14 +61,16 @@ export const measurableImpact = [
   ];
 
 export const skillGroups = [
-    { title: "Cloud", items: ["AWS", "GCP", "Azure", "Cloudflare"] },
-    { title: "Containers & Platform", items: ["Kubernetes", "Docker", "WHM/cPanel", "Platform Operations"] },
+    { title: "Cloud", items: ["AWS", "GCP", "Azure (Basic/Testing)", "Cloudflare"] },
+    { title: "Containers & Platform", items: ["Kubernetes", "Docker", "Helm (Lab/Learning)", "Platform Operations"] },
     { title: "CI/CD & Automation", items: ["GitLab CI", "Jenkins", "Terraform", "Infrastructure Automation"] },
     { title: "Languages & Scripting", items: ["Python", "Bash", "PowerShell", "Java (Basic)", "C# (Basic)"] },
     { title: "Linux Administration", items: ["Ubuntu", "RHEL", "CentOS", "AlmaLinux", "systemd", "SSH", "firewalld"] },
     { title: "Observability", items: ["Prometheus", "Grafana", "Datadog", "ELK/EFK", "UptimeRobot"] },
     { title: "Security", items: ["WAF", "Vault", "Consul", "IAM/RBAC", "CrowdStrike Admin"] },
-    { title: "Databases & Ops Tools", items: ["MongoDB", "MySQL", "Jira", "Zoho"] },
+    { title: "Database Operations & Support", items: ["MongoDB", "MySQL", "Cloud SQL", "Backup/Restore Awareness"] },
+    { title: "On-Prem & Self-Hosted", items: ["VMware ESXi/vSphere", "Virtual Machines", "WHM/cPanel", "BTCPay Server", "Mail Platforms"] },
+    { title: "ITSM & Workflow", items: ["Jira", "Zoho", "Zoho Flow", "Freshdesk"] },
     { title: "L0–L2 Support", items: ["Incident Triage", "Troubleshooting", "Escalation", "SLA Awareness", "Documentation", "User Support"] },
     { title: "Email & Collaboration", items: ["Mailcow", "Poste.io", "Postfix", "Dovecot", "SOGo", "SPF/DKIM/DMARC"] },
   ];
@@ -241,11 +244,73 @@ export const featuredProjects = [
     }
   ];
 
+export const highlightedProjects = featuredProjects.slice(0, 3);
+
+export const freelanceServices = [
+  {
+    icon: "☁️",
+    title: "Cloud & Server Operations",
+    text: "Operational support for AWS and GCP infrastructure, Linux servers, virtual machines, backups, snapshots, access, networking, and day-to-day reliability.",
+    tools: ["AWS", "GCP", "Linux", "VMs", "Backups"],
+  },
+  {
+    icon: "🌐",
+    title: "Hosting & Website Infrastructure",
+    text: "Server-side administration for WHM/cPanel and WordPress environments, including migrations, SSL, DNS, backups, availability checks, and troubleshooting.",
+    tools: ["WHM/cPanel", "WordPress", "Cloudflare", "SSL/TLS"],
+  },
+  {
+    icon: "🛡️",
+    title: "Security, DNS & Connectivity",
+    text: "Configuration and troubleshooting for Cloudflare, WAF controls, firewall rules, WireGuard, DNS records, certificates, access controls, and secure operational checks.",
+    tools: ["Cloudflare", "WAF", "WireGuard", "DNS", "Firewalls"],
+  },
+  {
+    icon: "📊",
+    title: "Monitoring & Incident Support",
+    text: "Monitoring setup and operational support using dashboards, alerts, uptime checks, logs, triage, documentation, and structured follow-up.",
+    tools: ["Prometheus", "Grafana", "UptimeRobot", "Cloud Monitoring"],
+  },
+  {
+    icon: "🏢",
+    title: "On-Prem & Self-Hosted Systems",
+    text: "Support for Linux-based on-premises or self-hosted services, VMware virtual machines, hosted applications, service health, patching, backups, and recovery planning.",
+    tools: ["VMware", "Linux", "Self-Hosted", "Patching", "Recovery"],
+  },
+  {
+    icon: "⚙️",
+    title: "DevOps & Automation Support",
+    text: "Practical assistance with Docker, Kubernetes, Terraform, CI/CD, Bash automation, deployment workflows, and operational documentation.",
+    tools: ["Docker", "Kubernetes", "Terraform", "CI/CD", "Bash"],
+  },
+];
+
+export const engagementSteps = [
+  "Understand the environment, goal, access boundaries, and urgency",
+  "Confirm scope, risks, deliverables, timeline, and communication method",
+  "Implement changes with backups, validation, and rollback awareness",
+  "Provide a clear handover with commands, findings, and next recommendations",
+];
+
 export const experience = [
+    {
+      role: "DevOps Engineer",
+      company: "We Make Platforms USA — Remote",
+      period: "Nov 2025 – Present",
+      text: "Manage GCP-focused cloud and server operations, hosting environments, security controls, monitoring, and incident support for a remote project-based organization.",
+      bullets: [
+        "GCP Compute Engine, GKE, Cloud SQL, Cloud Storage, Cloud Build, Cloud Deploy, monitoring, billing, and gcloud administration",
+        "Server-side WHM/cPanel and WordPress administration supporting 100+ websites",
+        "AWS, Liquid Web, YoHost, Cloudflare, Microsoft 365, and Google Workspace operations",
+        "DNS, SSL/TLS, mail-server and email-deliverability troubleshooting",
+        "BTCPay Server, WireGuard, firewall/WAF, SonicWall, FortiClient, and FortiWeb support",
+        "UptimeRobot, Prometheus/Grafana, logs, Jira, Zoho, and Zoho Flow for operational follow-up",
+      ],
+    },
     {
       role: "DevOps & IT Operations Engineer",
       company: "Zafer AI (formerly ZorroSign)",
-      period: "Aug 2024 – Present",
+      period: "Aug 2024 – Dec 2025",
       text: "Operate cloud and Kubernetes environments across AWS and GCP, maintain CI/CD pipelines, automate infrastructure with Terraform and scripting, improve observability, and support secure operations across Linux-based environments.",
       bullets: [
         "Kubernetes environment support",
@@ -280,6 +345,18 @@ export const experience = [
         "Support discipline carried into DevOps work",
       ],
     },
+    {
+      role: "End User Support (EUS) Engineer",
+      company: "ZorroSign Inc.",
+      period: "Feb 2023 – Aug 2023",
+      text: "Supported users, endpoints, identity, Microsoft 365 and workplace applications while building the troubleshooting and service-ownership foundation later carried into infrastructure and DevOps work.",
+      bullets: [
+        "Microsoft Intune, Active Directory, Office 365, Teams, SharePoint, and Google Workspace support",
+        "User onboarding, offboarding, access, licensing, endpoint compliance, and group-based controls",
+        "Windows, hardware, software, connectivity, AnyDesk, and RDP troubleshooting",
+        "Documentation, escalation, user communication, and cross-team operational support",
+      ],
+    },
   ];
 
 export const certifications = [
@@ -294,6 +371,7 @@ export const workingNow = [
     "Improving Kubernetes deployment workflows",
     "Deepening Terraform automation practice",
     "Strengthening observability and reliability patterns",
+    "Building Helm lab experience for reusable Kubernetes application packaging",
     "Preparing toward stronger Kubernetes capability",
   ];
 
@@ -367,14 +445,17 @@ export const capabilityAreas = [
       tags: [
         "AWS",
         "GCP",
-        "Azure",
+        "Azure (Basic/Testing)",
         "Kubernetes",
+        "Helm (Lab)",
         "Docker",
         "Terraform",
         "GitLab CI",
         "Jenkins",
         "Cloudflare",
         "WHM/cPanel",
+        "VMware ESXi/vSphere",
+        "On-Prem Systems",
       ],
       focus: [
         {
@@ -385,7 +466,7 @@ export const capabilityAreas = [
         {
           icon: "☸️",
           title: "Kubernetes Platform Operations",
-          text: "Clusters, nodes, pods, deployments, services, configuration, troubleshooting, availability, and workload support.",
+          text: "Clusters, nodes, pods, deployments, services, configuration, troubleshooting, availability, workload support, and growing Helm lab practice.",
         },
         {
           icon: "🐳",
@@ -406,6 +487,11 @@ export const capabilityAreas = [
           icon: "🌐",
           title: "Edge, DNS & Hosting",
           text: "Cloudflare, DNS, WAF awareness, SSL, WHM/cPanel, WordPress operations, hosting migrations, and traffic troubleshooting.",
+        },
+        {
+          icon: "🏢",
+          title: "On-Prem & Self-Hosted Infrastructure",
+          text: "VMware ESXi/vSphere, virtual machines, Linux services, patching, backups, hosted platforms, connectivity, and recovery-oriented operations.",
         },
       ],
       evidence: [
@@ -471,6 +557,52 @@ export const capabilityAreas = [
         "Sanitized security-hardening and incident-response case studies",
         "Uptime, SSL, server, Kubernetes, and application monitoring examples",
         "Operational runbooks for alerts, containment, recovery, and validation",
+      ],
+    },
+    {
+      slug: "database-operations",
+      icon: "🗄️",
+      title: "Database Operations & Support",
+      eyebrow: "Operational Database Awareness",
+      summary:
+        "Operations and support exposure across MongoDB, MySQL, GCP Cloud SQL, connectivity, service health, access, backups, logs, and application-focused troubleshooting. This is presented as operational support, not DBA specialization.",
+      tags: [
+        "MongoDB",
+        "MySQL",
+        "Cloud SQL",
+        "Connectivity",
+        "Access",
+        "Backups",
+        "Logs",
+        "Troubleshooting",
+      ],
+      focus: [
+        {
+          icon: "🔌",
+          title: "Connectivity & Service Health",
+          text: "Validate database services, ports, DNS, network access, application connectivity, and basic health signals.",
+        },
+        {
+          icon: "🔐",
+          title: "Access & Configuration Support",
+          text: "Support credentials, permissions awareness, connection configuration, environment variables, and secure handling practices.",
+        },
+        {
+          icon: "💾",
+          title: "Backup & Recovery Awareness",
+          text: "Support backup scheduling, retention awareness, snapshot or export workflows, validation, and recovery planning.",
+        },
+        {
+          icon: "📋",
+          title: "Logs & Troubleshooting",
+          text: "Review service and application logs, resource symptoms, connection failures, and operational evidence before escalation.",
+        },
+      ],
+      evidence: [
+        "Sanitized MongoDB, MySQL, and Cloud SQL operational notes",
+        "Connectivity and service-health troubleshooting checklists",
+        "Backup-validation and recovery-awareness runbooks",
+        "Application-to-database incident examples without sensitive data",
       ],
     },
     {
@@ -665,4 +797,3 @@ export const supportCapabilities = [
       text: "Create clear troubleshooting notes, technical runbooks, reusable solutions, handover details, and knowledge-base content.",
     },
   ];
-
