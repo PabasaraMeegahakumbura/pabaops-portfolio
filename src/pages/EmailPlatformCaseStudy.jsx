@@ -99,7 +99,7 @@ export function EmailPlatformCaseStudy() {
 
       <div className="capability-page-actions">
         <a className="mini-btn" href={EMAIL_PLATFORM_REPO} target="_blank" rel="noreferrer">Open Full Repository</a>
-        <a className="mini-btn" href="#projects">Back to Projects</a>
+        <a className="mini-btn" href="#/projects">Back to All Projects</a>
         <a className="mini-btn" href="#/">Back to Portfolio</a>
       </div>
     </section>
