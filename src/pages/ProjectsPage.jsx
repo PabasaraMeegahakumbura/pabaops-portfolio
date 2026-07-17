@@ -4,16 +4,16 @@ export function ProjectsPage({ projects }) {
   return (
     <section className="container capability-page projects-page">
       <div className="capability-breadcrumbs">
-        <a href="#/">Home</a><span>›</span><span>Projects &amp; Case Studies</span>
+        <a href="#/">Home</a><span>›</span><span>Projects</span>
       </div>
 
       <div className="capability-page-head">
         <span>Complete Technical Portfolio</span>
-        <h1>Projects, engineering labs and operational case studies</h1>
+        <h1>Projects and engineering labs</h1>
         <p>
           Explore the complete project catalogue, including implementation scope,
-          tools, outcomes, repository links and available case studies. The homepage
-          stays concise while this page preserves the full technical depth.
+          tools, outcomes, repository links and available project details. The homepage
+          shows a shorter preview while this page preserves every project card.
         </p>
       </div>
 
@@ -25,6 +25,7 @@ export function ProjectsPage({ projects }) {
 
       <div className="capability-page-actions">
         <a className="mini-btn" href="#/">Back to Portfolio</a>
+        <a className="mini-btn" href="#/case-studies">View All Case Studies</a>
         <a className="mini-btn" href="#/capabilities">View Technical Capabilities</a>
       </div>
     </section>
