@@ -410,7 +410,7 @@ export default function App() {
                 </div>
                 <div className="floating-card f3">
                   <span>Observability</span>
-                  <strong>Prometheus, Grafana, Zabbix, Uptime Kuma, Netdata</strong>
+                  <strong>Zabbix, Prometheus/Grafana, CloudWatch, GCP Observability</strong>
                 </div>
                 <div className="floating-card f4">
                   <span>Security</span>
