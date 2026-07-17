@@ -34,7 +34,7 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("container") ||
       normalized.includes("docker")
     ) {
-      return "His platform strengths include Kubernetes operations, Docker, Terraform infrastructure automation, Git-based CI/CD, Linux systems, cloud infrastructure, deployment consistency, troubleshooting, monitoring, and repeatable operational workflows. Helm is currently presented as lab and learning experience, not as a production specialization.";
+      return "His platform strengths include Kubernetes operations, Helm-based application packaging and releases, Dockerized microservices, Terraform infrastructure automation, Git-based CI/CD, Linux systems, troubleshooting, monitoring, and repeatable operational workflows.";
     }
 
     if (
@@ -63,6 +63,26 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("cloudflare")
     ) {
       return "His cloud and edge experience includes hands-on AWS and GCP operations plus basic/testing exposure to Azure VMs, Storage, and AKS. He also works with Cloudflare, IAM, compute, networking, firewalls, backups, snapshots, service accounts, DNS, WAF, SSL, hosting, migrations, and operational troubleshooting.";
+    }
+
+    if (
+      normalized.includes("office 365") ||
+      normalized.includes("microsoft 365") ||
+      normalized.includes("active directory") ||
+      normalized.includes("ldap") ||
+      normalized.includes("identity")
+    ) {
+      return "His identity and collaboration experience includes administering Office 365 and Microsoft 365 mailboxes, permissions, license provisioning, Teams, SharePoint, Microsoft Intune, Active Directory users and groups, LDAP-based identity, onboarding, offboarding, access controls, and endpoint support.";
+    }
+
+    if (
+      normalized.includes("network") ||
+      normalized.includes("sonicwall") ||
+      normalized.includes("forti") ||
+      normalized.includes("firewall") ||
+      normalized.includes("waf")
+    ) {
+      return "His networking and security operations experience includes SonicWall, FortiWeb, FortiClient, Cloudflare WAF, WireGuard, firewall controls, DNS, SSL/TLS, ports, routing, VPN connectivity, access controls, and connectivity troubleshooting across cloud, hosted, and on-premises systems.";
     }
 
     if (
@@ -113,5 +133,5 @@ export const getLocalAIResponse = (question) => {
       return "Pabasara is open to DevOps, Cloud Operations, Platform Engineering, SRE, Linux Administration, and clearly scoped freelance infrastructure engagements. Use the Employer or Freelance Services path, Contact section, LinkedIn, GitHub, or resume links to reach him.";
     }
 
-    return "Pabasara is a DevOps & IT Operations Engineer with strengths across cloud, Kubernetes, Terraform, CI/CD, Linux administration, observability, security-aware operations, databases, WHM/cPanel, WordPress, and L0–L2 support. Ask me a more specific question about his skills, projects, experience, Linux work, support background, or availability.";
+    return "Pabasara is a DevOps & IT Operations Engineer with strengths across cloud, Kubernetes, Helm, containerized microservices, Terraform, CI/CD, Linux, observability, networking and firewalls, Microsoft 365, Active Directory/LDAP, databases, WHM/cPanel, WordPress, and L0–L2 support. Ask me a specific question about his skills, projects, experience, support background, or availability.";
   };
