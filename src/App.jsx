@@ -480,15 +480,16 @@ export default function App() {
               <div className="capabilities-cta-content">
                 <h3>Explore detailed technical capabilities</h3>
                 <p>Go deeper into the infrastructure, platform, identity, security and operational experience behind the main portfolio.</p>
-                <div className="capability-preview-list" aria-label="Capability highlights">
-                  <span>Kubernetes &amp; Helm</span>
-                  <span>On-Prem &amp; VMware</span>
-                  <span>Microsoft 365 &amp; Identity</span>
-                  <span>Database Operations</span>
-                  <span>Networking &amp; Security</span>
+                <div className="capability-preview-list" aria-label="Explore capabilities by domain">
+                  <a href="#/capabilities/cloud-platform">Cloud, Kubernetes &amp; Helm <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/linux">Linux, VMware &amp; On-Prem <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/observability-security">Observability &amp; Security <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/support">Microsoft 365, AD &amp; Support <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/database-operations">Database Operations <span aria-hidden="true">→</span></a>
+                  <a href="#/capabilities/devops-principles">DevOps Principles &amp; Automation <span aria-hidden="true">→</span></a>
                 </div>
               </div>
-              <a className="mini-btn" href="#/capabilities">View All Capabilities</a>
+              <a className="mini-btn capability-hub-btn" href="#/capabilities">Open Complete Capability Hub</a>
             </div>
           </section>
 
