@@ -3,63 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PabaOps project progress and repository status page." />
-  <title>Project Progress | PabaOps</title>
+  <meta name="description" content="PabaOps repository preparation and project progress page." />
+  <meta name="theme-color" content="#0a0315" />
+  <title>Repository Progress | PabaOps</title>
+  <link rel="icon" type="image/webp" href="../pabaops-logo.webp" />
+  <link rel="apple-touch-icon" href="../pabaops-logo.webp" />
   <link rel="stylesheet" href="./status.css" />
   <script src="./status.js" defer></script>
 </head>
 <body>
   <div class="page-shell">
     <header class="topbar">
-      <a class="brand" href="../#/projects" aria-label="Return to PabaOps projects">
+      <a class="brand" href="../#/" aria-label="Return to PabaOps home">
         <img src="../pabaops-logo.webp" alt="PabaOps" width="48" height="48" />
-        <span class="brand-copy"><strong>PabaOps</strong><span>DevOps • Cloud • SRE • Platform</span></span>
+        <span class="brand-copy">
+          <strong>PabaOps</strong>
+          <span>DevOps • Cloud • SRE • Platform</span>
+        </span>
       </a>
       <nav class="nav-actions" aria-label="Project page navigation">
-        <a class="button" href="../#/projects">All projects</a>
-        <a class="button" href="../#/case-studies">Case studies</a>
+        <a class="button" href="../#/projects">All Projects</a>
+        <a class="button" href="../#/case-studies">Case Studies</a>
+        <a class="button" href="../#/">Portfolio Home</a>
       </nav>
     </header>
 
     <main>
+      <div class="breadcrumbs">
+        <a href="../#/">Home</a>
+        <span>›</span>
+        <a href="../#/projects">Projects</a>
+        <span>›</span>
+        <span data-breadcrumb>Repository Progress</span>
+      </div>
+
       <section class="hero">
-        <div class="eyebrow" data-eyebrow></div>
-        <div class="status" data-status><span class="status-dot"></span></div>
-        <h1 data-title></h1>
-        <p class="lead" data-lead></p>
+        <div class="hero-heading">
+          <div class="project-icon" data-icon aria-hidden="true"></div>
+          <div>
+            <div class="eyebrow" data-eyebrow></div>
+            <div class="status">
+              <span class="status-dot"></span>
+              <span data-status>Repository upload in progress</span>
+            </div>
+            <h1 data-title></h1>
+            <p class="lead" data-lead></p>
+          </div>
+        </div>
+
+        <div class="upload-panel" aria-label="Repository publication progress">
+          <div class="upload-copy">
+            <strong>Repository preparation</strong>
+            <span data-progress-copy>Structure, implementation, validation and evidence are being organized.</span>
+          </div>
+          <div class="upload-track" aria-hidden="true">
+            <span></span>
+          </div>
+          <div class="upload-state">
+            <span class="loading-dots"><i></i><i></i><i></i></span>
+            <strong data-coming-soon>Coming soon</strong>
+          </div>
+        </div>
+
         <div class="hero-actions">
           <a class="button primary" data-primary-action target="_blank" rel="noreferrer"></a>
-          <a class="button" href="../#/projects">Return to project catalogue</a>
+          <span class="button primary disabled" data-pending-action>Repository coming soon</span>
+          <a class="button" href="../#/projects">Back to All Projects</a>
         </div>
       </section>
 
-      <section class="grid" aria-label="Project preparation details">
-        <article class="card">
-          <h2>What is happening now</h2>
-          <p>The page is intentionally live before the final repository is complete. This keeps the portfolio useful without broken links or overstated unfinished work.</p>
-          <ul data-focus></ul>
+      <section class="case-grid" aria-label="Project preparation details">
+        <article class="card focus-card">
+          <div class="card-icon">🎯</div>
+          <h2>Project Scope</h2>
+          <p data-scope></p>
         </article>
 
-        <article class="card">
-          <h2>Publication workflow</h2>
-          <div class="progress">
-            <div class="progress-item"><span class="progress-number">1</span><div><strong>Scope and architecture</strong><span>Define the problem, boundaries, design and success criteria.</span></div></div>
-            <div class="progress-item"><span class="progress-number">2</span><div><strong>Implementation</strong><span>Add real configuration, code, commands and reproducible steps.</span></div></div>
-            <div class="progress-item"><span class="progress-number">3</span><div><strong>Validation</strong><span>Record tests, expected results, failure checks and recovery steps.</span></div></div>
-            <div class="progress-item"><span class="progress-number">4</span><div><strong>Evidence and publication</strong><span>Sanitize screenshots, document lessons learned and publish verified outcomes.</span></div></div>
-          </div>
+        <article class="card focus-card">
+          <div class="card-icon">🛠️</div>
+          <h2>Build in Progress</h2>
+          <p data-build></p>
         </article>
 
-        <article class="card wide">
-          <h2>Planned repository structure</h2>
-          <p>The repository follows the same evidence-first structure used across the active PabaOps engineering labs.</p>
-          <pre data-structure></pre>
-          <div class="notice"><strong>Honest portfolio note:</strong> items remain labelled as in progress until implementation and validation evidence is available. No customer credentials, office account details, private IPs, secrets or sensitive production information will be published.</div>
+        <article class="card focus-card">
+          <div class="card-icon">✅</div>
+          <h2>Validation Plan</h2>
+          <p data-validation></p>
+        </article>
+
+        <article class="card focus-card">
+          <div class="card-icon">📦</div>
+          <h2>Publication Standard</h2>
+          <p data-publication></p>
         </article>
       </section>
+
+      <section class="card wide evidence-card">
+        <div>
+          <span class="section-label">Planned Repository</span>
+          <h2>Evidence-first project structure</h2>
+          <p>The repository will follow the same professional structure used by the completed PabaOps engineering projects.</p>
+        </div>
+        <pre data-structure></pre>
+      </section>
+
+      <section class="card wide evidence-card">
+        <div>
+          <span class="section-label">Current Progress</span>
+          <h2>What is being prepared now</h2>
+          <p>Each stage remains clearly marked as in progress until the related implementation and evidence are genuinely complete.</p>
+        </div>
+        <ul class="progress-list" data-focus></ul>
+      </section>
+
+      <section class="card wide workflow-card">
+        <span class="section-label">Publication Workflow</span>
+        <h2>From working lab to public repository</h2>
+        <div class="workflow">
+          <div class="workflow-item"><span>1</span><div><strong>Scope &amp; Architecture</strong><p>Define the problem, boundaries, components and success criteria.</p></div></div>
+          <div class="workflow-item"><span>2</span><div><strong>Implementation</strong><p>Add real code, commands, configuration and reproducible steps.</p></div></div>
+          <div class="workflow-item"><span>3</span><div><strong>Validation</strong><p>Test expected behaviour, failures, recovery and cleanup procedures.</p></div></div>
+          <div class="workflow-item"><span>4</span><div><strong>Evidence &amp; Upload</strong><p>Sanitize screenshots, document lessons learned and publish verified outcomes.</p></div></div>
+        </div>
+      </section>
+
+      <div class="notice">
+        <strong>Transparent portfolio note:</strong>
+        No unfinished project is presented as fully completed. Customer details, office account information, credentials, private IPs, secrets and sensitive production data will never be published.
+      </div>
     </main>
 
-    <footer class="footer"><span>© PabaOps • Pabasara Meegahakumbura</span><span>Built with transparent progress and evidence-led documentation.</span></footer>
+    <footer class="footer">
+      <span>© PabaOps • Pabasara Meegahakumbura</span>
+      <span>Real implementation • Clear validation • Sanitized evidence</span>
+    </footer>
   </div>
 </body>
 </html>
