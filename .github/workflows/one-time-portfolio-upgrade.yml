@@ -1,0 +1,233 @@
+name: One-time portfolio education and project-link upgrade
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/one-time-portfolio-upgrade.yml
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Update portfolio content and project links
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+
+          function replaceOnce(source, from, to, label) {
+            if (!source.includes(from)) {
+              if (source.includes(to)) return source;
+              throw new Error(`Could not find expected content for ${label}`);
+            }
+            return source.replace(from, to);
+          }
+
+          function findObjectRange(source, title) {
+            const marker = `title: "${title}"`;
+            const titleIndex = source.indexOf(marker);
+            if (titleIndex === -1) throw new Error(`Project not found: ${title}`);
+            const start = source.lastIndexOf("    {", titleIndex);
+            if (start === -1) throw new Error(`Object start not found: ${title}`);
+
+            let depth = 0;
+            let quote = null;
+            let escaped = false;
+            for (let index = start; index < source.length; index += 1) {
+              const char = source[index];
+              if (quote) {
+                if (escaped) escaped = false;
+                else if (char === "\\") escaped = true;
+                else if (char === quote) quote = null;
+                continue;
+              }
+              if (char === '"' || char === "'" || char === "`") {
+                quote = char;
+                continue;
+              }
+              if (char === "{") depth += 1;
+              if (char === "}") {
+                depth -= 1;
+                if (depth === 0) return { start, end: index + 1 };
+              }
+            }
+            throw new Error(`Object end not found: ${title}`);
+          }
+
+          function updateProject(source, title, replacement) {
+            const { start, end } = findObjectRange(source, title);
+            let project = source.slice(start, end);
+            if (project.includes('status: "')) return source;
+            const linkLine = "      link: GITHUB_PROFILE,";
+            if (!project.includes(linkLine)) {
+              throw new Error(`Expected placeholder link was not found for ${title}`);
+            }
+            project = project.replace(linkLine, replacement);
+            return `${source.slice(0, start)}${project}${source.slice(end)}`;
+          }
+
+          const portfolioPath = "src/data/portfolio.js";
+          let portfolio = fs.readFileSync(portfolioPath, "utf8");
+
+          portfolio = replaceOnce(
+            portfolio,
+            `  OBSERVABILITY_REPO,\n} from "../config/site";`,
+            `  OBSERVABILITY_REPO,\n  LINUX_ADMIN_REPO,\n} from "../config/site";`,
+            "Linux repository import"
+          );
+
+          if (!portfolio.includes("const projectStatusPage")) {
+            portfolio = portfolio.replace(
+              `} from "../config/site";\n`,
+              `} from "../config/site";\n\nconst projectStatusPage = (slug) =>\n  \`${"${import.meta.env.BASE_URL}"}project-status/index.html?project=${"${slug}"}\`;\n`
+            );
+          }
+
+          const pending = [
+            ["Kubernetes CI/CD Deployment Project", "kubernetes-cicd-deployment"],
+            ["Terraform Infrastructure Automation", "terraform-infrastructure-automation"],
+            ["Secure Cloudflare and WAF Hardening", "cloudflare-waf-hardening"],
+            ["Dockerized Microservice Platform", "dockerized-microservice-platform"],
+            ["Database and Support Operations Toolkit", "database-support-operations-toolkit"],
+            ["L0–L2 Support & Incident Operations", "l0-l2-incident-operations"],
+          ];
+
+          for (const [title, slug] of pending) {
+            portfolio = updateProject(
+              portfolio,
+              title,
+              `      status: "Repository preparation in progress",\n      outcomeLabel: "Build Target",\n      caseStudy: projectStatusPage("${slug}"),\n      repositoryLabel: "Repository Status",\n      link: projectStatusPage("${slug}"),`
+            );
+          }
+
+          portfolio = updateProject(
+            portfolio,
+            "Linux Administration & Server Operations",
+            `      status: "Active build — evidence being added",\n      outcomeLabel: "Verified Progress",\n      caseStudy: projectStatusPage("linux-server-administration"),\n      repositoryLabel: "Open Active Repository",\n      link: LINUX_ADMIN_REPO,`
+          );
+
+          const oldCertifications = `export const certifications = [
+              { badge: "☁️", title: "AWS Certified Cloud Practitioner", text: "Cloud fundamentals and platform awareness." },
+              { badge: "☸️", title: "CKA — In Progress", text: "Kubernetes administration and deeper platform capability building." },
+              { badge: "🎓", title: "MBA (Business Analytics) — Final Semester", text: "Business-facing analytical and strategic perspective." },
+              { badge: "💻", title: "BIT — University of Moratuwa (In Progress)", text: "Ongoing technical and systems-oriented academic development." },
+            ];`;
+
+          const newCertifications = `export const certifications = [
+              {
+                badge: "🎓",
+                title: "Master of Business Administration (MBA) in Business Analytics, Cardiff Metropolitan University (UK) - 2024 - 2026 | Merit",
+                text: "Completed with Merit, strengthening business analytics, leadership, strategy, research, and evidence-based decision-making.",
+              },
+              {
+                badge: "🎓",
+                title: "BSc Strategic Studies & International Relations, Kotelawala Defence University (KDU) - 2020 - 2023 | Second Upper",
+                text: "Second Class Upper Division with strengths in strategic thinking, structured research, analysis, communication, and international relations.",
+              },
+              { badge: "☁️", title: "AWS Certified Cloud Practitioner", text: "Cloud fundamentals and platform awareness." },
+              { badge: "☸️", title: "CKA — In Progress", text: "Kubernetes administration and deeper platform capability building." },
+              { badge: "💻", title: "BIT — University of Moratuwa (In Progress)", text: "Ongoing technical and systems-oriented academic development." },
+            ];`;
+
+          portfolio = replaceOnce(portfolio, oldCertifications, newCertifications, "education details");
+          portfolio = replaceOnce(
+            portfolio,
+            `    "Building recruiter-ready DevOps portfolio projects",`,
+            `    "Building recruiter-ready DevOps portfolio projects with honest progress pages and repository evidence",`,
+            "current focus"
+          );
+          fs.writeFileSync(portfolioPath, portfolio);
+
+          const sitePath = "src/config/site.js";
+          let site = fs.readFileSync(sitePath, "utf8");
+          if (!site.includes("LINUX_ADMIN_REPO")) {
+            site = site.replace(
+              `export const OBSERVABILITY_REPO =\n  "https://github.com/PabasaraMeegahakumbura/observability-monitoring-lab";`,
+              `export const OBSERVABILITY_REPO =\n  "https://github.com/PabasaraMeegahakumbura/observability-monitoring-lab";\nexport const LINUX_ADMIN_REPO =\n  "https://github.com/PabasaraMeegahakumbura/linux-server-administration-labs";`
+            );
+          }
+          fs.writeFileSync(sitePath, site);
+
+          const cardsPath = "src/components/ProjectCards.jsx";
+          let cards = fs.readFileSync(cardsPath, "utf8");
+          cards = replaceOnce(
+            cards,
+            `  const repositoryLabel =\n    project.link === GITHUB_PROFILE ? "View GitHub Profile" : "Open Repository";`,
+            `  const repositoryLabel =\n    project.repositoryLabel ||\n    (project.link === GITHUB_PROFILE ? "View GitHub Profile" : "Open Repository");`,
+            "repository label"
+          );
+          cards = replaceOnce(
+            cards,
+            `        <div>\n          <small>{project.subtitle}</small>\n          <h3>{project.title}</h3>\n        </div>`,
+            `        <div>\n          <small>{project.subtitle}</small>\n          <h3>{project.title}</h3>\n          {project.status && (\n            <span className="project-status-badge">{project.status}</span>\n          )}\n        </div>`,
+            "project status badge"
+          );
+          fs.writeFileSync(cardsPath, cards);
+
+          const appPath = "src/App.jsx";
+          let app = fs.readFileSync(appPath, "utf8");
+          app = replaceOnce(app, `<span>Certifications & Learning</span>`, `<span>Education, Certifications & Learning</span>`, "section label");
+          app = replaceOnce(app, `<h2>Professional credibility and ongoing growth</h2>`, `<h2>Academic achievements, professional certifications and ongoing growth</h2>`, "section heading");
+          fs.writeFileSync(appPath, app);
+
+          const assistantPath = "src/data/assistant.js";
+          let assistant = fs.readFileSync(assistantPath, "utf8");
+          assistant = replaceOnce(
+            assistant,
+            `    "Explain his L0–L2 support background",`,
+            `    "Explain his L0–L2 support background",\n    "What is his education background?",`,
+            "AI education prompt"
+          );
+          if (!assistant.includes('normalized.includes("education")')) {
+            const block = `    if (\n      normalized.includes("education") ||\n      normalized.includes("mba") ||\n      normalized.includes("business analytics") ||\n      normalized.includes("cardiff") ||\n      normalized.includes("bsc") ||\n      normalized.includes("kdu") ||\n      normalized.includes("kotelawala")\n    ) {\n      return "Pabasara completed a Master of Business Administration (MBA) in Business Analytics at Cardiff Metropolitan University, graduating with Merit in 2026. He also holds a BSc in Strategic Studies & International Relations from Kotelawala Defence University, completed in 2023 with Second Class Upper Division. This academic foundation complements his DevOps and cloud engineering experience with business analytics, strategy, research, communication, and structured decision-making.";\n    }\n\n`;
+            assistant = assistant.replace(
+              `    if (\n      normalized.includes("experience") ||`,
+              `${block}    if (\n      normalized.includes("experience") ||`
+            );
+          }
+          fs.writeFileSync(assistantPath, assistant);
+
+          const cssPath = "src/styles/app.css";
+          let css = fs.readFileSync(cssPath, "utf8");
+          if (!css.includes("PABAOPS PROJECT STATUS BADGE")) {
+            css += `\n\n/* PABAOPS PROJECT STATUS BADGE */\n.project-status-badge {\n  display: inline-flex;\n  align-items: center;\n  width: fit-content;\n  margin-top: 10px;\n  padding: 7px 11px;\n  border: 1px solid rgba(196, 181, 253, 0.28);\n  border-radius: 999px;\n  color: #e9d5ff;\n  background: linear-gradient(135deg, rgba(124, 58, 237, 0.20), rgba(59, 130, 246, 0.12));\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);\n  font-size: 0.75rem;\n  font-weight: 800;\n  letter-spacing: 0.02em;\n}\n`;
+          }
+          fs.writeFileSync(cssPath, css);
+          console.log("Portfolio content upgrade completed.");
+          NODE
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate production build
+        run: npm run build
+
+      - name: Commit source changes
+        shell: bash
+        run: |
+          rm -f .github/workflows/one-time-portfolio-upgrade.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update education and add project progress links"
+          git push origin main
+
+      - name: Deploy updated portfolio to GitHub Pages
+        run: npx gh-pages -d dist -u "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
