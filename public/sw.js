@@ -41,7 +41,15 @@ const networkFirst = async (request) => {
     }
     return response;
   } catch {
-    return (await cache.match(request)) || (await cache.match(APP_ROOT));
+    const cachedPage = (await cache.match(request)) || (await cache.match(APP_ROOT));
+
+    return (
+      cachedPage ||
+      new Response("PabaOps is temporarily unavailable offline.", {
+        status: 503,
+        headers: { "Content-Type": "text/plain; charset=utf-8" },
+      })
+    );
   }
 };
 
