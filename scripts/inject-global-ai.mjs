@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, "..");
 const distDir = path.join(projectRoot, "dist");
-const assistantPath = path.join(distDir, "pabaops-ai", "assistant.js");
+const assistantLoaderPath = path.join(distDir, "pabaops-ai", "assistant-loader.js");
 
 const collectHtmlFiles = async (directory) => {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -23,7 +23,7 @@ const collectHtmlFiles = async (directory) => {
   return files;
 };
 
-await readFile(assistantPath, "utf8");
+await readFile(assistantLoaderPath, "utf8");
 const htmlFiles = await collectHtmlFiles(distDir);
 let injected = 0;
 let skipped = 0;
@@ -40,6 +40,7 @@ for (const htmlFile of htmlFiles) {
   let html = await readFile(htmlFile, "utf8");
 
   if (
+    html.includes("pabaops-ai/assistant-loader.js") ||
     html.includes("pabaops-ai/assistant.js") ||
     html.includes('data-pabaops-ai="disabled"')
   ) {
@@ -51,17 +52,17 @@ for (const htmlFile of htmlFiles) {
     throw new Error(`Cannot inject PabaOps AI: ${relativeHtmlPath} has no closing </body> tag.`);
   }
 
-  const relativeAssistantPath = path
-    .relative(path.dirname(htmlFile), assistantPath)
+  const relativeLoaderPath = path
+    .relative(path.dirname(htmlFile), assistantLoaderPath)
     .split(path.sep)
     .join("/");
-  const scriptSrc = relativeAssistantPath.startsWith(".")
-    ? relativeAssistantPath
-    : `./${relativeAssistantPath}`;
+  const scriptSrc = relativeLoaderPath.startsWith(".")
+    ? relativeLoaderPath
+    : `./${relativeLoaderPath}`;
 
   html = html.replace(
     "</body>",
-    `  <script src="${scriptSrc}" defer data-pabaops-global-ai></script>\n</body>`,
+    `  <script src="${scriptSrc}" defer data-pabaops-ai-loader></script>\n</body>`,
   );
 
   await writeFile(htmlFile, html, "utf8");
@@ -69,5 +70,5 @@ for (const htmlFile of htmlFiles) {
 }
 
 console.log(
-  `PabaOps global AI assistant: injected into ${injected} static page(s); skipped ${skipped} page(s).`,
+  `PabaOps global AI assistant loader: injected into ${injected} static page(s); skipped ${skipped} page(s).`,
 );
