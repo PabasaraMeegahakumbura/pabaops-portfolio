@@ -3,13 +3,18 @@ const projects = {
     icon: "☸️",
     eyebrow: "Kubernetes • Helm • CI/CD • Containers",
     title: "Kubernetes CI/CD Deployment Project",
-    status: "Repository structure and implementation evidence are being prepared",
-    lead: "This project page is live while the repository is being organized into a recruiter-friendly engineering case study. Only verified implementation, commands, diagrams, validation results and sanitized screenshots will be published.",
+    status: "Repository upload in progress • Coming soon",
+    lead: "This repository is being organized into a complete engineering case study covering application packaging, CI/CD, Kubernetes deployment, Helm releases, validation, rollback and operational evidence.",
+    scope: "Build a repeatable path from source control to a containerized Kubernetes deployment with clear release and rollback responsibilities.",
+    build: "Application, Docker, Kubernetes, Helm and pipeline assets are being arranged into a clean recruiter-friendly repository.",
+    validation: "The final evidence will include build checks, deployment status, service validation, controlled failure tests and rollback verification.",
+    publication: "Only tested configuration, documented commands, sanitized screenshots and honest outcomes will be uploaded.",
+    progressCopy: "Application, container, Helm and pipeline evidence are being organized.",
     focus: [
       "Define the application, container and Kubernetes deployment architecture",
       "Organize manifests, Helm packaging and CI/CD stages",
-      "Document validation, rollback and troubleshooting workflows",
-      "Add sanitized build, deployment and runtime evidence",
+      "Document deployment validation, rollback and troubleshooting workflows",
+      "Add sanitized build, release and runtime evidence",
     ],
     structure: ["README.md", "docs/architecture.md", "app/", "docker/", "kubernetes/", "helm/", ".github/workflows/", "evidence/", "troubleshooting/"],
   },
@@ -17,13 +22,18 @@ const projects = {
     icon: "🧩",
     eyebrow: "Terraform • Infrastructure as Code • Cloud",
     title: "Terraform Infrastructure Automation",
-    status: "Reusable repository blueprint is being prepared",
-    lead: "The case study is being structured around safe, reviewable and repeatable infrastructure provisioning. The repository will clearly separate reusable modules, environment configuration, validation and operational notes.",
+    status: "Repository upload in progress • Coming soon",
+    lead: "This repository is being prepared to demonstrate safe, reviewable and repeatable infrastructure provisioning with reusable modules, environment separation and validation workflows.",
+    scope: "Show how infrastructure can be provisioned consistently while keeping configuration, variables, outputs and operational responsibilities clear.",
+    build: "Reusable Terraform modules, environment examples, scripts and documentation are being arranged into a clean repository structure.",
+    validation: "Formatting, validation, plan review, output verification and controlled cleanup will be documented before publication.",
+    publication: "No cloud identifiers, secrets, state files or office-account information will be included in the public evidence.",
+    progressCopy: "Modules, environments and validation workflows are being prepared.",
     focus: [
-      "Define a clean module and environment layout",
-      "Document variables, outputs, state and security considerations",
-      "Add formatting, validation and plan workflows",
-      "Publish only tested infrastructure examples and sanitized evidence",
+      "Define a reusable module and environment layout",
+      "Document variables, outputs, state handling and security boundaries",
+      "Add formatting, validation and plan-review workflows",
+      "Publish tested infrastructure examples with sanitized evidence",
     ],
     structure: ["README.md", "docs/architecture.md", "modules/", "environments/dev/", "environments/staging/", "scripts/", "tests/", "evidence/", "troubleshooting/"],
   },
@@ -31,8 +41,13 @@ const projects = {
     icon: "🔐",
     eyebrow: "Cloudflare • WAF • DNS • Edge Security",
     title: "Secure Cloudflare and WAF Hardening",
-    status: "Security case study and sanitized evidence are being prepared",
-    lead: "This project will document practical edge-security controls without exposing customer domains, account identifiers, IP addresses or production rules. The final repository will focus on decision logic, validation and safe operational guidance.",
+    status: "Repository upload in progress • Coming soon",
+    lead: "This security case study is being prepared around Cloudflare controls, WAF rules, bot protection, rate limiting, validation and rollback without exposing customer domains or production configuration.",
+    scope: "Document a practical edge-security approach that balances protection, service availability and false-positive control.",
+    build: "Safe rule examples, decision logic, runbooks and sanitized incident scenarios are being organized.",
+    validation: "The final project will show rule testing, expected matches, false-positive review and rollback procedures.",
+    publication: "Customer names, domains, IP addresses, account identifiers and production rules will remain private.",
+    progressCopy: "WAF, bot, rate-limiting and validation examples are being prepared.",
     focus: [
       "Organize WAF, bot, rate-limiting and DNS security use cases",
       "Document safe change, validation and rollback procedures",
@@ -45,8 +60,13 @@ const projects = {
     icon: "🐳",
     eyebrow: "Docker • Microservices • Platform Operations",
     title: "Dockerized Microservice Platform",
-    status: "Application packaging and platform evidence are being prepared",
-    lead: "The repository will show how services are packaged, configured, networked, validated and operated. It will avoid claiming production scale until the relevant testing and evidence are complete.",
+    status: "Repository upload in progress • Coming soon",
+    lead: "This project repository is being structured to show how services are packaged, configured, networked, monitored and operated through reproducible Docker workflows.",
+    scope: "Demonstrate consistent service packaging and an operationally clear container platform structure.",
+    build: "Service directories, Dockerfiles, Compose configuration, health checks and operational scripts are being prepared.",
+    validation: "Image builds, service startup, health checks, networking, logs, failure handling and recovery will be tested.",
+    publication: "Only reproducible examples and verified lab evidence will be presented as completed work.",
+    progressCopy: "Service packaging, networking and health-check evidence are being organized.",
     focus: [
       "Define service boundaries, networks and configuration handling",
       "Create reproducible image and Compose workflows",
@@ -59,8 +79,13 @@ const projects = {
     icon: "🗄️",
     eyebrow: "Database Operations • Support • Troubleshooting",
     title: "Database and Support Operations Toolkit",
-    status: "Operational runbooks and safe lab examples are being prepared",
-    lead: "This toolkit will present database operations and support experience honestly. It will focus on service health, connectivity, backup awareness, logs, access, escalation and repeatable checks rather than presenting specialist DBA claims.",
+    status: "Repository upload in progress • Coming soon",
+    lead: "This toolkit is being prepared around database service health, connectivity, logs, backup awareness, access checks, escalation and repeatable operational troubleshooting.",
+    scope: "Present production-minded database operations and support without overstating specialist DBA responsibilities.",
+    build: "MySQL, MongoDB and Cloud SQL checklists, scripts, scenarios and support runbooks are being organized.",
+    validation: "Service state, connectivity, logs, permissions, backup awareness and escalation paths will be verified through safe lab examples.",
+    publication: "The repository will use sanitized scenarios and will not contain database credentials, customer data or private infrastructure details.",
+    progressCopy: "Operational checklists, scripts and support scenarios are being prepared.",
     focus: [
       "Create MySQL, MongoDB and Cloud SQL operational checklists",
       "Document connectivity, service-health and log investigations",
@@ -73,8 +98,14 @@ const projects = {
     icon: "🐧",
     eyebrow: "Ubuntu • AlmaLinux • GCP • AWS • Bash",
     title: "Linux Administration & Server Operations",
-    status: "Active repository — Lab 01 evidence is being expanded",
-    lead: "The repository is live with a structured Linux administration roadmap. User and group management has been validated on the GCP Ubuntu lab, and the multi-distribution evidence set is being completed carefully before further labs are published.",
+    status: "Active repository • Evidence upload in progress",
+    lead: "The Linux administration repository is already active. Lab 01 has been validated on the GCP Ubuntu environment, and AWS AlmaLinux evidence plus the remaining administration labs are being added progressively.",
+    scope: "Build a multi-distribution Linux administration portfolio with safe commands, explanations, verification, cleanup and troubleshooting guidance.",
+    build: "The core repository structure and user/group management lab are published. Additional evidence and labs are now being completed.",
+    validation: "Each lab is tested on Ubuntu and AlmaLinux where applicable, with manual checks and automated verification scripts.",
+    publication: "Only sanitized terminal evidence is uploaded; office account details, IPs, credentials and sensitive infrastructure data remain private.",
+    progressCopy: "The repository is active and new multi-distribution lab evidence is being uploaded.",
+    comingSoon: "Active repository",
     focus: [
       "GCP Ubuntu 24.04 user and group lab completed and documented",
       "AWS AlmaLinux validation and evidence are the next milestone",
@@ -88,8 +119,13 @@ const projects = {
     icon: "🎧",
     eyebrow: "L0–L2 Support • Incidents • Escalation • Documentation",
     title: "L0–L2 Support & Incident Operations",
-    status: "Case-study structure and sanitized scenarios are being prepared",
-    lead: "The repository will demonstrate a disciplined support workflow from intake and triage through investigation, communication, escalation, validation and knowledge capture. Sensitive company or customer information will not be published.",
+    status: "Repository upload in progress • Coming soon",
+    lead: "This repository is being prepared to demonstrate a structured support workflow from intake and triage through investigation, communication, escalation, validation and knowledge capture.",
+    scope: "Present clear L0, L1 and L2 responsibilities together with incident ownership and escalation boundaries.",
+    build: "Support models, ticket templates, troubleshooting runbooks and sanitized scenarios are being organized.",
+    validation: "Each scenario will include intake, investigation, communication, escalation, resolution checks and closure evidence.",
+    publication: "Company, customer, user and production information will be replaced with safe fictional examples.",
+    progressCopy: "Support workflows, runbooks and sanitized scenarios are being prepared.",
     focus: [
       "Define L0, L1 and L2 responsibilities and escalation boundaries",
       "Create incident, request and troubleshooting templates",
@@ -104,27 +140,49 @@ const params = new URLSearchParams(window.location.search);
 const slug = params.get("project") || "linux-server-administration";
 const project = projects[slug] || projects["linux-server-administration"];
 
+const setText = (selector, value) => {
+  const element = document.querySelector(selector);
+  if (element) element.textContent = value;
+};
+
 document.title = `${project.title} | PabaOps`;
-document.querySelector('meta[name="description"]').setAttribute("content", `${project.title} progress and repository status page by PabaOps.`);
-document.querySelector("[data-eyebrow]").textContent = `${project.icon} ${project.eyebrow}`;
-document.querySelector("[data-status]").append(document.createTextNode(project.status));
-document.querySelector("[data-title]").textContent = project.title;
-document.querySelector("[data-lead]").textContent = project.lead;
+document
+  .querySelector('meta[name="description"]')
+  ?.setAttribute("content", `${project.title} repository preparation and project progress page by PabaOps.`);
+
+setText("[data-breadcrumb]", project.title);
+setText("[data-icon]", project.icon);
+setText("[data-eyebrow]", project.eyebrow);
+setText("[data-status]", project.status);
+setText("[data-title]", project.title);
+setText("[data-lead]", project.lead);
+setText("[data-progress-copy]", project.progressCopy);
+setText("[data-coming-soon]", project.comingSoon || "Coming soon");
+setText("[data-scope]", project.scope);
+setText("[data-build]", project.build);
+setText("[data-validation]", project.validation);
+setText("[data-publication]", project.publication);
 
 const focusList = document.querySelector("[data-focus]");
 project.focus.forEach((item) => {
-  const li = document.createElement("li");
-  li.textContent = item;
-  focusList.append(li);
+  const listItem = document.createElement("li");
+  listItem.textContent = item;
+  focusList?.append(listItem);
 });
 
-document.querySelector("[data-structure]").textContent = `${slug}/\n├── ${project.structure.join("\n├── ")}\n└── LICENSE`;
+setText(
+  "[data-structure]",
+  `${slug}/\n├── ${project.structure.join("\n├── ")}\n└── LICENSE`,
+);
 
 const primaryAction = document.querySelector("[data-primary-action]");
+const pendingAction = document.querySelector("[data-pending-action]");
+
 if (project.repository) {
-  primaryAction.textContent = "Open active repository ↗";
+  primaryAction.textContent = "Open Active Repository ↗";
   primaryAction.href = project.repository;
+  pendingAction.hidden = true;
 } else {
-  primaryAction.textContent = "View GitHub profile ↗";
-  primaryAction.href = "https://github.com/PabasaraMeegahakumbura";
+  primaryAction.hidden = true;
+  pendingAction.hidden = false;
 }
