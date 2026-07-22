@@ -571,8 +571,8 @@ export default function App() {
 
           <section id="certifications" className="container section reveal">
             <div className="section-head">
-              <span>Certifications & Learning</span>
-              <h2>Professional credibility and ongoing growth</h2>
+              <span>Education, Certifications & Learning</span>
+              <h2>Academic achievements, professional certifications and ongoing growth</h2>
             </div>
             <div className="cert-grid">
               {certifications.map((item) => (

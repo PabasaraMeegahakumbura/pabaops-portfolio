@@ -8,6 +8,8 @@ export const EMAIL_PLATFORM_REPO =
   "https://github.com/PabasaraMeegahakumbura/self-hosted-email-platform-lab";
 export const OBSERVABILITY_REPO =
   "https://github.com/PabasaraMeegahakumbura/observability-monitoring-lab";
+export const LINUX_ADMIN_REPO =
+  "https://github.com/PabasaraMeegahakumbura/linux-server-administration-labs";
 export const LINKEDIN_PROFILE =
   "https://www.linkedin.com/in/pabasara-meegahakumbura/";
 

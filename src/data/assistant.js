@@ -5,6 +5,7 @@ export const aiQuickPrompts = [
     "Show his Kubernetes and Terraform strengths",
     "What freelance services does he offer?",
     "Explain his L0–L2 support background",
+    "What is his education background?",
   ];
 
 export const getLocalAIResponse = (question) => {
@@ -45,6 +46,18 @@ export const getLocalAIResponse = (question) => {
       normalized.includes("incident")
     ) {
       return "Pabasara has L0–L2 support depth covering issue intake, validation, prioritization, user communication, common service troubleshooting, access and identity, email and DNS, networking, application support, log analysis, advanced investigation, escalation, incident ownership, Jira, Zoho, runbooks, and knowledge documentation.";
+    }
+
+    if (
+      normalized.includes("education") ||
+      normalized.includes("mba") ||
+      normalized.includes("business analytics") ||
+      normalized.includes("cardiff") ||
+      normalized.includes("bsc") ||
+      normalized.includes("kdu") ||
+      normalized.includes("kotelawala")
+    ) {
+      return "Pabasara completed a Master of Business Administration (MBA) in Business Analytics at Cardiff Metropolitan University, graduating with Merit in 2026. He also holds a BSc in Strategic Studies & International Relations from Kotelawala Defence University, completed in 2023 with Second Class Upper Division. This academic foundation complements his DevOps and cloud engineering experience with business analytics, strategy, research, communication, and structured decision-making.";
     }
 
     if (

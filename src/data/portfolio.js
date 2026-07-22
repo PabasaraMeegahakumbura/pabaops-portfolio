@@ -3,7 +3,11 @@ import {
   GITHUB_PROFILE,
   K8S_LOGO,
   OBSERVABILITY_REPO,
+  LINUX_ADMIN_REPO,
 } from "../config/site";
+
+const projectStatusPage = (slug) =>
+  `${import.meta.env.BASE_URL}project-status/index.html?project=${slug}`;
 
 export const impactStats = [
     { label: "Primary Focus", value: "DevOps + SRE + Platform" },
@@ -112,7 +116,11 @@ export const featuredProjects = [
         "Demonstrates a repeatable path from source control to Kubernetes deployment, with fewer manual release steps.",
       tools: ["Kubernetes", "Helm", "Docker", "Microservices", "CI/CD", "Git", "Linux"],
       image: K8S_LOGO,
-      link: GITHUB_PROFILE,
+      status: "Repository preparation in progress",
+      outcomeLabel: "Build Target",
+      caseStudy: projectStatusPage("kubernetes-cicd-deployment"),
+      repositoryLabel: "Repository Status",
+      link: projectStatusPage("kubernetes-cicd-deployment"),
     },
     {
       title: "Terraform Infrastructure Automation",
@@ -129,7 +137,11 @@ export const featuredProjects = [
         "Demonstrates reusable infrastructure provisioning patterns designed for consistent, reviewable changes.",
       tools: ["Terraform", "Cloud", "Automation", "Linux"],
       icon: "🧩",
-      link: GITHUB_PROFILE,
+      status: "Repository preparation in progress",
+      outcomeLabel: "Build Target",
+      caseStudy: projectStatusPage("terraform-infrastructure-automation"),
+      repositoryLabel: "Repository Status",
+      link: projectStatusPage("terraform-infrastructure-automation"),
     },
     {
       title: "Multi-Tool Monitoring & Observability Stack",
@@ -165,7 +177,11 @@ export const featuredProjects = [
         "Demonstrates practical edge protection, traffic control, and security-aware Cloudflare operations.",
       tools: ["Cloudflare", "WAF", "Security", "Operations"],
       icon: "🔐",
-      link: GITHUB_PROFILE,
+      status: "Repository preparation in progress",
+      outcomeLabel: "Build Target",
+      caseStudy: projectStatusPage("cloudflare-waf-hardening"),
+      repositoryLabel: "Repository Status",
+      link: projectStatusPage("cloudflare-waf-hardening"),
     },
     {
       title: "Dockerized Microservice Platform",
@@ -182,7 +198,11 @@ export const featuredProjects = [
         "Demonstrates consistent container packaging and a platform-oriented structure across development and runtime environments.",
       tools: ["Docker", "Platform", "Linux", "Cloud"],
       icon: "🐳",
-      link: GITHUB_PROFILE,
+      status: "Repository preparation in progress",
+      outcomeLabel: "Build Target",
+      caseStudy: projectStatusPage("dockerized-microservice-platform"),
+      repositoryLabel: "Repository Status",
+      link: projectStatusPage("dockerized-microservice-platform"),
     },
     {
       title: "Database and Support Operations Toolkit",
@@ -199,7 +219,11 @@ export const featuredProjects = [
         "Demonstrates a structured support workflow across databases, ticketing, investigation, escalation, and documentation.",
       tools: ["MongoDB", "MySQL", "Jira", "Zoho"],
       icon: "🗄️",
-      link: GITHUB_PROFILE,
+      status: "Repository preparation in progress",
+      outcomeLabel: "Build Target",
+      caseStudy: projectStatusPage("database-support-operations-toolkit"),
+      repositoryLabel: "Repository Status",
+      link: projectStatusPage("database-support-operations-toolkit"),
     },
     {
       title: "Linux Administration & Server Operations",
@@ -216,7 +240,11 @@ export const featuredProjects = [
         "Demonstrates practical Linux administration for stable services, controlled access, and systematic troubleshooting.",
       tools: ["Ubuntu", "RHEL", "CentOS", "AlmaLinux", "systemd", "Bash", "SSH"],
       icon: "🐧",
-      link: GITHUB_PROFILE,
+      status: "Active build — evidence being added",
+      outcomeLabel: "Verified Progress",
+      caseStudy: projectStatusPage("linux-server-administration"),
+      repositoryLabel: "Open Active Repository",
+      link: LINUX_ADMIN_REPO,
     },
     {
       title: "L0–L2 Support & Incident Operations",
@@ -233,7 +261,11 @@ export const featuredProjects = [
         "Demonstrates structured incident ownership, clear escalation paths, and consistent communication throughout issue resolution.",
       tools: ["L0–L2", "Jira", "Zoho", "Monitoring", "Troubleshooting", "Documentation"],
       icon: "🎧",
-      link: GITHUB_PROFILE,
+      status: "Repository preparation in progress",
+      outcomeLabel: "Build Target",
+      caseStudy: projectStatusPage("l0-l2-incident-operations"),
+      repositoryLabel: "Repository Status",
+      link: projectStatusPage("l0-l2-incident-operations"),
     },
     {
       title: "Self-Hosted Email Platform Engineering Lab",
@@ -337,14 +369,23 @@ export const experience = [
   ];
 
 export const certifications = [
+    {
+      badge: "🎓",
+      title: "Master of Business Administration (MBA) in Business Analytics, Cardiff Metropolitan University (UK) - 2024 - 2026 | Merit",
+      text: "Completed with Merit, strengthening business analytics, leadership, strategy, research, and evidence-based decision-making.",
+    },
+    {
+      badge: "🎓",
+      title: "BSc Strategic Studies & International Relations, Kotelawala Defence University (KDU) - 2020 - 2023 | Second Upper",
+      text: "Second Class Upper Division with strengths in strategic thinking, structured research, analysis, communication, and international relations.",
+    },
     { badge: "☁️", title: "AWS Certified Cloud Practitioner", text: "Cloud fundamentals and platform awareness." },
     { badge: "☸️", title: "CKA — In Progress", text: "Kubernetes administration and deeper platform capability building." },
-    { badge: "🎓", title: "MBA (Business Analytics) — Final Semester", text: "Business-facing analytical and strategic perspective." },
     { badge: "💻", title: "BIT — University of Moratuwa (In Progress)", text: "Ongoing technical and systems-oriented academic development." },
   ];
 
 export const workingNow = [
-    "Building recruiter-ready DevOps portfolio projects",
+    "Building recruiter-ready DevOps portfolio projects with honest progress pages and repository evidence",
     "Improving Kubernetes deployment workflows",
     "Deepening Terraform automation practice",
     "Strengthening observability and reliability patterns",

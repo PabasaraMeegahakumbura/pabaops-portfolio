@@ -49,7 +49,8 @@ export function HighlightedProjectCard({ project }) {
 
 export function ProjectCard({ project }) {
   const repositoryLabel =
-    project.link === GITHUB_PROFILE ? "View GitHub Profile" : "Open Repository";
+    project.repositoryLabel ||
+    (project.link === GITHUB_PROFILE ? "View GitHub Profile" : "Open Repository");
 
   return (
     <article className="panel project-card reveal-card">
@@ -58,6 +59,9 @@ export function ProjectCard({ project }) {
         <div>
           <small>{project.subtitle}</small>
           <h3>{project.title}</h3>
+          {project.status && (
+            <span className="project-status-badge">{project.status}</span>
+          )}
         </div>
       </div>
 
