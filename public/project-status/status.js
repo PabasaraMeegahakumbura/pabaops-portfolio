@@ -4,7 +4,7 @@ const projects = {
     eyebrow: "Kubernetes • Helm • CI/CD • Containers",
     title: "Kubernetes CI/CD Deployment Project",
     status: "Repository structure and implementation evidence are being prepared",
-    lead: "This project page is live while the repository is being organized into a recruiter-friendly engineering case study. Only verified implementation, commands, diagrams, validation results and sanitized screenshots will be published.",
+    lead: "This project page is available while the repository is being organized into a recruiter-friendly engineering case study. Only verified implementation, commands, diagrams, validation results and sanitized screenshots will be published.",
     focus: [
       "Define the application, container and Kubernetes deployment architecture",
       "Organize manifests, Helm packaging and CI/CD stages",
@@ -125,6 +125,8 @@ if (project.repository) {
   primaryAction.textContent = "Open active repository ↗";
   primaryAction.href = project.repository;
 } else {
-  primaryAction.textContent = "View GitHub profile ↗";
-  primaryAction.href = "https://github.com/PabasaraMeegahakumbura";
+  primaryAction.hidden = true;
+  primaryAction.removeAttribute("href");
+  primaryAction.removeAttribute("target");
+  primaryAction.removeAttribute("rel");
 }
