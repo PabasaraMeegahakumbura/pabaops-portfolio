@@ -1,0 +1,45 @@
+/* Performance-only enhancements. Visual design and content remain unchanged. */
+.route-loading {
+  min-height: 52vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 20px;
+  color: #ddd6fe;
+  font-weight: 800;
+  text-align: center;
+}
+
+@supports (content-visibility: auto) {
+  .site main > .container.section,
+  .capability-page > .capability-focus-grid,
+  .capability-page > .capability-evidence,
+  .capability-page > .capability-page-actions,
+  .projects-page > .project-grid,
+  .case-studies-page > .work-grid,
+  .skills-page > .skill-grid,
+  .experience-page > .timeline {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
+  }
+}
+
+@media (max-width: 900px) {
+  .site main > .container.section,
+  .capability-page > .capability-focus-grid,
+  .capability-page > .capability-evidence,
+  .projects-page > .project-grid,
+  .case-studies-page > .work-grid,
+  .skills-page > .skill-grid,
+  .experience-page > .timeline {
+    contain-intrinsic-size: auto 900px;
+  }
+
+  .hero-brand-art,
+  .brand-img,
+  .tool-icon-img,
+  .ai-welcome-photo,
+  .ai-launcher-photo,
+  .ai-chat-avatar img {
+    image-rendering: auto;
+  }
+}
