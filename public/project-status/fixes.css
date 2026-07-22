@@ -1,0 +1,43 @@
+.card.wide.workflow-card {
+  display: block;
+  width: 100%;
+}
+
+.workflow {
+  width: 100%;
+}
+
+.workflow-item,
+.workflow-item > div {
+  min-width: 0;
+}
+
+.workflow-item strong,
+.workflow-item p {
+  overflow-wrap: anywhere;
+}
+
+.project-icon img {
+  display: block;
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(37, 99, 235, 0.34));
+}
+
+@media (max-width: 1080px) {
+  .workflow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .workflow {
+    grid-template-columns: 1fr;
+  }
+
+  .project-icon img {
+    width: 44px;
+    height: 44px;
+  }
+}
