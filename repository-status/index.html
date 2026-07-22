@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PabaOps repository preparation and maintenance status." />
+  <meta name="theme-color" content="#0a0315" />
+  <title>Repository Status | PabaOps</title>
+  <link rel="icon" type="image/webp" href="../pabaops-logo.webp" />
+  <link rel="apple-touch-icon" href="../pabaops-logo.webp" />
+  <link rel="stylesheet" href="./status.css" />
+  <link rel="stylesheet" href="./icon-fixes.css" />
+  <script src="./status.js" defer></script>
+  <script src="./icon-fixes.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="../#/" aria-label="Return to PabaOps home">
+        <img src="../pabaops-logo.webp" alt="PabaOps" width="50" height="50" />
+        <span>
+          <strong>PabaOps</strong>
+          <small>DevOps • Cloud • SRE • Platform</small>
+        </span>
+      </a>
+      <a class="top-link" href="../#/projects">Back to Projects</a>
+    </header>
+
+    <section class="status-panel" aria-labelledby="page-title">
+      <div class="maintenance-visual" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="repo-core">
+          <span class="repo-icon" data-icon>🛠️</span>
+        </div>
+        <span class="spark spark-one"></span>
+        <span class="spark spark-two"></span>
+        <span class="spark spark-three"></span>
+      </div>
+
+      <div class="status-copy">
+        <div class="status-pill">
+          <span class="live-dot"></span>
+          Repository maintenance in progress
+        </div>
+        <p class="eyebrow" data-eyebrow>Project repository</p>
+        <h1 id="page-title" data-title>Repository is being prepared</h1>
+        <p class="lead">
+          We are currently organizing, validating, documenting and uploading this project repository.
+          The public link will be enabled after the structure and evidence are ready for review.
+        </p>
+
+        <div class="activity-line" role="status" aria-live="polite">
+          <span class="activity-label">Current activity</span>
+          <strong data-activity>Preparing repository structure</strong>
+          <span class="typing-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+
+        <div class="progress-track" aria-label="Repository preparation is in progress">
+          <span></span>
+        </div>
+
+        <div class="stage-grid">
+          <article class="stage-card active">
+            <span>01</span>
+            <div>
+              <strong>Organizing</strong>
+              <small>Cleaning files and arranging the repository structure.</small>
+            </div>
+          </article>
+          <article class="stage-card active">
+            <span>02</span>
+            <div>
+              <strong>Validating</strong>
+              <small>Checking commands, configuration and reproducible outcomes.</small>
+            </div>
+          </article>
+          <article class="stage-card">
+            <span>03</span>
+            <div>
+              <strong>Uploading</strong>
+              <small>Adding sanitized evidence, documentation and final project assets.</small>
+            </div>
+          </article>
+        </div>
+
+        <div class="terminal-card" aria-label="Repository maintenance activity">
+          <div class="terminal-bar">
+            <span></span><span></span><span></span>
+            <small>pabaops-repository-maintenance</small>
+          </div>
+          <div class="terminal-body">
+            <p><span>$</span> repository-status --prepare <strong data-slug>project</strong></p>
+            <p class="terminal-success">✓ Structure review started</p>
+            <p class="terminal-success">✓ Sensitive information excluded</p>
+            <p class="terminal-working">↻ Documentation and evidence upload in progress</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="button primary" data-case-study href="../#/projects">View Case Study</a>
+          <a class="button" href="../#/projects">Back to All Projects</a>
+          <a class="button" href="../#/">Return to Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="honesty-note">
+      Only tested work and sanitized evidence will be published. No office account details,
+      credentials, private IP addresses or customer information will be included.
+    </p>
+  </main>
+  <script src="../pabaops-ai/assistant-loader.js" defer data-pabaops-ai-loader></script>
+</body>
+</html>
