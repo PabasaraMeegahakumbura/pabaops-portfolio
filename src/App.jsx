@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import "./styles/app.css";
 import {
   AI_API_URL,
@@ -25,13 +25,13 @@ import { aiQuickPrompts, getLocalAIResponse } from "./data/assistant";
 import { SiteHeader } from "./components/SiteHeader";
 import { SiteFooter } from "./components/SiteFooter";
 import { HighlightedProjectCard, ProjectCard } from "./components/ProjectCards";
-import { EmailPlatformCaseStudy } from "./pages/EmailPlatformCaseStudy";
-import { MonitoringCaseStudy } from "./pages/MonitoringCaseStudy";
-import { CapabilitiesPage } from "./pages/CapabilitiesPage";
-import { ProjectsPage } from "./pages/ProjectsPage";
-import { CaseStudiesPage } from "./pages/CaseStudiesPage";
-import { SkillsPage } from "./pages/SkillsPage";
-import { ExperiencePage } from "./pages/ExperiencePage";
+const EmailPlatformCaseStudy = lazy(() => import("./pages/EmailPlatformCaseStudy").then((module) => ({ default: module.EmailPlatformCaseStudy })));
+const MonitoringCaseStudy = lazy(() => import("./pages/MonitoringCaseStudy").then((module) => ({ default: module.MonitoringCaseStudy })));
+const CapabilitiesPage = lazy(() => import("./pages/CapabilitiesPage").then((module) => ({ default: module.CapabilitiesPage })));
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage").then((module) => ({ default: module.ProjectsPage })));
+const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage").then((module) => ({ default: module.CaseStudiesPage })));
+const SkillsPage = lazy(() => import("./pages/SkillsPage").then((module) => ({ default: module.SkillsPage })));
+const ExperiencePage = lazy(() => import("./pages/ExperiencePage").then((module) => ({ default: module.ExperiencePage })));
 
 export default function App() {
   const [route, setRoute] = useState(() => window.location.hash || "#/");
@@ -127,6 +127,10 @@ export default function App() {
 
 
   useEffect(() => {
+    if (window.matchMedia("(max-width: 720px)").matches) {
+      return undefined;
+    }
+
     const showTimer = window.setTimeout(() => {
       setShowAiGreeting(true);
     }, 900);
@@ -352,6 +356,7 @@ export default function App() {
         <SiteHeader onHome={goToHome} />
 
         <main id="main-content">
+          <Suspense fallback={<div className="route-loading" role="status">Loading portfolio section…</div>}>
           {isProjectRoute ? (
             <EmailPlatformCaseStudy />
           ) : isMonitoringProjectRoute ? (
@@ -638,6 +643,7 @@ export default function App() {
           </section>
             </>
           )}
+          </Suspense>
         </main>
 
         <SiteFooter />
@@ -668,7 +674,7 @@ export default function App() {
               }
             }}
           >
-            <img src={BRAND_IMAGE} alt="PabaOps assistant" className="ai-welcome-photo" decoding="async" />
+            <img src={BRAND_IMAGE} alt="PabaOps assistant" className="ai-welcome-photo" loading="lazy" decoding="async" />
             <div className="ai-welcome-copy">
               <strong>Hi there! 👋</strong>
               <span>
@@ -688,7 +694,7 @@ export default function App() {
           title="Ask PabaOps AI"
         >
           <span className="ai-launcher-icon" aria-hidden="true">
-            <img src={BRAND_IMAGE} alt="" className="ai-launcher-photo" decoding="async" />
+            <img src={BRAND_IMAGE} alt="" className="ai-launcher-photo" loading="lazy" decoding="async" />
           </span>
           <span>Ask PabaOps AI</span>
         </button>
@@ -701,7 +707,7 @@ export default function App() {
           <div className="ai-chat-head">
             <div className="ai-chat-identity">
               <div className="ai-chat-avatar">
-                <img src={BRAND_IMAGE} alt="PabaOps AI Assistant" decoding="async" />
+                <img src={BRAND_IMAGE} alt="PabaOps AI Assistant" loading="lazy" decoding="async" />
               </div>
               <div className="ai-chat-title">
                 <strong>PabaOps AI Assistant</strong>
