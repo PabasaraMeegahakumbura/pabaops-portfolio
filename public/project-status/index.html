@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PabaOps project progress and repository status page." />
+  <title>Project Progress | PabaOps</title>
+  <link rel="stylesheet" href="./status.css" />
+  <script src="./status.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="../#/projects" aria-label="Return to PabaOps projects">
+        <img src="../pabaops-logo.webp" alt="PabaOps" width="48" height="48" />
+        <span class="brand-copy"><strong>PabaOps</strong><span>DevOps • Cloud • SRE • Platform</span></span>
+      </a>
+      <nav class="nav-actions" aria-label="Project page navigation">
+        <a class="button" href="../#/projects">All projects</a>
+        <a class="button" href="../#/case-studies">Case studies</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow" data-eyebrow></div>
+        <div class="status" data-status><span class="status-dot"></span></div>
+        <h1 data-title></h1>
+        <p class="lead" data-lead></p>
+        <div class="hero-actions">
+          <a class="button primary" data-primary-action target="_blank" rel="noreferrer"></a>
+          <a class="button" href="../#/projects">Return to project catalogue</a>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="Project preparation details">
+        <article class="card">
+          <h2>What is happening now</h2>
+          <p>The page is intentionally live before the final repository is complete. This keeps the portfolio useful without broken links or overstated unfinished work.</p>
+          <ul data-focus></ul>
+        </article>
+
+        <article class="card">
+          <h2>Publication workflow</h2>
+          <div class="progress">
+            <div class="progress-item"><span class="progress-number">1</span><div><strong>Scope and architecture</strong><span>Define the problem, boundaries, design and success criteria.</span></div></div>
+            <div class="progress-item"><span class="progress-number">2</span><div><strong>Implementation</strong><span>Add real configuration, code, commands and reproducible steps.</span></div></div>
+            <div class="progress-item"><span class="progress-number">3</span><div><strong>Validation</strong><span>Record tests, expected results, failure checks and recovery steps.</span></div></div>
+            <div class="progress-item"><span class="progress-number">4</span><div><strong>Evidence and publication</strong><span>Sanitize screenshots, document lessons learned and publish verified outcomes.</span></div></div>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <h2>Planned repository structure</h2>
+          <p>The repository follows the same evidence-first structure used across the active PabaOps engineering labs.</p>
+          <pre data-structure></pre>
+          <div class="notice"><strong>Honest portfolio note:</strong> items remain labelled as in progress until implementation and validation evidence is available. No customer credentials, office account details, private IPs, secrets or sensitive production information will be published.</div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer"><span>© PabaOps • Pabasara Meegahakumbura</span><span>Built with transparent progress and evidence-led documentation.</span></footer>
+  </div>
+</body>
+</html>
