@@ -51,6 +51,8 @@ export function ProjectCard({ project }) {
   const repositoryLabel =
     project.repositoryLabel ||
     (project.link === GITHUB_PROFILE ? "View GitHub Profile" : "Open Repository");
+  const repositoryPending = project.link?.includes("/project-status/");
+  const caseStudyLabel = repositoryPending ? "View Project Progress" : "View Case Study";
 
   return (
     <article className="panel project-card reveal-card">
@@ -78,8 +80,16 @@ export function ProjectCard({ project }) {
         {project.tools.map((tool) => <span className="project-tag" key={tool}>{tool}</span>)}
       </div>
       <div className="project-actions">
-        {project.caseStudy && <a className="mini-btn" href={project.caseStudy}>View Case Study</a>}
-        <a className="mini-btn" href={project.link} target="_blank" rel="noreferrer">{repositoryLabel}</a>
+        {project.caseStudy && <a className="mini-btn" href={project.caseStudy}>{caseStudyLabel}</a>}
+        {repositoryPending ? (
+          <span className="mini-btn" aria-disabled="true" title="This repository will be linked after implementation and validation are complete">
+            Repository not published yet
+          </span>
+        ) : (
+          project.link && (
+            <a className="mini-btn" href={project.link} target="_blank" rel="noreferrer">{repositoryLabel}</a>
+          )
+        )}
         <a className="mini-btn" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">More Repositories</a>
       </div>
     </article>
