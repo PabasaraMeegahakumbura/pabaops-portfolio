@@ -17,6 +17,17 @@ function ProjectVisual({ project, className }) {
   );
 }
 
+function getRepositoryHref(project) {
+  if (project.repositoryLabel !== "Repository Status") {
+    return project.link;
+  }
+
+  const statusUrl = new URL(project.link, window.location.origin);
+  const projectSlug = statusUrl.searchParams.get("project") || "project";
+
+  return `${import.meta.env.BASE_URL}repository-status/index.html?project=${encodeURIComponent(projectSlug)}`;
+}
+
 export function HighlightedProjectCard({ project }) {
   return (
     <div className="flip-card reveal-card">
@@ -51,6 +62,7 @@ export function ProjectCard({ project }) {
   const repositoryLabel =
     project.repositoryLabel ||
     (project.link === GITHUB_PROFILE ? "View GitHub Profile" : "Open Repository");
+  const repositoryHref = getRepositoryHref(project);
 
   return (
     <article className="panel project-card reveal-card">
@@ -79,7 +91,7 @@ export function ProjectCard({ project }) {
       </div>
       <div className="project-actions">
         {project.caseStudy && <a className="mini-btn" href={project.caseStudy}>View Case Study</a>}
-        <a className="mini-btn" href={project.link} target="_blank" rel="noreferrer">{repositoryLabel}</a>
+        <a className="mini-btn" href={repositoryHref} target="_blank" rel="noreferrer">{repositoryLabel}</a>
         <a className="mini-btn" href={GITHUB_PROFILE} target="_blank" rel="noreferrer">More Repositories</a>
       </div>
     </article>
